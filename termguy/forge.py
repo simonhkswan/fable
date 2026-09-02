@@ -2,6 +2,7 @@
 from a template and the seeded variables of one job. Nothing is off limits to
 it. After the run, the boot test runs. If it fails, a repair session gets the
 error. If that fails too, the run is reverted."""
+import fcntl
 import json
 import os
 import shutil
@@ -112,10 +113,27 @@ def undo_to(commit):
     git("commit", "-qm", "undo failed forge", "--allow-empty")
 
 
+LOCK = os.path.join(paths.ROOT, ".forge.lock")
+
+
 def run_job(job, on_status=None):
-    """Run one queued job to completion. Returns (ok, message)."""
+    """Run one queued job to completion. Returns (ok, message). One forge run
+    at a time, machine wide: two runs in one git repo would tangle."""
     paths.ensure()
     say = on_status or (lambda s: None)
+    lock = open(LOCK, "w")
+    try:
+        fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        return False, "another forge run is going. Wait for it."
+    try:
+        return _run_job(job, say)
+    finally:
+        fcntl.flock(lock, fcntl.LOCK_UN)
+        lock.close()
+
+
+def _run_job(job, say):
     run_dir = os.path.join(paths.RUNS, time.strftime("%Y%m%d-%H%M%S") + "-" + job["id"])
     os.makedirs(run_dir, exist_ok=True)
     shutil.copy(paths.STATE, os.path.join(run_dir, "state-before.json"))

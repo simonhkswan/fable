@@ -1111,6 +1111,11 @@
       "t": "2026-09-02 23:39",
       "text": "merged PatentCopilot#22363  +64 xp  +1 craft",
       "url": "https://github.com/solveintelligence/PatentCopilot/pull/22363"
+    },
+    {
+      "kind": "talent",
+      "t": "2026-09-02 23:44",
+      "text": "learned Wanderlust"
     }
   ],
   "last_sync": "2026-09-02T23:42:17",
@@ -1118,7 +1123,8 @@
   "name": "the guy",
   "owned_panes": [],
   "owned_talents": [
-    "root"
+    "root",
+    "wanderlust"
   ],
   "repos": [
     "explosion/thinc",
@@ -1304,7 +1310,7 @@
   },
   "unspent": {
     "stat": 0,
-    "talent": 20
+    "talent": 19
   },
   "version": 1,
   "xp": 10271

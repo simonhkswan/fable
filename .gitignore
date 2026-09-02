@@ -5,3 +5,4 @@ guy.log
 presence.json
 state.json.tmp
 items/*/stderr.log
+.forge.lock
