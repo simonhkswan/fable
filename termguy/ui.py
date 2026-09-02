@@ -134,11 +134,12 @@ class App:
             elif kind == "note":
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
-                    self.guy.say(payload + "!", 5.0)
                     self.toast(payload, "yellow", 8.0)
+                    notify("the guy reached %s" % payload, "a new thing waits at the forge")
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
+                    notify("the guy found something", payload)
             elif kind == "synced":
                 if payload == 0 and self.page == "home" and self.first_sync_done is False:
                     self.toast("synced. nothing new.", "subtext0", 3.0)
@@ -616,6 +617,18 @@ class App:
             self.guy.fire("idle")
 
     last_sync = 0.0
+
+
+def notify(title, body):
+    """A desktop notification, on macOS. Silent anywhere else."""
+    import subprocess
+    if sys.platform != "darwin":
+        return
+    script = 'display notification "%s" with title "%s"' % (body.replace('"', "'"), title.replace('"', "'"))
+    try:
+        subprocess.Popen(["osascript", "-e", script], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    except OSError:
+        pass
 
 
 def wrap(text, w):

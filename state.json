@@ -1113,7 +1113,7 @@
       "url": "https://github.com/solveintelligence/PatentCopilot/pull/22363"
     }
   ],
-  "last_sync": "2026-09-02T23:39:47",
+  "last_sync": "2026-09-02T23:42:17",
   "level": 21,
   "name": "the guy",
   "owned_panes": [],
@@ -1298,12 +1298,12 @@
     "charm": 50,
     "craft": 51,
     "focus": 57,
-    "luck": 48,
+    "luck": 88,
     "vigor": 60,
     "wit": 62
   },
   "unspent": {
-    "stat": 40,
+    "stat": 0,
     "talent": 20
   },
   "version": 1,

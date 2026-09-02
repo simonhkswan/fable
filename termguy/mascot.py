@@ -50,6 +50,7 @@ class Guy:
         self.store = {}
         self.caption_override = None
         self.playing = []       # running reaction generators
+        self.last_pose = {}
         self.bubble = None      # (text, until)
         self.t = 0.0
         self.dt = 1 / 30
@@ -63,6 +64,40 @@ class Guy:
         a.idle_job("juggles", 1, "juggling", self._juggles, eye=0)
         a.idle_job("thinks", 2, "thinking about it", self._thinks, eye=1)
         a.idle_job("naps", 1, "recharging", self._naps, eye=0)
+        a.reaction("level_up", self._level_up)
+        a.reaction("drop", self._drop_glow)
+
+    # ── built-in reactions ──
+    def _level_up(self, ctx, data):
+        """Two seconds of sparks from the head, a hop, and a word."""
+        u = self.u
+        self.say(data.get("text", "level up") + "!", 5.0)
+        t0 = self.t
+        next_burst = t0
+        while self.t - t0 < 2.4:
+            if self.t >= next_burst:
+                next_burst = self.t + 0.18
+                x = int(self.x * 2)
+                self._burst(x + 8 * u, self.last_pose.get("y", 0) - u, 6,
+                            ("yellow", "peach", "rosewater", "green", "sky"))
+            self._sparks(ctx.q)
+            yield
+        while self.sparks:
+            self._sparks(ctx.q)
+            yield
+
+    def _drop_glow(self, ctx, data):
+        """Something fell. A short shimmer at the feet."""
+        u = self.u
+        t0 = self.t
+        while self.t - t0 < 1.5:
+            f = 1.0 - (self.t - t0) / 1.5
+            x = int(self.x * 2)
+            fy = self.last_pose.get("y", 0) + 5 * u
+            for i in range(0, 16 * u, u):
+                if (i // u + int(self.t * 12)) % 3 == 0:
+                    self._block(ctx.q, x + i, fy, self._fade("mauve", f))
+            yield
 
     # ── setup ──
     def reset(self, s):
