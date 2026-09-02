@@ -75,7 +75,7 @@ def brief_for(job):
         "category": spec.get("category"), "mood": spec.get("mood"), "constraint": spec.get("constraint"),
         "twist": spec.get("twist") or "none", "theme": ", ".join(spec.get("theme", [])) or "none",
         "requires": json.dumps(spec.get("requires")), "seed": spec.get("seed"),
-        "event": json.dumps(spec.get("event")), "item_id": str(spec.get("seed", "x"))[:8],
+        "event": json.dumps(spec.get("event")), "item_id": spec.get("id") or str(spec.get("seed", "x"))[:8],
         "contract": read(os.path.join(paths.TEMPLATES, "contract.md")),
     })
     return fill(template, v)
@@ -90,9 +90,11 @@ def boot_test():
 def run_claude(prompt, run_dir, tag):
     with open(os.path.join(run_dir, tag + "-brief.md"), "w") as f:
         f.write(prompt)
+    # A forge run must not look like a child of the session that started it.
+    env = {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE")}
     with open(os.path.join(run_dir, tag + "-out.txt"), "w") as out:
         p = subprocess.run(CLAUDE, input=prompt, cwd=paths.ROOT, stdout=out, stderr=subprocess.STDOUT,
-                           text=True, timeout=60 * 40)
+                           text=True, timeout=60 * 40, env=env)
     return p.returncode
 
 

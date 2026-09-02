@@ -1,0 +1,54 @@
+{
+  "id": "item-13b9db7d",
+  "kind": "item",
+  "note": "dropped by merged PatentCopilot#21236",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 4,
+    "categories_at_roll": 5,
+    "category": "companion",
+    "constraint": "must involve the PR that dropped it",
+    "event": {
+      "id": "pr:solveintelligence/PatentCopilot#21236",
+      "kind": "pr",
+      "number": 21236,
+      "repo": "solveintelligence/PatentCopilot",
+      "title": "fix(devtools): stop `run stop` leaking celery, and parse `nx show projects` as JSON (ENG-11349, ENG-11099)",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21236"
+    },
+    "guy": {
+      "level": 19,
+      "stats": {
+        "charm": 48,
+        "craft": 42,
+        "focus": 55,
+        "luck": 44,
+        "vigor": 53,
+        "wit": 56
+      }
+    },
+    "id": "13b9db7d",
+    "mood": "gentle",
+    "rarity": "common",
+    "requires": {
+      "level": 18,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "0f636ccea832ca46ee64f2f767dc948bea0030be",
+    "source": "drop",
+    "theme": [
+      "PatentCopilot",
+      "devtools",
+      "stop",
+      "`run",
+      "stop`",
+      "leaking",
+      "celery",
+      "parse"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

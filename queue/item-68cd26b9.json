@@ -1,0 +1,57 @@
+{
+  "id": "item-68cd26b9",
+  "kind": "item",
+  "note": "reward for level 20",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 14,
+    "categories_at_roll": 5,
+    "category": "ability",
+    "constraint": "must involve the floor",
+    "event": {
+      "id": "pr:simonhkswan/wisp#38",
+      "kind": "pr",
+      "number": 38,
+      "repo": "simonhkswan/wisp",
+      "title": "feat: add the metrics layer for derived and measured figures",
+      "url": "https://github.com/simonhkswan/wisp/pull/38"
+    },
+    "guy": {
+      "level": 20,
+      "stats": {
+        "charm": 50,
+        "craft": 45,
+        "focus": 56,
+        "luck": 47,
+        "vigor": 57,
+        "wit": 60
+      }
+    },
+    "id": "68cd26b9",
+    "level_reached": 20,
+    "mood": "brash",
+    "rarity": "rare",
+    "requires": {
+      "level": 21,
+      "stats": {
+        "charm": 56
+      }
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "level:20:8ffa4737fd9eb0810b7fc5aade38f972ae41eb1b",
+    "source": "level",
+    "theme": [
+      "wisp",
+      "feat",
+      "metrics",
+      "layer",
+      "derived",
+      "measured",
+      "figures",
+      "py"
+    ],
+    "twist": "the item adds a new attachment point that later items can use"
+  },
+  "status": "queued"
+}

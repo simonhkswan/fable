@@ -10,8 +10,11 @@ from .log import log
 
 def queue_job(kind, spec, note=""):
     paths.ensure()
+    from .rng import seed_of
+    short = "%08x" % (seed_of(str(spec.get("seed"))) & 0xffffffff)
+    spec.setdefault("id", short)
     job = {
-        "id": "%s-%s" % (kind, spec["seed"][:12] if isinstance(spec.get("seed"), str) else int(time.time())),
+        "id": "%s-%s" % (kind, short),
         "kind": kind, "spec": spec, "note": note,
         "queued": time.strftime("%Y-%m-%dT%H:%M:%S"), "status": "queued",
     }
@@ -32,7 +35,9 @@ def pending_jobs():
                     out.append(json.load(f))
                 except ValueError:
                     pass
-    return [j for j in out if j.get("status") == "queued"]
+    out = [j for j in out if j.get("status") == "queued"]
+    out.sort(key=lambda j: (j.get("queued", ""), j["id"]))
+    return out
 
 
 def apply_event(st, ev):

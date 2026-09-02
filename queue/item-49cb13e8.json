@@ -1,0 +1,53 @@
+{
+  "id": "item-49cb13e8",
+  "kind": "item",
+  "note": "dropped by merged insight#72",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 2,
+    "categories_at_roll": 5,
+    "category": "cosmetic",
+    "constraint": "must work when the pane is tiny",
+    "event": {
+      "id": "pr:synthesized-io/insight#72",
+      "kind": "pr",
+      "number": 72,
+      "repo": "synthesized-io/insight",
+      "title": "Change project name to insight",
+      "url": "https://github.com/synthesized-io/insight/pull/72"
+    },
+    "guy": {
+      "level": 11,
+      "stats": {
+        "charm": 27,
+        "craft": 18,
+        "focus": 34,
+        "luck": 23,
+        "vigor": 27,
+        "wit": 29
+      }
+    },
+    "id": "49cb13e8",
+    "mood": "feral",
+    "rarity": "common",
+    "requires": {
+      "level": 9,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "75ec4845bf9d5aeb137155a04ab27709d1d71e80",
+    "source": "drop",
+    "theme": [
+      "insight",
+      "change",
+      "project",
+      "name",
+      "py",
+      "yaml",
+      "md"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

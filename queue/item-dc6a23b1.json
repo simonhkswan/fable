@@ -1,0 +1,56 @@
+{
+  "id": "item-dc6a23b1",
+  "kind": "item",
+  "note": "reward for level 16",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 8,
+    "categories_at_roll": 5,
+    "category": "cosmetic",
+    "constraint": "must read something from git",
+    "event": {
+      "id": "review:solveintelligence/PatentCopilot#20133",
+      "kind": "review",
+      "number": 20133,
+      "repo": "solveintelligence/PatentCopilot",
+      "title": "Add controlled main harness experiment skill",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20133"
+    },
+    "guy": {
+      "level": 16,
+      "stats": {
+        "charm": 40,
+        "craft": 34,
+        "focus": 45,
+        "luck": 39,
+        "vigor": 43,
+        "wit": 43
+      }
+    },
+    "id": "dc6a23b1",
+    "level_reached": 16,
+    "mood": "heroic",
+    "rarity": "rare",
+    "requires": {
+      "level": 19,
+      "stats": {
+        "charm": 44
+      }
+    },
+    "scope": "extend",
+    "scope_brief": "Add a capability. You may add attachment points and change the runtime to support it.",
+    "seed": "level:16:review:solveintelligence/PatentCopilot#20133:2026-07-31T13:57:43Z",
+    "source": "level",
+    "theme": [
+      "PatentCopilot",
+      "controlled",
+      "main",
+      "harness",
+      "experiment",
+      "skill",
+      "md"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}
