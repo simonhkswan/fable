@@ -1,0 +1,3 @@
+{"name": "cosmetic", "tagline": "Things he wears, colours he turns, new things he does while idle.",
+ "weight": 5, "hooks": ["register"],
+ "prompt_notes": "Hats, capes, palettes, new idle jobs, new reactions. Use the animation API. Draw in the mascot idiom."}

@@ -1,0 +1,3 @@
+{"name": "companion", "tagline": "A second creature or thing that lives in the pane with him.",
+ "weight": 3, "hooks": ["register", "tick", "stream"],
+ "prompt_notes": "Pets, weather, plants, ghosts. They have their own behaviour and react to what he does."}

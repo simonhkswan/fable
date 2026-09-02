@@ -1,0 +1,1 @@
+{"id": "steady_hands", "name": "Steady Hands", "hint": "+1 craft. Things he makes hold together.", "kind": "passive", "cost": 1, "parent": "root", "pos": [-2, -1], "effect": {"stat": {"craft": 1}}, "generated": false}

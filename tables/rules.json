@@ -1,0 +1,16 @@
+{
+  "stats": ["vigor", "focus", "craft", "wit", "luck", "charm"],
+  "level_curve": {"base": 100, "power": 1.5},
+  "points_per_level": {"stat": 2, "talent": 1},
+  "xp": {
+    "pr_base": 40, "pr_per_10_lines": 1, "pr_lines_cap": 150, "pr_per_file": 3,
+    "pr_files_cap": 45, "review_base": 25, "review_per_comment": 5,
+    "review_comments_cap": 50, "new_repo_bonus": 30
+  },
+  "stat_gain": {"min": 1, "max": 3},
+  "drop_chance": {"pr": 0.08, "review": 0.05},
+  "level_up_item_every": 1,
+  "talent_milestone_every": 10,
+  "new_category": {"base": 3, "grace": 8, "decay": 0.6},
+  "starting_slots": 3
+}

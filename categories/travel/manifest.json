@@ -1,0 +1,3 @@
+{"name": "travel", "tagline": "Powers that move him across the screen: floating panes, other tabs.",
+ "weight": 2, "hooks": ["key", "run"],
+ "prompt_notes": "Use world.open_portal and world.glide. A borderless floating pane is a sprite. Bring him home when it ends. Record every pane you open so cleanup can find it."}

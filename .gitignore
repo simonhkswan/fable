@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+runs/
+guy.log
+presence.json
+state.json.tmp
+items/*/stderr.log

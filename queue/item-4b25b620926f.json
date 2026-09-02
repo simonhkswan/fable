@@ -1,0 +1,53 @@
+{
+  "id": "item-4b25b620926f",
+  "kind": "item",
+  "note": "dropped by merged PatentCopilot#21252",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 5,
+    "categories_at_roll": 5,
+    "category": "companion",
+    "constraint": "must involve the weather outside",
+    "event": {
+      "id": "pr:solveintelligence/PatentCopilot#21252",
+      "kind": "pr",
+      "number": 21252,
+      "repo": "solveintelligence/PatentCopilot",
+      "title": "feat: add Gemini 3.7 Flash to the chat model picker (ENG-7868) [ai]",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21252"
+    },
+    "guy": {
+      "level": 19,
+      "stats": {
+        "charm": 49,
+        "craft": 43,
+        "focus": 55,
+        "luck": 45,
+        "vigor": 57,
+        "wit": 59
+      }
+    },
+    "mood": "melancholy",
+    "rarity": "common",
+    "requires": {
+      "level": 18,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "4b25b620926f2475016944985d36843ac9e72d46",
+    "source": "drop",
+    "theme": [
+      "PatentCopilot",
+      "feat",
+      "gemini",
+      "flash",
+      "chat",
+      "model",
+      "picker",
+      "py"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

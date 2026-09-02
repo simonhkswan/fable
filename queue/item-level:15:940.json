@@ -1,0 +1,54 @@
+{
+  "id": "item-level:15:940",
+  "kind": "item",
+  "note": "reward for level 15",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 2,
+    "categories_at_roll": 5,
+    "category": "cosmetic",
+    "constraint": "must involve the weather outside",
+    "event": {
+      "id": "pr:solveintelligence/PatentCopilot#19986",
+      "kind": "pr",
+      "number": 19986,
+      "repo": "solveintelligence/PatentCopilot",
+      "title": "ENG-9545: treat public document images as inline images, not figures",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19986"
+    },
+    "guy": {
+      "level": 15,
+      "stats": {
+        "charm": 39,
+        "craft": 32,
+        "focus": 44,
+        "luck": 36,
+        "vigor": 41,
+        "wit": 41
+      }
+    },
+    "level_reached": 15,
+    "mood": "solemn",
+    "rarity": "common",
+    "requires": {
+      "level": 13,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "level:15:9409178331d99d1bd8f08d6a189de319950ac9a9",
+    "source": "level",
+    "theme": [
+      "PatentCopilot",
+      "treat",
+      "public",
+      "document",
+      "images",
+      "inline",
+      "figures",
+      "html"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

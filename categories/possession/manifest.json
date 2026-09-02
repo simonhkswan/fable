@@ -1,0 +1,3 @@
+{"name": "possession", "tagline": "He takes over another pane for a moment, and gives it back.",
+ "weight": 1, "hooks": ["key", "run"],
+ "prompt_notes": "Use world.possess with a short-lived command that draws him and exits. Prefer panes whose title you can name. Never leave a pane possessed."}

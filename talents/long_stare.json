@@ -1,0 +1,1 @@
+{"id": "long_stare", "name": "Long Stare", "hint": "+1 focus. He notices more.", "kind": "passive", "cost": 1, "parent": "root", "pos": [0, -2], "effect": {"stat": {"focus": 1}}, "generated": false}

@@ -1,0 +1,3 @@
+{"name": "ability", "tagline": "Something he does on a key press, inside his own pane.",
+ "weight": 4, "hooks": ["key", "register"],
+ "prompt_notes": "Spells, tricks, effects. Bind a key. Show it in the help line. An ability may have a cooldown or a cost."}

@@ -1,0 +1,55 @@
+{
+  "id": "item-level:11:rev",
+  "kind": "item",
+  "note": "reward for level 11",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 13,
+    "categories_at_roll": 5,
+    "category": "__new__",
+    "constraint": "must involve the clock or the time of day",
+    "event": {
+      "id": "review:synthesized-io/insight#66",
+      "kind": "review",
+      "number": 66,
+      "repo": "synthesized-io/insight",
+      "title": "Configure metrics with yaml",
+      "url": "https://github.com/synthesized-io/insight/pull/66"
+    },
+    "guy": {
+      "level": 11,
+      "stats": {
+        "charm": 27,
+        "craft": 17,
+        "focus": 34,
+        "luck": 22,
+        "vigor": 26,
+        "wit": 27
+      }
+    },
+    "level_reached": 11,
+    "mood": "meticulous",
+    "rarity": "rare",
+    "requires": {
+      "level": 14,
+      "stats": {
+        "vigor": 29
+      }
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "level:11:review:synthesized-io/insight#66:2022-07-11T14:26:20Z",
+    "source": "level",
+    "theme": [
+      "insight",
+      "configure",
+      "metrics",
+      "with",
+      "yaml",
+      "py",
+      "toml"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

@@ -1,0 +1,53 @@
+{
+  "id": "item-775fa2b80335",
+  "kind": "item",
+  "note": "dropped by merged fairlens#139",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 3,
+    "categories_at_roll": 5,
+    "category": "companion",
+    "constraint": "must read something from git",
+    "event": {
+      "id": "pr:synthesized-io/fairlens#139",
+      "kind": "pr",
+      "number": 139,
+      "repo": "synthesized-io/fairlens",
+      "title": "Remove pyemd dependency from source code.",
+      "url": "https://github.com/synthesized-io/fairlens/pull/139"
+    },
+    "guy": {
+      "level": 9,
+      "stats": {
+        "charm": 20,
+        "craft": 12,
+        "focus": 28,
+        "luck": 18,
+        "vigor": 22,
+        "wit": 25
+      }
+    },
+    "mood": "triumphant",
+    "rarity": "common",
+    "requires": {
+      "level": 10,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "775fa2b8033542bfe1d539ad10ce095171bba837",
+    "source": "drop",
+    "theme": [
+      "fairlens",
+      "remove",
+      "pyemd",
+      "dependency",
+      "from",
+      "source",
+      "code",
+      "py"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

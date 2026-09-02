@@ -1,0 +1,1 @@
+{"id": "wanderlust", "name": "Wanderlust", "hint": "Travel items get +4 budget and drop more often.", "kind": "passive", "cost": 1, "parent": "root", "pos": [2, 1], "effect": {"budget": {"travel": 4}, "weight": {"travel": 1}}, "generated": false}

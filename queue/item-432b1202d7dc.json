@@ -1,0 +1,51 @@
+{
+  "id": "item-432b1202d7dc",
+  "kind": "item",
+  "note": "dropped by merged fairlens#131",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 13,
+    "categories_at_roll": 5,
+    "category": "ability",
+    "constraint": "must involve the clock or the time of day",
+    "event": {
+      "id": "pr:synthesized-io/fairlens#131",
+      "kind": "pr",
+      "number": 131,
+      "repo": "synthesized-io/fairlens",
+      "title": "add codecov.yml",
+      "url": "https://github.com/synthesized-io/fairlens/pull/131"
+    },
+    "guy": {
+      "level": 8,
+      "stats": {
+        "charm": 17,
+        "craft": 9,
+        "focus": 21,
+        "luck": 17,
+        "vigor": 19,
+        "wit": 18
+      }
+    },
+    "mood": "solemn",
+    "rarity": "rare",
+    "requires": {
+      "level": 9,
+      "stats": {
+        "craft": 12
+      }
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "432b1202d7dc051cff7284e7c7f30fc5d37465e7",
+    "source": "drop",
+    "theme": [
+      "fairlens",
+      "codecov.yml",
+      "yml",
+      "md"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

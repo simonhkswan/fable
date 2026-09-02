@@ -1,0 +1,52 @@
+{
+  "id": "item-level:3:fba6",
+  "kind": "item",
+  "note": "reward for level 3",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 6,
+    "categories_at_roll": 5,
+    "category": "companion",
+    "constraint": "must leave a trace after it ends",
+    "event": {
+      "id": "pr:synthesized-io/insight#2",
+      "kind": "pr",
+      "number": 2,
+      "repo": "synthesized-io/insight",
+      "title": "ML-474 Add sonarcloud action",
+      "url": "https://github.com/synthesized-io/insight/pull/2"
+    },
+    "guy": {
+      "level": 3,
+      "stats": {
+        "charm": 6,
+        "craft": 4,
+        "focus": 6,
+        "luck": 4,
+        "vigor": 3,
+        "wit": 7
+      }
+    },
+    "level_reached": 3,
+    "mood": "electric",
+    "rarity": "common",
+    "requires": {
+      "level": 4,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "level:3:fba6e9a5502e20464c9fdaaa84e797b9b70f7610",
+    "source": "level",
+    "theme": [
+      "insight",
+      "ml-474",
+      "sonarcloud",
+      "action",
+      "yaml",
+      "cfg"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

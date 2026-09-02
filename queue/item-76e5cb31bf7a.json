@@ -1,0 +1,53 @@
+{
+  "id": "item-76e5cb31bf7a",
+  "kind": "item",
+  "note": "dropped by merged PatentCopilot#20747",
+  "queued": "2026-09-02T23:39:47",
+  "spec": {
+    "budget": 5,
+    "categories_at_roll": 5,
+    "category": "ability",
+    "constraint": "must involve the PR that dropped it",
+    "event": {
+      "id": "pr:solveintelligence/PatentCopilot#20747",
+      "kind": "pr",
+      "number": 20747,
+      "repo": "solveintelligence/PatentCopilot",
+      "title": "fix: let the AI insert a prior-art figure into an Editor V2 document (ENG-10718)",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20747"
+    },
+    "guy": {
+      "level": 21,
+      "stats": {
+        "charm": 50,
+        "craft": 46,
+        "focus": 56,
+        "luck": 48,
+        "vigor": 59,
+        "wit": 61
+      }
+    },
+    "mood": "heroic",
+    "rarity": "common",
+    "requires": {
+      "level": 21,
+      "stats": {}
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "76e5cb31bf7a822eb1e028eab5a75b656e18df74",
+    "source": "drop",
+    "theme": [
+      "PatentCopilot",
+      "insert",
+      "prior-art",
+      "figure",
+      "into",
+      "editor",
+      "document",
+      "py"
+    ],
+    "twist": null
+  },
+  "status": "queued"
+}

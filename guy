@@ -1,0 +1,117 @@
+#!/usr/bin/env python3
+"""guy: a terminal character who grows when you merge and review PRs.
+
+  guy                 run the widget in this pane
+  guy sync            pull new events from GitHub and apply them
+  guy sync --all      same, and print each event
+  guy forge           open the next unopened thing (one claude session)
+  guy forge --all     open everything queued, one after another
+  guy queue           list unopened things
+  guy status          the guy in one screen of text
+  guy cleanup         close panes the guy opened and forgot
+  guy boot-test       headless: does the widget boot and every page draw
+  guy brief <job>     print the brief a forge run would get, without running it
+
+Everything lives in ~/.termguy. Nothing there is fixed.
+"""
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, ROOT)
+os.chdir(ROOT)
+
+from termguy import paths  # noqa: E402
+
+
+def main(argv):
+    paths.ensure()
+    cmd = argv[0] if argv else "run"
+    rest = argv[1:]
+    if cmd in ("-h", "--help", "help"):
+        print(__doc__)
+        return 0
+    if cmd == "run":
+        from termguy import ui
+        if not sys.stdout.isatty() or not sys.stdin.isatty():
+            sys.stderr.write("guy: this needs a terminal. Run it in a pane.\n")
+            return 1
+        fps = None
+        if "--fps" in rest:
+            fps = float(rest[rest.index("--fps") + 1])
+        ui.run(fps, no_sync="--no-sync" in rest)
+        return 0
+    if cmd == "sync":
+        from termguy import sync
+        since = None
+        if "--since" in rest:
+            since = rest[rest.index("--since") + 1]
+        def progress(n, total):
+            sys.stderr.write("\r  fetched %d of %d" % (n, total)); sys.stderr.flush()
+        fresh, happened = sync.run(since=since, progress=progress, dry="--dry" in rest)
+        sys.stderr.write("\n")
+        if "--all" in rest or "--dry" in rest:
+            for ev in fresh:
+                print("  %s  %s" % (ev["id"], ev["title"][:70]))
+        for h in happened:
+            print("  " + h)
+        print("%d new events" % len(fresh))
+        return 0
+    if cmd == "queue":
+        from termguy import sync
+        for j in sync.pending_jobs():
+            sp = j["spec"]
+            print("  %-22s %-9s %-7s %-10s %s" % (j["id"], sp.get("rarity"), sp.get("scope"), sp.get("category"), j.get("note", "")))
+        return 0
+    if cmd == "forge":
+        from termguy import sync, forge
+        jobs = sync.pending_jobs()
+        if rest and not rest[0].startswith("--"):
+            jobs = [j for j in jobs if j["id"] == rest[0]]
+        if not jobs:
+            print("nothing to forge")
+            return 0
+        if "--all" not in rest:
+            jobs = jobs[:1]
+        for j in jobs:
+            ok, msg = forge.run_job(j, on_status=lambda s: print("  " + s))
+            print("  %s: %s" % (j["id"], msg))
+        return 0
+    if cmd == "brief":
+        from termguy import sync, forge
+        jobs = [j for j in sync.pending_jobs() if not rest or j["id"] == rest[0]]
+        if not jobs:
+            print("no such job")
+            return 1
+        print(forge.brief_for(jobs[0]))
+        return 0
+    if cmd == "status":
+        from termguy import state as S, rules, sync
+        st = S.load()
+        print("%s  level %d  %d xp (%d to next)" % (st.get("name"), st["level"], st["xp"],
+                                                     rules.xp_for_level(st["level"] + 1) - st["xp"]))
+        print("  " + "  ".join("%s %d" % kv for kv in st["stats"].items()))
+        print("  unspent: %d stat, %d talent   slots %d   equipped %s" % (
+            st["unspent"]["stat"], st["unspent"]["talent"], st["slots"], st["equipped"] or "-"))
+        c = st["counters"]
+        print("  %d merges, %d reviews, %d drops, %d level ups, %d unopened" % (
+            c.get("pr", 0), c.get("review", 0), c.get("drops", 0), c.get("level_ups", 0), len(sync.pending_jobs())))
+        for h in st.get("history", [])[-8:]:
+            print("  %s  %s" % (h["t"], h["text"]))
+        return 0
+    if cmd == "cleanup":
+        from termguy.world import World
+        w = World()
+        n = len(w.state.get("owned_panes", []))
+        w.close_owned()
+        print("closed %d pane%s" % (n, "" if n == 1 else "s"))
+        return 0
+    if cmd == "boot-test":
+        from termguy import ui
+        return ui.boot_test()
+    sys.stderr.write("guy: no such command: %s\n" % cmd)
+    return 2
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
