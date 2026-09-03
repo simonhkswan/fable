@@ -64,7 +64,7 @@ def brief_for(job):
     st = S.load()
     kind = job["kind"]
     name = {"item": "forge_brief.md", "category": "category_brief.md", "talents": "talent_brief.md",
-            "fix": "fix_brief.md", "wish": "wish_brief.md"}[kind]
+            "fix": "fix_brief.md"}[kind]
     if spec.get("category") == "__new__" and kind == "item":
         name = "category_brief.md"
     template = read(os.path.join(paths.TEMPLATES, name))

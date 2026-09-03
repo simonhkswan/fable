@@ -12,7 +12,7 @@ def default_state():
         "level": 1,
         "xp": 0,
         "stats": {s: 1 for s in rules["stats"]},
-        "unspent": {"stat": 0, "talent": 0},
+        "unspent": {"stat": 0, "talent": 0, "wish": 0},
         "slots": rules["starting_slots"],
         "equipped": ["laptop", "mug", "book"],
         "seen_events": [],

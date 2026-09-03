@@ -112,9 +112,6 @@ class App:
         if forge.busy():
             self.toast("the forge is busy. One thing at a time.", "peach")
             return
-        if job.get("kind") == "wish" and not WI.open_wishes():
-            self.toast("no wishes to grant yet. add one with w.", "mauve", 5.0)
-            return
         forge.spawn(job["id"])
         self.known_done = set(os.listdir(os.path.join(paths.QUEUE, "done"))) if os.path.isdir(os.path.join(paths.QUEUE, "done")) else set()
         self.guy.say("to the forge!", 3.0)
@@ -174,7 +171,7 @@ class App:
                     self.toast(payload, "yellow", 8.0)
                 elif "lucky wish" in payload:
                     self.guy.fire("drop", text=payload)
-                    self.toast(payload + ". Press f.", "mauve", 10.0)
+                    self.toast(payload + ". Press w to make one.", "mauve", 10.0)
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
@@ -307,6 +304,9 @@ class App:
             notes.append(("%d stat point%s (s)" % (st["unspent"]["stat"], "" if st["unspent"]["stat"] == 1 else "s"), "yellow"))
         if st["unspent"]["talent"]:
             notes.append(("%d talent point%s (t)" % (st["unspent"]["talent"], "" if st["unspent"]["talent"] == 1 else "s"), "mauve"))
+        nw = st["unspent"].get("wish", 0)
+        if nw:
+            notes.append(("%d wish%s to make (w)" % (nw, "" if nw == 1 else "es"), "pink"))
         nq = len(sync.pending_jobs())
         if nq:
             notes.append(("%d unopened thing%s (f)" % (nq, "" if nq == 1 else "s"), "peach"))
@@ -650,12 +650,14 @@ class App:
         self.header(s, "wishes")
         rows = WI.open_wishes()
         done = WI.granted()
-        s.text(2, 2, "things you would like him to have or do. one is granted every 5 levels,", named("subtext1"))
-        s.text(2, 3, "other forge runs peek at the list now and then, and luck can grant one early.", named("subtext1"))
+        nw = self.st["unspent"].get("wish", 0)
+        s.text(2, 2, "every 5 levels, and now and then by luck, you earn a wish to make.", named("subtext1"))
+        s.text(2, 3, "one forge run in five reads the list, and grants a wish if it fits what it is making.", named("subtext1"))
+        s.text(2, 4, "%d wish%s to make" % (nw, "" if nw == 1 else "es"), named("pink" if nw else "overlay1"))
         if not rows and self.wish_text is None:
-            s.text(2, 5, "no open wishes. press a to add one.", named("overlay1"))
-        y = 5
-        for r in rows[-(s.h - 12):]:
+            s.text(2, 6, "no open wishes." + (" press a to make one." if nw else ""), named("overlay1"))
+        y = 6
+        for r in rows[-(s.h - 13):]:
             s.text(2, y, ("· " + r["text"])[:s.w - 4], named("text"))
             y += 1
         if done:
@@ -673,11 +675,15 @@ class App:
                 s.set(3 + min(len(self.wish_text), w - 1), y + 2, "▏", named("mauve"), named_bg("surface0"))
             s.text(1, s.h - 1, " enter save  esc cancel ", named("overlay0"), named_bg("crust"))
         else:
-            s.text(1, s.h - 1, " a add a wish  esc back ", named("overlay0"), named_bg("crust"))
+            s.text(1, s.h - 1, (" a make a wish  esc back " if nw else " no wishes to make yet  esc back "),
+                   named("overlay0"), named_bg("crust"))
 
     def wishes_key(self, key):
         if self.wish_text is None:
             if key == b"a":
+                if self.st["unspent"].get("wish", 0) <= 0:
+                    self.toast("no wishes to make. levels and luck give them.", "peach", 4.0)
+                    return True
                 self.wish_text = ""
                 return True
             return False
@@ -685,10 +691,9 @@ class App:
             text = self.wish_text.strip()
             self.wish_text = None
             if text:
-                WI.add(text)
-                S.remember(self.st, "wish", "wished: " + text[:60])
+                ok, msg = WI.make(self.st, text)
                 self.save()
-                self.toast("wished. the forge will read it.", "mauve", 4.0)
+                self.toast("wished. a forge run may grant it one day." if ok else msg, "mauve" if ok else "peach", 5.0)
             return True
         if key == b"\x1b":
             self.wish_text = None
@@ -973,6 +978,7 @@ def boot_test(frames=300):
             # the sync thread's messages, drained on the main thread
             ev = {"id": "pr:x/y#1", "kind": "pr", "repo": "x/y", "number": 1, "title": "t", "url": "", "seed": "s"}
             with app.lock:
+                app.st["unspent"]["wish"] = app.st["unspent"].get("wish", 0) + 1
                 app.pending_events += [("event", (ev, {"xp": 40, "gains": {"craft": 1}})), ("note", "level 2"),
                                        ("note", "a common drop from merged y#1"), ("note", "a lucky wish from merged y#1"),
                                        ("synced", 1), ("error", "boot test error")]

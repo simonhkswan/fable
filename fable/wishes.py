@@ -28,6 +28,17 @@ def _write(rows):
             f.write(json.dumps(r, sort_keys=True) + "\n")
 
 
+def make(st, text):
+    """Spend one wish to write one. Returns (ok, message)."""
+    if st["unspent"].get("wish", 0) <= 0:
+        return False, "no wishes to make. Levels and luck give them."
+    st["unspent"]["wish"] -= 1
+    wid = add(text)
+    from . import state as S
+    S.remember(st, "wish", "wished: " + text[:60])
+    return True, wid
+
+
 def add(text, source="you"):
     rows = all_wishes()
     wid = "w%03d" % (len(rows) + 1)
