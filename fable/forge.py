@@ -72,7 +72,8 @@ def brief_for(job):
     scope_t = tables.load("scope")
     odds = rar["level_up" if spec.get("source") in ("level", "milestone", "talent") else "drop"]
     total = sum(odds.values()) or 1
-    rarities = ", ".join("%s %.1f%%" % (k, 100.0 * odds[k] / total) for k in rar["budget"] if k in odds)
+    order = ["common", "rare", "epic", "legendary", "ultra"] + [k for k in rar["budget"] if k not in ("common", "rare", "epic", "legendary", "ultra")]
+    rarities = ", ".join("%s %.1f%%" % (k, 100.0 * odds[k] / total) for k in order if k in odds)
     scopes = "; ".join("%s: %s" % (k, v_) for k, v_ in scope_t["brief"].items())
     lo = min(b[0] for b in rar["budget"].values())
     hi = max(b[1] for b in rar["budget"].values())
