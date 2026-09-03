@@ -93,6 +93,12 @@ def apply_event(st, ev):
             spec["level_reached"] = lvl
             queue_job("item", spec, note="reward for level %d" % lvl)
             rec.setdefault("level_items", []).append(spec["rarity"])
+        wg = rules.rules().get("wish_grant_every", 5)
+        if wg and lvl % wg == 0:
+            wseed = "wish:%d:" % lvl + seed
+            spec = rules.make_spec(wseed, "wish", ev, st, "level_up")
+            spec["level_reached"] = lvl
+            queue_job("wish", spec, note="a wish granted at level %d" % lvl)
         m = rules.rules()["talent_milestone_every"]
         if m and lvl % m == 0:
             cseed = "milestone:%d:" % lvl + seed
