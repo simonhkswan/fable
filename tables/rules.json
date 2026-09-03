@@ -4,8 +4,8 @@
     "review": 0.02
   },
   "level_curve": {
-    "base": 100,
-    "power": 1.5
+    "base": 300,
+    "power": 2
   },
   "level_up_item_every": 5,
   "new_category": {

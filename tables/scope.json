@@ -1,14 +1,30 @@
 {
-  "by_rarity": {
-    "common": {"item": 100},
-    "rare": {"item": 80, "extend": 20},
-    "epic": {"item": 30, "extend": 50, "rewrite": 20},
-    "legendary": {"extend": 30, "rewrite": 40, "mutate": 30}
-  },
   "brief": {
-    "item": "Add one thing. Touch nothing that already exists unless you must.",
     "extend": "Add a capability. You may add attachment points and change the runtime to support it.",
-    "rewrite": "Pick one system and rework it. Make it better than it was.",
-    "mutate": "Anything. Change the rules of the game if you want."
+    "item": "Add one thing. Touch nothing that already exists unless you must.",
+    "mutate": "Anything. Change the rules of the game if you want.",
+    "rewrite": "Pick one system and rework it. Make it better than it was."
+  },
+  "by_rarity": {
+    "common": {
+      "item": 100
+    },
+    "epic": {
+      "extend": 50,
+      "item": 30,
+      "rewrite": 20
+    },
+    "legendary": {
+      "extend": 30,
+      "mutate": 30,
+      "rewrite": 40
+    },
+    "rare": {
+      "extend": 20,
+      "item": 80
+    },
+    "ultra": {
+      "mutate": 100
+    }
   }
 }

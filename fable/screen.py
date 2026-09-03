@@ -24,7 +24,9 @@ P = {
 }
 
 RARITY_INK = {"common": "subtext0", "rare": "sky", "epic": "mauve",
-              "legendary": "peach"}
+              "legendary": "peach", "ultra": "lavender", "fix": "teal"}
+# rarities drawn with an effect: (base ink, highlight ink)
+SHIMMER = {"legendary": ("peach", "rosewater"), "ultra": ("mauve", "rosewater")}
 
 _fg_cache = {}
 
@@ -173,3 +175,57 @@ class Quad:
                 s.set(cx, cy, QUAD[mask], fg(*best))
             else:
                 s.set(cx, cy, QUAD[mask], fg(*best), bg(*other))
+
+
+# ── text effects ───────────────────────────────────────────────
+# Timing taken from the Claude Code shimmer: the bright head moves one
+# character every 50 ms, and the sweep runs from 10 characters before the text
+# to 10 after, so there is a still moment between passes.
+
+import colorsys
+
+
+def blend(a, b, f):
+    return (int(a[0] + (b[0] - a[0]) * f), int(a[1] + (b[1] - a[1]) * f), int(a[2] + (b[2] - a[2]) * f))
+
+
+def shimmer_text(s, x, y, text, base, hi, t, b=None, width=3, start=0):
+    """Write text in `base` with a pulse of `hi` sweeping through it.
+    `t` is seconds. `start` lets several words share one sweep."""
+    base_rgb = P.get(base, P["text"]) if isinstance(base, str) else base
+    hi_rgb = P.get(hi, P["rosewater"]) if isinstance(hi, str) else hi
+    n = len(text)
+    cycle = n + 20
+    head = -10 + int(t * 20) % cycle - start
+    for i, ch in enumerate(text):
+        d = abs(i - head)
+        f = max(0.0, 1.0 - d / float(width)) if d < width else 0.0
+        s.set(x + i, y, ch, fg(*blend(base_rgb, hi_rgb, f * f)), b)
+
+
+def rainbow_text(s, x, y, text, t, b=None, speed=0.12, spread=0.045, sat=0.55, light=0.68):
+    """Write text with a hue that drifts along the word and over time."""
+    for i, ch in enumerate(text):
+        h = (t * speed + i * spread) % 1.0
+        r, g, bb = colorsys.hls_to_rgb(h, light, sat)
+        s.set(x + i, y, ch, fg(int(r * 255), int(g * 255), int(bb * 255)), b)
+
+
+def rarity_text(s, x, y, text, rarity, t, b=None, dim=False):
+    """Name text in its rarity's colouring. Legendary and ultra shimmer."""
+    if dim:
+        s.text(x, y, text, named("overlay0"), b)
+        return
+    if rarity in SHIMMER:
+        base, hi = SHIMMER[rarity]
+        shimmer_text(s, x, y, text, base, hi, t, b)
+    else:
+        s.text(x, y, text, named(RARITY_INK.get(rarity, "text")), b)
+
+
+def scope_text(s, x, y, text, scope, t, b=None):
+    """The word mutate gets the rainbow. Other scopes are plain."""
+    if scope == "mutate":
+        rainbow_text(s, x, y, text, t, b)
+    else:
+        s.text(x, y, text, named({"item": "subtext0", "extend": "sky", "rewrite": "mauve"}.get(scope, "text")), b)
