@@ -22,11 +22,11 @@
     ]
   },
   "drop": {
-    "common": 60,
-    "epic": 9.7,
-    "legendary": 2,
+    "common": 59.5,
+    "epic": 9.5,
+    "legendary": 2.5,
     "rare": 28,
-    "ultra": 0.3
+    "ultra": 0.5
   },
   "level_offset": {
     "common": [
@@ -51,11 +51,11 @@
     ]
   },
   "level_up": {
-    "common": 34,
+    "common": 33,
     "epic": 20,
-    "legendary": 5,
+    "legendary": 5.5,
     "rare": 40,
-    "ultra": 1
+    "ultra": 1.5
   },
   "stat_reqs": {
     "common": 0,
