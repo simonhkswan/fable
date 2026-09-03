@@ -619,7 +619,8 @@ class App:
         self.header(s, "log")
         hist = self.st.get("history", [])
         rows = hist[-(s.h - 3):]
-        inks = {"pr": "green", "review": "sky", "level": "yellow", "drop": "mauve", "forge": "peach", "talent": "lavender"}
+        inks = {"pr": "green", "review": "sky", "level": "yellow", "drop": "mauve", "forge": "peach", "talent": "lavender",
+                "fix": "teal", "report": "overlay1"}
         for i, h in enumerate(rows):
             s.text(2, 2 + i, h["t"], named("overlay0"))
             s.text(20, 2 + i, h["text"][:s.w - 22], named(inks.get(h["kind"], "subtext0")))
