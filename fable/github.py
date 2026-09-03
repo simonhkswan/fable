@@ -81,17 +81,19 @@ def event_from_review(row):
     }
 
 
-def fetch_new(seen, since=None, progress=None):
-    """Return events not in `seen`, oldest first."""
+def iter_new(seen, since=None, progress=None):
+    """Yield events not in `seen`, oldest first, one at a time as their details
+    arrive. The order comes from the search timestamps, so a caller can apply
+    each event the moment it appears."""
     rows = []
     for row in merged_prs(since):
-        rows.append(("pr", row))
+        rows.append(("pr", row, row.get("closedAt") or row.get("updatedAt") or ""))
     for row in reviewed_prs(since):
-        rows.append(("review", row))
-    fresh = []
-    todo = [(k, r) for k, r in rows
+        rows.append(("review", row, row.get("updatedAt") or ""))
+    todo = [(k, r, t) for k, r, t in rows
             if "%s:%s#%d" % (k, r["repository"]["nameWithOwner"], r["number"]) not in seen]
-    for i, (kind, row) in enumerate(todo):
+    todo.sort(key=lambda x: x[2])
+    for i, (kind, row, _) in enumerate(todo):
         ident = "%s:%s#%d" % (kind, row["repository"]["nameWithOwner"], row["number"])
         if progress:
             progress(i + 1, len(todo), "%s %s#%d  %s" % ("merged" if kind == "pr" else "reviewed",
@@ -102,8 +104,10 @@ def fetch_new(seen, since=None, progress=None):
             log("fetch %s failed: %s" % (ident, e))
             continue
         if kind == "review" and ev.get("reviews", 0) == 0:
-            # gh search says reviewed, the detail says no. Skip it this time.
             continue
-        fresh.append(ev)
-    fresh.sort(key=lambda e: e.get("at") or "")
-    return fresh
+        yield ev
+
+
+def fetch_new(seen, since=None, progress=None):
+    """All new events, oldest first."""
+    return list(iter_new(seen, since=since, progress=progress))

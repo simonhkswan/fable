@@ -119,13 +119,15 @@ def apply_event(st, ev):
 
 
 def run(since=None, progress=None, dry=False, on_event=None, pace=0.0):
-    """Fetch, then apply oldest first. With on_event and pace, each event is
-    saved and reported one at a time, so a watcher sees him grow."""
+    """Fetch oldest first and apply each event as it arrives. With on_event,
+    each one is saved and reported at once, so a watcher sees him grow while
+    the fetch is still going."""
     st = S.load()
     seen = set(st["seen_events"])
-    fresh = github.fetch_new(seen, since=since, progress=progress)
+    fresh = []
     all_happened = []
-    for ev in fresh:
+    for ev in github.iter_new(seen, since=since, progress=progress):
+        fresh.append(ev)
         if dry:
             all_happened.append(ev["id"])
             continue
