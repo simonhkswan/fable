@@ -1,0 +1,18 @@
+{
+  "id": "mug",
+  "name": "The Mug",
+  "flavor": "Chipped. Never empty. The sip holds at the top, which is the whole point of a sip.",
+  "category": "cosmetic",
+  "rarity": "common",
+  "requires": {
+    "level": 1,
+    "stats": {}
+  },
+  "starter": true,
+  "attach": {
+    "register": {
+      "import": "job.py",
+      "help": "makes a brew while idle"
+    }
+  }
+}

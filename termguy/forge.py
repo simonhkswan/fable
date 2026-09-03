@@ -62,7 +62,8 @@ def brief_for(job):
     spec = job["spec"]
     st = S.load()
     kind = job["kind"]
-    name = {"item": "forge_brief.md", "category": "category_brief.md", "talents": "talent_brief.md"}[kind]
+    name = {"item": "forge_brief.md", "category": "category_brief.md", "talents": "talent_brief.md",
+            "fix": "fix_brief.md"}[kind]
     if spec.get("category") == "__new__" and kind == "item":
         name = "category_brief.md"
     template = read(os.path.join(paths.TEMPLATES, name))
@@ -78,6 +79,9 @@ def brief_for(job):
         "requires": json.dumps(spec.get("requires")), "seed": spec.get("seed"),
         "event": json.dumps(spec.get("event")), "item_id": spec.get("id") or str(spec.get("seed", "x"))[:8],
         "contract": read(os.path.join(paths.TEMPLATES, "contract.md")),
+        "report": spec.get("report", ""), "page": spec.get("page", "home"), "when": job.get("queued", ""),
+        "save": subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=paths.ROOT, capture_output=True, text=True).stdout.strip(),
+        "errors": "\n".join("- " + e for e in spec.get("errors", [])) or "- (none)",
     })
     return fill(template, v)
 

@@ -2,7 +2,7 @@
 
 Everything lives under `~/.termguy`. The widget is `./guy` (Python 3.14, stdlib only so far). Package: `termguy/`.
 
-An **item** is a directory `items/<id>/` with `item.json`:
+An **item** is a directory `items/<id>/` with `item.json` (the four he starts with live in `starter/` and follow the same shape):
 
 ```json
 {

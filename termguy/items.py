@@ -169,7 +169,8 @@ class Item:
 
 
 def scan(where=None):
-    where = where or paths.ITEMS
+    if where is None:
+        return scan(paths.STARTER) + scan(paths.ITEMS)
     out = []
     if not os.path.isdir(where):
         return out

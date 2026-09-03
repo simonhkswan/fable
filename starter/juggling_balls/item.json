@@ -1,0 +1,18 @@
+{
+  "id": "juggling_balls",
+  "name": "Three Juggling Balls",
+  "flavor": "Mauve, sky and green. A real cascade: each ball flies a parabola from one hand to the other, and he dips on the catch.",
+  "category": "cosmetic",
+  "rarity": "common",
+  "requires": {
+    "level": 1,
+    "stats": {}
+  },
+  "starter": true,
+  "attach": {
+    "register": {
+      "import": "job.py",
+      "help": "juggles while idle"
+    }
+  }
+}

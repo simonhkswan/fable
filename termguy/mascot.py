@@ -57,12 +57,9 @@ class Guy:
         self._register_builtin_jobs()
 
     def _register_builtin_jobs(self):
+        # Only napping is built in. The laptop, the mug, the book and the balls
+        # are starter items in starter/, and thinking is a starter talent.
         a = self.anim
-        a.idle_job("types", 3, "shipping code", self._types, eye=1)
-        a.idle_job("coffee", 2, "making a brew", self._coffee, eye=1)
-        a.idle_job("reads", 2, "reading the docs", self._reads, eye=1)
-        a.idle_job("juggles", 1, "juggling", self._juggles, eye=0)
-        a.idle_job("thinks", 2, "thinking about it", self._thinks, eye=1)
         a.idle_job("naps", 1, "recharging", self._naps, eye=0)
         a.reaction("level_up", self._level_up)
         a.reaction("drop", self._drop_glow)

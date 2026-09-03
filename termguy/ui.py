@@ -228,6 +228,8 @@ class App:
             self.draw_log(s)
         elif self.page == "help":
             self.draw_help(s)
+        elif self.page == "report":
+            self.draw_report(s)
         elif self.page in self.anim.pages:
             title, draw, _ = self.anim.pages[self.page]
             self.header(s, title)
@@ -246,7 +248,7 @@ class App:
         s.fill(0, 0, s.w, 1, " ", None, named_bg("crust"))
         left = " %s  ·  lv %d  ·  %s  ·  save %s " % (st.get("name", "the guy"), st["level"], title, self.branch)
         s.text(0, 0, left, named("text"), named_bg("crust"))
-        right = " esc home  ?  help "
+        right = " esc home  i info  ? report "
         s.text(s.w - len(right), 0, right, named("overlay1"), named_bg("crust"))
 
     def draw_home(self, s, dt):
@@ -306,7 +308,7 @@ class App:
             line = "wearing: " + ", ".join(eq)
             s.text(1, 2, line[:s.w - 2], named("overlay1"))
         # hint chips
-        hint = " b bag  t talents  s stats  f forge  l log  ? help  q quit "
+        hint = " b bag  t talents  s stats  f forge  l log  i info  ? report  q quit "
         for ch, (fn, help_) in self.anim.keys.items():
             if help_:
                 hint += " %s %s " % (ch, help_)
@@ -594,6 +596,71 @@ class App:
             for e in errs[-3:]:
                 s.text(2, y, ("! " + e)[:s.w - 3], named("red")); y += 1
 
+    report_text = ""
+    report_from = "home"
+
+    def draw_report(self, s):
+        self.header(s, "report")
+        s.text(2, 2, "what is wrong, or what do you wish he did?", named("subtext1"))
+        s.text(2, 3, "enter sends it to the forge. esc cancels.", named("overlay1"))
+        w = max(10, s.w - 6)
+        lines = wrap(self.report_text, w) or [""]
+        if self.report_text.endswith(" "):
+            lines[-1] += " "
+        s.fill(2, 5, w + 2, max(3, len(lines) + 2), " ", None, named_bg("surface0"))
+        for i, line in enumerate(lines[-(s.h - 9):]):
+            s.text(3, 6 + i, line, named("text"), named_bg("surface0"))
+        cy = 6 + min(len(lines), s.h - 9) - 1
+        cx = 3 + len(lines[-1])
+        if int(time.monotonic() * 2) % 2 and cx < s.w - 3:
+            s.set(cx, cy, "▏", named("mauve"), named_bg("surface0"))
+        errs = self.anim.errors[-3:]
+        if errs:
+            y = 8 + len(lines)
+            s.text(2, y, "recent errors go with the report:", named("overlay1")); y += 1
+            for e in errs:
+                s.text(4, y, e[:s.w - 6], named("red")); y += 1
+        busy = forge.busy()
+        s.text(1, s.h - 1, " enter send  esc cancel " + ("  (the forge is busy: it will queue) " if busy else ""),
+               named("overlay0"), named_bg("crust"))
+
+    def report_key(self, key):
+        if key in (b"\r", b"\n"):
+            text = self.report_text.strip()
+            if not text:
+                return True
+            job = sync.queue_report(text, page=self.report_from, errors=self.anim.errors[-5:])
+            self.report_text = ""
+            self.page = "home"
+            if not job:
+                self.toast("that report is already queued", "peach")
+                return True
+            S.remember(self.st, "report", "reported: " + text[:60])
+            self.save()
+            if forge.busy():
+                self.toast("report queued. The forge is busy.", "peach", 6.0)
+            else:
+                forge.spawn(job["id"])
+                self.forge_seen = True
+                self.toast("sent to the forge", "green", 4.0)
+                self.guy.say("on it.", 3.0)
+            return True
+        if key in (b"\x7f", b"\x08"):
+            self.report_text = self.report_text[:-1]
+            return True
+        if key == b"\x15":  # ctrl-u clears
+            self.report_text = ""
+            return True
+        if key.startswith(b"\x1b"):
+            return False
+        try:
+            ch = key.decode("utf-8")
+        except UnicodeDecodeError:
+            return True
+        if ch.isprintable():
+            self.report_text += ch
+        return True
+
     def draw_help(self, s):
         self.header(s, "help")
         lines = [
@@ -603,7 +670,8 @@ class App:
             "things arrive unopened. open them at the forge (f): one claude session each.",
             "an item you cannot use yet still sits in the bag (b). requirements in red.",
             "", "keys on the home page:",
-            "  b bag   t talents   s stats   f forge   l log   ? help   q quit   S sync now",
+            "  b bag   t talents   s stats   f forge   l log   i info   ? report   q quit   S sync now",
+            "", "? opens a box. Type a bug or a wish, press enter, and a forge run fixes it.",
         ]
         for ch, (fn, help_) in self.anim.keys.items():
             lines.append("  %s %s" % (ch, help_ or "(an item)"))
@@ -611,7 +679,7 @@ class App:
             s.text(2, 2 + i, line[:s.w - 4], named("subtext1"))
 
     # ── keys ──
-    PAGE_KEYS = {"b": "bag", "t": "talents", "s": "stats", "f": "forge", "l": "log", "?": "help"}
+    PAGE_KEYS = {"b": "bag", "t": "talents", "s": "stats", "f": "forge", "l": "log", "i": "help", "?": "report"}
 
     def key(self, key):
         self.last_key_at = time.monotonic()
@@ -637,6 +705,7 @@ class App:
         elif self.page == "stats": handled = self.stats_key(key)
         elif self.page == "talents": handled = self.talents_key(key)
         elif self.page == "forge": handled = self.forge_key(key)
+        elif self.page == "report": handled = self.report_key(key)
         elif self.page in self.anim.pages:
             _, _, keys = self.anim.pages[self.page]
             if keys:
@@ -648,6 +717,8 @@ class App:
             return
         if ch in self.PAGE_KEYS:
             target = self.PAGE_KEYS[ch]
+            if target == "report":
+                self.report_from = self.page
             self.page = "home" if self.page == target else target
             self.cursor = 0
         elif ch == "S":
@@ -796,7 +867,7 @@ def boot_test(frames=300):
                 app.guy.fire(ev, text="boot test", kind="pr", repo="x/y", number=1)
         if i == 60:
             app.guy._next(s)
-    for page in ["bag", "talents", "stats", "forge", "log", "help"] + list(app.anim.pages):
+    for page in ["bag", "talents", "stats", "forge", "log", "help", "report"] + list(app.anim.pages):
         app.page = page
         for _ in range(3):
             app.frame(s, 1 / 30)

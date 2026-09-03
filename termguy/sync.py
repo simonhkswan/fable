@@ -27,6 +27,13 @@ def queue_job(kind, spec, note=""):
     return job
 
 
+def queue_report(text, page="home", errors=()):
+    """A bug or a wish typed into the widget becomes a fix job."""
+    spec = {"seed": "report:%s:%s" % (time.strftime("%Y%m%d%H%M%S"), text[:40]), "report": text,
+            "page": page, "errors": list(errors), "rarity": "fix", "scope": "fix", "category": "fix"}
+    return queue_job("fix", spec, note="report: " + text[:50])
+
+
 def pending_jobs():
     out = []
     for name in sorted(os.listdir(paths.QUEUE)) if os.path.isdir(paths.QUEUE) else []:

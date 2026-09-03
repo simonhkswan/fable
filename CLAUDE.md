@@ -9,7 +9,7 @@ This directory is a game. A terminal character (the guy) lives in a zellij pane 
 - `tables/` — odds and curves, as JSON.
 - `templates/` — the briefs forge runs receive, and `contract.md` that describes the code contract.
 - `categories/<name>/` — a manifest and an optional `runtime.py`.
-- `items/<id>/` — a manifest and code, any language.
+- `items/<id>/` — a manifest and code, any language. `starter/` holds the four he begins with.
 - `talents/<id>.json` — graph nodes. Skills also have `talents/<id>/`.
 - `state.json`, `events.jsonl`, `spending.jsonl` — the guy's state, the events consumed, the points spent.
 - `queue/` — unopened things, one JSON per forge job. `runs/` — briefs and transcripts.
