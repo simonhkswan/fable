@@ -167,9 +167,9 @@ class App:
                 ev, rec = payload
                 self.guy.fire("pr_merged" if ev["kind"] == "pr" else "review", **ev)
                 gains = " ".join("+%d %s" % (n, s) for s, n in rec.get("gains", {}).items())
-                self.toast("%s %s#%s  +%d xp %s" % ("merged" if ev["kind"] == "pr" else "reviewed",
-                                                    ev["repo"].split("/")[-1], ev["number"], rec.get("xp", 0), gains).rstrip(),
-                           "green" if ev["kind"] == "pr" else "sky", 3.0)
+                verb = "merged" if ev["kind"] == "pr" else "reviewed"
+                line = "%s %s#%s  +%d xp %s" % (verb, ev["repo"].split("/")[-1], ev["number"], rec.get("xp", 0), gains)
+                self.toast(line.rstrip(), "green" if ev["kind"] == "pr" else "sky", 3.0)
             elif kind == "note":
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
