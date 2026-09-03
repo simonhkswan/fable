@@ -1,0 +1,193 @@
+{
+  "counters": {
+    "drops": 0,
+    "level_ups": 4,
+    "pr": 14,
+    "review": 2
+  },
+  "created": "2026-09-03T10:51:03",
+  "equipped": [
+    "laptop",
+    "mug",
+    "juggling_balls"
+  ],
+  "history": [
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#18927  +265 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/18927"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 10:51",
+      "text": "reviewed PatentCopilot#20258  +75 xp  +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20258"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 10:51",
+      "text": "reviewed PatentCopilot#20436  +25 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20436"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#19624  +235 xp  +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19624"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 10:51",
+      "text": "reached level 2"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#20407  +62 xp  +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20407"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#19525  +235 xp  +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19525"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#20330  +51 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20330"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 10:51",
+      "text": "reached level 3"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#21236  +169 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21236"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#20412  +154 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20412"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#21252  +235 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21252"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged wisp#38  +265 xp  +1 wit",
+      "url": "https://github.com/simonhkswan/wisp/pull/38"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 10:51",
+      "text": "reached level 4"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#21465  +235 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21465"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#20747  +235 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20747"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#22298  +235 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/22298"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#21463  +235 xp",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21463"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 10:51",
+      "text": "reached level 5"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 10:51",
+      "text": "merged PatentCopilot#22363  +64 xp  +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/22363"
+    },
+    {
+      "kind": "equip",
+      "t": "2026-09-03 10:51",
+      "text": "put on Three Juggling Balls"
+    },
+    {
+      "kind": "wish",
+      "t": "2026-09-03 10:52",
+      "text": "wished: s"
+    },
+    {
+      "kind": "wish",
+      "t": "2026-09-03 10:52",
+      "text": "wished: s"
+    }
+  ],
+  "last_sync": "2026-09-03T19:57:59",
+  "level": 5,
+  "name": "Fable",
+  "owned_panes": [],
+  "owned_talents": [
+    "root",
+    "deep_thought"
+  ],
+  "repos": [
+    "solveintelligence/PatentCopilot",
+    "simonhkswan/wisp"
+  ],
+  "seen_events": [
+    "pr:solveintelligence/PatentCopilot#18927",
+    "review:solveintelligence/PatentCopilot#20258",
+    "review:solveintelligence/PatentCopilot#20436",
+    "pr:solveintelligence/PatentCopilot#19624",
+    "pr:solveintelligence/PatentCopilot#20407",
+    "pr:solveintelligence/PatentCopilot#19525",
+    "pr:solveintelligence/PatentCopilot#20330",
+    "pr:solveintelligence/PatentCopilot#21236",
+    "pr:solveintelligence/PatentCopilot#20412",
+    "pr:solveintelligence/PatentCopilot#21252",
+    "pr:simonhkswan/wisp#38",
+    "pr:solveintelligence/PatentCopilot#21465",
+    "pr:solveintelligence/PatentCopilot#20747",
+    "pr:solveintelligence/PatentCopilot#22298",
+    "pr:solveintelligence/PatentCopilot#21463",
+    "pr:solveintelligence/PatentCopilot#22363"
+  ],
+  "slots": 3,
+  "stats": {
+    "charm": 1,
+    "craft": 3,
+    "focus": 2,
+    "luck": 1,
+    "vigor": 2,
+    "wit": 3
+  },
+  "unspent": {
+    "stat": 8,
+    "talent": 1,
+    "wish": 1
+  },
+  "version": 1,
+  "xp": 2775
+}
