@@ -339,7 +339,8 @@ class App:
             y += 1
 
     def all_items(self):
-        return self.skills + self.items
+        """Items first, then skills from the talent graph. Skills are always on."""
+        return self.items + self.skills
 
     def draw_bag(self, s):
         self.header(s, "bag")
@@ -351,18 +352,25 @@ class App:
         self.cursor = max(0, min(self.cursor, len(rows) - 1))
         listw = min(46, s.w // 2)
         s.text(2, 1, "%d/%d slots" % (len(st["equipped"]), st["slots"]), named("overlay1"))
-        top = max(0, self.cursor - (s.h - 5))
-        for i, it in enumerate(rows[top:top + s.h - 4]):
-            y = 2 + i
-            idx = top + i
+        top = max(0, self.cursor - (s.h - 6))
+        y = 2
+        shown_skill_header = False
+        for idx in range(top, min(len(rows), top + s.h - 4)):
+            it = rows[idx]
+            if it.skill and not shown_skill_header:
+                shown_skill_header = True
+                if y < s.h - 2:
+                    s.text(3, y, "skills, from talents", named("overlay1"))
+                    y += 1
+            if y >= s.h - 1:
+                break
             missing = it.missing(st)
             on = it.id in st["equipped"] or it.skill
             mark = "◆" if on else ("◇" if not missing else "·")
             line = "%s %s" % (mark, it.name)
-            if it.skill:
-                line += "  (skill)"
             bgk = named_bg("surface0") if idx == self.cursor else None
             rarity_text(s, 3, y, line[:listw - 2], it.rarity, self.guy.t, bgk, dim=bool(missing))
+            y += 1
         it = rows[self.cursor]
         x = listw + 3
         w = s.w - x - 2
@@ -395,7 +403,7 @@ class App:
                 s.text(x + 2, y, ("%s: %s" % (point, desc))[:w - 2], named("subtext0")); y += 1
         hint = " enter equip/unequip  ↑↓ move  esc back "
         if it.skill:
-            hint = " skills are always on  esc back "
+            hint = " a skill is always on and takes no slot  esc back "
         s.text(1, s.h - 1, hint, named("overlay0"), named_bg("crust"))
 
     def bag_key(self, key):
