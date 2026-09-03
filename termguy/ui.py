@@ -101,8 +101,8 @@ class App:
         self.syncing.start()
 
     def start_forge(self, job):
-        if self.forging and self.forging.is_alive():
-            self.toast("the forge is busy", "peach")
+        if (self.forging and self.forging.is_alive()) or forge.busy():
+            self.toast("the forge is busy. One thing at a time.", "peach")
             return
         def work():
             try:
@@ -506,7 +506,7 @@ class App:
     def draw_forge(self, s):
         self.header(s, "forge")
         jobs = sync.pending_jobs()
-        busy = self.forging and self.forging.is_alive()
+        busy = (self.forging and self.forging.is_alive()) or forge.busy()
         if not jobs:
             s.text(2, 2, "nothing to open. Merge a PR, review one, or learn a talent.", named("subtext0"))
         self.cursor = max(0, min(self.cursor, max(0, len(jobs) - 1)))

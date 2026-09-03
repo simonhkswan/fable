@@ -116,6 +116,18 @@ def undo_to(commit):
 LOCK = os.path.join(paths.ROOT, ".forge.lock")
 
 
+def busy():
+    """True while any process holds the forge lock."""
+    try:
+        f = open(LOCK, "w")
+        fcntl.flock(f, fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except OSError:
+        return True
+    fcntl.flock(f, fcntl.LOCK_UN)
+    f.close()
+    return False
+
+
 def run_job(job, on_status=None):
     """Run one queued job to completion. Returns (ok, message). One forge run
     at a time, machine wide: two runs in one git repo would tangle."""
