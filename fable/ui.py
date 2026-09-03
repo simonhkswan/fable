@@ -150,7 +150,6 @@ class App:
             if ok:
                 self.guy.fire("forged", job=j)
                 self.guy.say("something new!", 4.0)
-                notify("the forge is done", j.get("note", name))
         self.st = S.load()
         self.reload()
 
@@ -173,15 +172,12 @@ class App:
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
                     self.toast(payload, "yellow", 8.0)
-                    notify("Fable reached %s" % payload, "a new thing waits at the forge")
                 elif "lucky wish" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f.", "mauve", 10.0)
-                    notify("Fable got lucky", payload)
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
-                    notify("Fable found something", payload)
             elif kind == "synced":
                 if payload == 0 and self.page == "home" and self.first_sync_done is False:
                     self.toast("synced. nothing new.", "subtext0", 3.0)
@@ -859,18 +855,6 @@ class App:
     last_sync = 0.0
 
 
-def notify(title, body):
-    """A desktop notification, on macOS. Silent anywhere else."""
-    import subprocess
-    if sys.platform != "darwin":
-        return
-    script = 'display notification "%s" with title "%s"' % (body.replace('"', "'"), title.replace('"', "'"))
-    try:
-        subprocess.Popen(["osascript", "-e", script], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except OSError:
-        pass
-
-
 def wrap(text, w):
     out, line = [], ""
     for word in text.split():
@@ -964,8 +948,10 @@ def run(fps_override=None, no_sync=False):
 
 
 def boot_test(frames=300):
-    """Headless. Exit code 0 means the widget boots and every page draws."""
+    """Headless. Exit code 0 means the widget boots and every page draws.
+    It leaves no state file behind if there was none before."""
     import io
+    had_state = os.path.exists(paths.STATE)
     app = App(headless=True)
     s = Screen(120, 40)
     app.screen = s
@@ -998,6 +984,10 @@ def boot_test(frames=300):
             s.flush(sink)
     for it in app.items + app.skills:
         it.stop()
+    if not had_state:
+        for f in (paths.STATE, paths.EVENTS, paths.SPENDING):
+            if os.path.exists(f):
+                os.remove(f)
     errs = list(app.anim.errors)
     for e in errs:
         print("error:", e)
