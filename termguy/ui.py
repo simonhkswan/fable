@@ -45,7 +45,7 @@ class App:
         self.guy = Guy(self.anim, self.st)
         self.world._st = self.st
         self.items = I.scan()
-        self.skills = I.skills()
+        self.skills = [sk for sk in I.skills() if sk.id in self.st.get("owned_talents", [])]
         self.by_id = {it.id: it for it in self.items + self.skills}
         for name in rules.category_names():
             rt = os.path.join(paths.CATEGORIES, name, "runtime.py")
