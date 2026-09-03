@@ -150,7 +150,6 @@ class App:
             if ok:
                 self.guy.fire("forged", job=j)
                 self.guy.say("something new!", 4.0)
-                notify("the forge is done", j.get("note", name))
         self.st = S.load()
         self.reload()
 
@@ -173,15 +172,12 @@ class App:
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
                     self.toast(payload, "yellow", 8.0)
-                    notify("Fable reached %s" % payload, "a new thing waits at the forge")
                 elif "lucky wish" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f.", "mauve", 10.0)
-                    notify("Fable got lucky", payload)
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
-                    notify("Fable found something", payload)
             elif kind == "synced":
                 if payload == 0 and self.page == "home" and self.first_sync_done is False:
                     self.toast("synced. nothing new.", "subtext0", 3.0)
@@ -857,18 +853,6 @@ class App:
             self.guy.fire("idle")
 
     last_sync = 0.0
-
-
-def notify(title, body):
-    """A desktop notification, on macOS. Silent anywhere else."""
-    import subprocess
-    if sys.platform != "darwin":
-        return
-    script = 'display notification "%s" with title "%s"' % (body.replace('"', "'"), title.replace('"', "'"))
-    try:
-        subprocess.Popen(["osascript", "-e", script], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    except OSError:
-        pass
 
 
 def wrap(text, w):
