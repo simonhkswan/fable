@@ -328,8 +328,8 @@ class App:
         for ch, (fn, help_) in self.anim.keys.items():
             if help_:
                 hint += " %s %s " % (ch, help_)
-        if s.w > len(hint) + 2:
-            s.text(1, s.h - 1, hint, named("overlay0"), named_bg("crust"))
+        if s.w > 24:
+            s.text(1, s.h - 1, hint[:s.w - 2], named("overlay0"), named_bg("crust"))
 
     def draw_toasts(self, s):
         now = time.monotonic()
