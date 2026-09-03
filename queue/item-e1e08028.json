@@ -1,4 +1,5 @@
 {
+  "_started": 1788461908.2401679,
   "id": "item-e1e08028",
   "kind": "item",
   "note": "reward for level 5",
@@ -55,5 +56,6 @@
     "twist": null,
     "wishes_offered": false
   },
-  "status": "queued"
+  "status": "running",
+  "updated": "2026-09-03T19:58:28"
 }

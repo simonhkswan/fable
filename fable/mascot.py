@@ -5,6 +5,7 @@ import random
 from .screen import P, Quad, named
 from . import screen as SC
 from .anim import Ctx
+from . import clock
 
 CLAY = "clay"
 BODY = "..############.."
@@ -120,6 +121,7 @@ class Guy:
         self.sparks = []
         self.store = {}
         self.face_dir = 1
+        self.hour = clock.now()["hour"]
 
     def _pick_job(self):
         jobs = self.anim.idle_jobs
@@ -411,6 +413,13 @@ class Guy:
         elif not self.glance and self.t > self.glance_at:
             self.glance = random.choice((-1, 1))
         self.k = self._scale(s)
+        now = clock.now()
+        if now["hour"] != getattr(self, "hour", now["hour"]):
+            self.hour = now["hour"]
+            self.fire("hour", **now)
+            if now["hour"] == 0:
+                self.fire("midnight", **now)
+        self.hour = now["hour"]
         for fn in self.anim.ticks:
             self._safe(fn, "tick", self.ctx)
         if not self.k:

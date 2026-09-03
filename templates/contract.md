@@ -25,7 +25,7 @@ Three ways to reach code. Mix them freely, any language:
 - `run` (any language). Started with the shell, cwd = the item dir, non-blocking. Env: `FABLE_DIR`, `FABLE_ITEM_DIR`, `FABLE_STATE`, `FABLE_PANE_ID`, `FABLE_COLS`, `FABLE_ROWS`, and `FABLE_EVENT` (JSON) for events.
 - `stream` (any language). Started once when equipped, kept alive. Receives one JSON line per frame on stdin: `{"t","dt","u","x","y","w","h","job"}` (x, y in quarter cells, u = quarter cells per sprite pixel). Replies with JSON lines `{"cells": [[qx, qy, "ink"], ...], "text": [[col, row, "str", "ink"]], "say": "..."}` and the widget draws the latest reply each frame.
 
-Attachment points that exist now: `register`, `key:<char>`, `tick`, `equip`, `event:pr_merged`, `event:review`, `event:level_up`, `event:drop`, `event:equip`, `event:unequip`, `event:idle`. You may add more by editing `fable/`.
+Attachment points that exist now: `register`, `key:<char>`, `tick`, `equip`, `event:pr_merged`, `event:review`, `event:level_up`, `event:drop`, `event:equip`, `event:unequip`, `event:idle`, `event:hour` (the hour changed; data is the clock), `event:midnight`. You may add more by editing `fable/`.
 
 ### The animation API (`register(anim, world)`)
 
@@ -40,7 +40,7 @@ def register(anim, world):
     anim.page("w", "Weather", draw_page, keys=on_key)  # a whole page: draw(ctx, screen), on_key(ctx, key) -> bool handled
 ```
 
-Idle job draw signature: `draw(ctx, q, x, y, floor_y)`, all in quarter cells. Look at `fable/mascot.py` for the six built-in jobs and copy their idiom. `ctx` gives: `ctx.u ctx.k ctx.t ctx.dt ctx.screen ctx.state ctx.store ctx.P` and helpers `ctx.cell(q,x,y,ink) ctx.block(q,x,y,rgb) ctx.grid(q,x,y,rows,ink_map) ctx.fade(ink,f) ctx.burst(x,y,n,inks) ctx.sparks(q) ctx.look(eye) ctx.mascot(q,x,y,eye=,lean=,legs=,squash=,shut=) ctx.text(col,row,str,ink) ctx.caption(str)`. `ctx.guy.say("hi", 4.0)` shows a speech bubble. `ctx.guy.fire("name", **data)` fires a moment.
+Idle job draw signature: `draw(ctx, q, x, y, floor_y)`, all in quarter cells. Look at `fable/mascot.py` for the six built-in jobs and copy their idiom. `ctx` gives: `ctx.u ctx.k ctx.t ctx.dt ctx.screen ctx.state ctx.store ctx.P ctx.clock` and helpers `ctx.cell(q,x,y,ink) ctx.block(q,x,y,rgb) ctx.grid(q,x,y,rows,ink_map) ctx.fade(ink,f) ctx.burst(x,y,n,inks) ctx.sparks(q) ctx.look(eye) ctx.mascot(q,x,y,eye=,lean=,legs=,squash=,shut=) ctx.text(col,row,str,ink) ctx.caption(str)`. `ctx.guy.say("hi", 4.0)` shows a speech bubble. `ctx.guy.fire("name", **data)` fires a moment.
 
 Inks are names in `fable/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose` has `x y eye lean squash shut u`.
 
@@ -63,3 +63,7 @@ Inks are names in `fable/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose`
 ### Before you finish
 
 Run `./bin/fable boot-test`. It must exit 0. It renders 300 frames headless, opens every page, fires every event, equips every item whose requirements are met, and prints any errors items raised. Then leave the working tree as you want it committed; the forge commits for you.
+
+### The clock
+
+`ctx.clock` (or `from fable import clock; clock.now()`) gives `{hour, minute, second, frac, phase, sun, az, dark, text}`. Phases: small hours, dawn, day, dusk, night. `sun` is 0 to 1 (height), `az` is -1 east to +1 west, `dark` is True after sunset. `FABLE_CLOCK=HH:MM` freezes it for screenshots.

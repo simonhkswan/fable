@@ -1,0 +1,20 @@
+{
+  "id": "e1e08028",
+  "name": "A Borrowed Shadow",
+  "flavor": "It was already on the floor when he got there. By day it lies where the sun says it must. After dark there is no sun, and it lies anyway, and writes down the hour.",
+  "category": "cosmetic",
+  "rarity": "epic",
+  "requires": {
+    "level": 10,
+    "stats": {
+      "focus": 5,
+      "luck": 5
+    }
+  },
+  "attach": {
+    "register": {
+      "import": "shadow.py",
+      "help": "a shadow that keeps the time; on the hour it annotates the floor"
+    }
+  }
+}

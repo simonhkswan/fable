@@ -971,7 +971,7 @@ def boot_test(frames=300):
         app.frame(s, 1 / 30)
         s.flush(sink)
         if i == 40:
-            for ev in ("pr_merged", "review", "level_up", "drop", "equip", "unequip", "idle", "forged", "talent"):
+            for ev in ("pr_merged", "review", "level_up", "drop", "equip", "unequip", "idle", "forged", "talent", "hour", "midnight"):
                 app.guy.fire(ev, text="boot test", kind="pr", repo="x/y", number=1)
         if i == 60:
             app.guy._next(s)

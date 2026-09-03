@@ -15,6 +15,7 @@ import math
 import random
 from . import screen as SC
 from .screen import P
+from . import clock as _clock
 
 
 class Ctx:
@@ -39,6 +40,10 @@ class Ctx:
     def screen(self): return self.guy.screen
     @property
     def state(self): return self.guy.state
+    @property
+    def clock(self):
+        """The time of day: hour, minute, phase, sun, az, dark, text. See fable/clock.py."""
+        return _clock.now()
     @property
     def store(self):
         """Per-job scratch dict, cleared when the job changes."""
