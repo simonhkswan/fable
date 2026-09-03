@@ -1,0 +1,13 @@
+{
+  "id": "deep_thought",
+  "name": "Deep Thought",
+  "flavor": "He can stop and think about it.",
+  "category": "cosmetic",
+  "rarity": "common",
+  "attach": {
+    "register": {
+      "import": "job.py",
+      "help": "thinks while idle"
+    }
+  }
+}

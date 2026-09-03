@@ -1,0 +1,14 @@
+{
+  "id": "deep_thought",
+  "name": "Deep Thought",
+  "hint": "He can stop and think about it. A bubble, three dots, an idea now and then.",
+  "kind": "skill",
+  "cost": 0,
+  "parent": "root",
+  "pos": [
+    0,
+    -1
+  ],
+  "effect": {},
+  "generated": false
+}

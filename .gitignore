@@ -1,7 +1,7 @@
 __pycache__/
 *.pyc
 runs/
-guy.log
+fable.log
 presence.json
 state.json.tmp
 items/*/stderr.log

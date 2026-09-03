@@ -1,0 +1,18 @@
+{
+  "id": "laptop",
+  "name": "A Laptop",
+  "flavor": "Stickers on the lid, a key that sticks. Every fourth line the build goes green and he throws his hands up.",
+  "category": "cosmetic",
+  "rarity": "common",
+  "requires": {
+    "level": 1,
+    "stats": {}
+  },
+  "starter": true,
+  "attach": {
+    "register": {
+      "import": "job.py",
+      "help": "ships code while idle"
+    }
+  }
+}

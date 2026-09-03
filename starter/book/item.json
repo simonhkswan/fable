@@ -1,0 +1,18 @@
+{
+  "id": "book",
+  "name": "The Docs",
+  "flavor": "A thick one. He reads a word at a time and turns the page with a flick. Now and then something in it lights him up.",
+  "category": "cosmetic",
+  "rarity": "common",
+  "requires": {
+    "level": 1,
+    "stats": {}
+  },
+  "starter": true,
+  "attach": {
+    "register": {
+      "import": "job.py",
+      "help": "reads the docs while idle"
+    }
+  }
+}
