@@ -87,10 +87,18 @@ class App:
         def work():
             try:
                 self.status = "syncing with github"
-                fresh, happened = sync.run(since=since)
+
+                def progress(n, total):
+                    self.status = "fetching %d of %d" % (n, total)
+
+                def on_event(ev, rec, happened):
+                    self.status = "replaying %s#%s" % (ev["repo"].split("/")[-1], ev["number"])
+                    with self.lock:
+                        self.pending_events.append(("event", (ev, rec)))
+                        self.pending_events += [("note", h) for h in happened]
+
+                fresh, happened = sync.run(since=since, progress=progress, on_event=on_event, pace=0.7)
                 with self.lock:
-                    self.pending_events += [("event", ev) for ev in fresh]
-                    self.pending_events += [("note", h) for h in happened]
                     self.pending_events.append(("synced", len(fresh)))
             except Exception as e:  # noqa: BLE001
                 log("sync failed: %s" % e)
@@ -153,9 +161,12 @@ class App:
         for kind, payload in evs:
             if kind == "event":
                 reload_state = True
-                ev = payload
+                ev, rec = payload
                 self.guy.fire("pr_merged" if ev["kind"] == "pr" else "review", **ev)
-                self.toast("%s %s#%s" % ("merged" if ev["kind"] == "pr" else "reviewed", ev["repo"].split("/")[-1], ev["number"]), "green")
+                gains = " ".join("+%d %s" % (n, s) for s, n in rec.get("gains", {}).items())
+                self.toast("%s %s#%s  +%d xp %s" % ("merged" if ev["kind"] == "pr" else "reviewed",
+                                                    ev["repo"].split("/")[-1], ev["number"], rec.get("xp", 0), gains).rstrip(),
+                           "green" if ev["kind"] == "pr" else "sky", 3.0)
             elif kind == "note":
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
@@ -173,13 +184,16 @@ class App:
                 self.toast(payload, "red", 8.0)
         if reload_state:
             self.st = S.load()
-            self.reload()
+            self.st_mtime = S.mtime()
+            self.guy.state = self.st
+            self.world._st = self.st
 
     first_sync_done = False
 
     def watch_state_file(self):
         m = S.mtime()
         if m != self.st_mtime and not (self.syncing and self.syncing.is_alive()) and not forge.busy():
+            # something else wrote the state: a CLI sync, a forge run that ended
             self.st = S.load()
             self.st_mtime = m
             self.reload()

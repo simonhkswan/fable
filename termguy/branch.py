@@ -34,7 +34,14 @@ def switch(name):
     if current() == name:
         return True, "on %s" % name
     rc, out, err = git("status", "--porcelain")
-    if out:
+    if out and current() in PROTECTED:
+        # On main, runtime files are junk from running commands there. Drop
+        # them, and refuse if hand-written code is uncommitted.
+        tracked = [l for l in out.splitlines() if not l.startswith("??")]
+        if tracked:
+            return False, "uncommitted changes on %s. Commit them first." % current()
+        git("clean", "-fdq", "--", "state.json", "events.jsonl", "spending.jsonl", "queue", "items", "presence.json")
+    elif out:
         git("add", "-A")
         git("commit", "-qm", "autosave before switching to %s" % name)
     if exists(name):

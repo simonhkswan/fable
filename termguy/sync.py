@@ -95,10 +95,12 @@ def apply_event(st, ev):
             queue_job("category", spec, note="milestone at level %d" % lvl)
     st["seen_events"].append(ev["id"])
     S.append_jsonl(paths.EVENTS, rec)
-    return happened
+    return happened, rec
 
 
-def run(since=None, progress=None, dry=False):
+def run(since=None, progress=None, dry=False, on_event=None, pace=0.0):
+    """Fetch, then apply oldest first. With on_event and pace, each event is
+    saved and reported one at a time, so a watcher sees him grow."""
     st = S.load()
     seen = set(st["seen_events"])
     fresh = github.fetch_new(seen, since=since, progress=progress)
@@ -107,7 +109,14 @@ def run(since=None, progress=None, dry=False):
         if dry:
             all_happened.append(ev["id"])
             continue
-        all_happened += apply_event(st, ev)
+        happened, rec = apply_event(st, ev)
+        all_happened += happened
+        if on_event:
+            st["last_sync"] = time.strftime("%Y-%m-%dT%H:%M:%S")
+            S.save(st)
+            on_event(ev, rec, happened)
+            if pace:
+                time.sleep(pace)
     if not dry:
         st["last_sync"] = time.strftime("%Y-%m-%dT%H:%M:%S")
         S.save(st)
