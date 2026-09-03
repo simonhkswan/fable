@@ -36,15 +36,14 @@ def xp_of(event, is_new_repo):
     return int(xp)
 
 
-def stat_gains(seed, stats):
-    g = rules()["stat_gain"]
+def stat_gains(seed, kind):
+    """Reviews feed one stat. PRs feed a small pool. Most events feed nothing,
+    so the stats you choose to spend points on stay the ones that define him."""
+    g = rules()["stat_gain"].get(kind) or {"chance": 0, "stats": []}
     rng = R.rng_for(seed, "stats")
-    n = rng.randint(g["min"], g["max"])
-    out = {}
-    for _ in range(n):
-        s = rng.choice(stats)
-        out[s] = out.get(s, 0) + 1
-    return out
+    if not g["stats"] or rng.random() >= g["chance"]:
+        return {}
+    return {rng.choice(g["stats"]): 1}
 
 
 def category_names():

@@ -1,1 +1,18 @@
-{"id": "lucky_penny", "name": "Lucky Penny", "hint": "+1 luck. Drops lean his way.", "kind": "passive", "cost": 1, "parent": "root", "pos": [-2, 1], "effect": {"stat": {"luck": 1}}, "generated": false}
+{
+  "cost": 1,
+  "effect": {
+    "stat": {
+      "luck": 1
+    }
+  },
+  "generated": false,
+  "hint": "+1 luck. Drops lean his way.",
+  "id": "lucky_penny",
+  "kind": "passive",
+  "name": "Lucky Penny",
+  "parent": "root",
+  "pos": [
+    -2,
+    1
+  ]
+}

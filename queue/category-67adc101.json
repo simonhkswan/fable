@@ -2,7 +2,7 @@
   "id": "category-67adc101",
   "kind": "category",
   "note": "milestone at level 20",
-  "queued": "2026-09-03T09:26:15",
+  "queued": "2026-09-03T09:35:03",
   "spec": {
     "budget": 5,
     "categories_at_roll": 5,
@@ -19,12 +19,12 @@
     "guy": {
       "level": 20,
       "stats": {
-        "charm": 50,
-        "craft": 45,
-        "focus": 56,
-        "luck": 47,
-        "vigor": 57,
-        "wit": 60
+        "charm": 1,
+        "craft": 7,
+        "focus": 36,
+        "luck": 1,
+        "vigor": 8,
+        "wit": 8
       }
     },
     "id": "67adc101",

@@ -50,7 +50,7 @@ def apply_event(st, ev):
         st["repos"].append(ev["repo"])
         happened.append("first %s in %s" % ("merge" if ev["kind"] == "pr" else "review", ev["repo"]))
     xp = rules.xp_of(ev, is_new_repo)
-    gains = rules.stat_gains(seed, rules.rules()["stats"])
+    gains = rules.stat_gains(seed, ev["kind"])
     for s, n in gains.items():
         st["stats"][s] = st["stats"].get(s, 1) + n
     before = st["level"]
@@ -61,7 +61,7 @@ def apply_event(st, ev):
            "title": ev["title"], "at": ev.get("at"), "seed": seed, "xp": xp, "gains": gains,
            "categories": len(rules.category_names()), "consumed": time.strftime("%Y-%m-%dT%H:%M:%S")}
     label = "%s %s#%s" % ("merged" if ev["kind"] == "pr" else "reviewed", ev["repo"].split("/")[-1], ev["number"])
-    S.remember(st, ev["kind"], "%s  +%d xp  %s" % (label, xp, " ".join("+%d %s" % (n, s) for s, n in gains.items())),
+    S.remember(st, ev["kind"], ("%s  +%d xp  %s" % (label, xp, " ".join("+%d %s" % (n, s) for s, n in gains.items()))).rstrip(),
                url=ev.get("url"))
     if rules.roll_drop(seed, ev["kind"]):
         spec = rules.make_spec(seed, "drop", ev, st, "drop")

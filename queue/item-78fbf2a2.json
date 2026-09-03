@@ -2,7 +2,7 @@
   "id": "item-78fbf2a2",
   "kind": "item",
   "note": "reward for level 10",
-  "queued": "2026-09-03T09:26:15",
+  "queued": "2026-09-03T09:35:03",
   "spec": {
     "budget": 3,
     "categories_at_roll": 5,
@@ -19,12 +19,12 @@
     "guy": {
       "level": 10,
       "stats": {
-        "charm": 20,
-        "craft": 14,
-        "focus": 29,
-        "luck": 19,
-        "vigor": 22,
-        "wit": 25
+        "charm": 1,
+        "craft": 3,
+        "focus": 18,
+        "luck": 1,
+        "vigor": 4,
+        "wit": 2
       }
     },
     "id": "78fbf2a2",

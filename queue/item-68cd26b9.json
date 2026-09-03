@@ -2,7 +2,7 @@
   "id": "item-68cd26b9",
   "kind": "item",
   "note": "reward for level 20",
-  "queued": "2026-09-03T09:26:15",
+  "queued": "2026-09-03T09:35:03",
   "spec": {
     "budget": 14,
     "categories_at_roll": 5,
@@ -19,12 +19,12 @@
     "guy": {
       "level": 20,
       "stats": {
-        "charm": 50,
-        "craft": 45,
-        "focus": 56,
-        "luck": 47,
-        "vigor": 57,
-        "wit": 60
+        "charm": 1,
+        "craft": 7,
+        "focus": 36,
+        "luck": 1,
+        "vigor": 8,
+        "wit": 8
       }
     },
     "id": "68cd26b9",
@@ -34,7 +34,7 @@
     "requires": {
       "level": 21,
       "stats": {
-        "charm": 56
+        "charm": 7
       }
     },
     "scope": "item",

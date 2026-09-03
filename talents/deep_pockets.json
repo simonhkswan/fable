@@ -1,1 +1,16 @@
-{"id": "deep_pockets", "name": "Deep Pockets", "hint": "One more item slot.", "kind": "passive", "cost": 1, "parent": "root", "pos": [2, -1], "effect": {"slots": 1}, "generated": false}
+{
+  "cost": 1,
+  "effect": {
+    "slots": 1
+  },
+  "generated": false,
+  "hint": "One more item slot.",
+  "id": "deep_pockets",
+  "kind": "passive",
+  "name": "Deep Pockets",
+  "parent": "root",
+  "pos": [
+    2,
+    -1
+  ]
+}

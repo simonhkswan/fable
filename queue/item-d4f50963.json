@@ -2,7 +2,7 @@
   "id": "item-d4f50963",
   "kind": "item",
   "note": "dropped by merged fairlens#131",
-  "queued": "2026-09-03T09:26:15",
+  "queued": "2026-09-03T09:35:03",
   "spec": {
     "budget": 13,
     "categories_at_roll": 5,
@@ -19,12 +19,12 @@
     "guy": {
       "level": 8,
       "stats": {
-        "charm": 17,
-        "craft": 9,
-        "focus": 21,
-        "luck": 17,
-        "vigor": 19,
-        "wit": 18
+        "charm": 1,
+        "craft": 3,
+        "focus": 13,
+        "luck": 1,
+        "vigor": 4,
+        "wit": 1
       }
     },
     "id": "d4f50963",
@@ -33,7 +33,7 @@
     "requires": {
       "level": 9,
       "stats": {
-        "craft": 12
+        "craft": 6
       }
     },
     "scope": "item",

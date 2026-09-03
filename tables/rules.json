@@ -20,8 +20,20 @@
   },
   "starting_slots": 3,
   "stat_gain": {
-    "max": 3,
-    "min": 1
+    "pr": {
+      "chance": 0.3,
+      "stats": [
+        "craft",
+        "vigor",
+        "wit"
+      ]
+    },
+    "review": {
+      "chance": 0.35,
+      "stats": [
+        "focus"
+      ]
+    }
   },
   "stats": [
     "vigor",

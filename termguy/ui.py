@@ -365,7 +365,7 @@ class App:
     def bag_key(self, key):
         rows = self.all_items()
         if not rows:
-            return
+            return False
         if key in (KEY_UP, b"k"):
             self.cursor -= 1
         elif key in (KEY_DOWN, b"j"):
@@ -390,6 +390,9 @@ class App:
                     S.remember(st, "equip", "put on %s" % it.name)
                     self.save(); self.reload(); self.guy.fire("equip", item=it.id)
                     self.toast("wearing %s" % it.name, "green")
+        else:
+            return False
+        return True
 
     def draw_stats(self, s):
         self.header(s, "stats")
@@ -418,6 +421,9 @@ class App:
                 self.toast("+1 %s" % k, "green", 2.0)
             else:
                 self.toast("no points to spend", "red", 2.0)
+        else:
+            return False
+        return True
 
     def draw_talents(self, s):
         self.header(s, "talents")
@@ -490,7 +496,7 @@ class App:
     def talents_key(self, key):
         nodes = T.load_all()
         if not nodes:
-            return
+            return False
         cur = nodes.get(self.tcursor) or nodes["root"]
         cx, cy = cur.get("pos", [0, 0])
         d = {KEY_UP: (0, -1), KEY_DOWN: (0, 1), KEY_LEFT: (-1, 0), KEY_RIGHT: (1, 0),
@@ -517,6 +523,9 @@ class App:
                 self.guy.fire("talent", node=self.tcursor)
                 if job:
                     self.toast("the graph wants to grow. Press f.", "mauve", 8.0)
+        else:
+            return False
+        return True
 
     def draw_forge(self, s):
         self.header(s, "forge")
@@ -549,6 +558,9 @@ class App:
             self.cursor += 1
         elif key in (b"\r", b"\n", b" ") and jobs:
             self.start_forge(jobs[max(0, min(self.cursor, len(jobs) - 1))])
+        else:
+            return False
+        return True
 
     def draw_log(self, s):
         self.header(s, "log")
@@ -581,6 +593,8 @@ class App:
             s.text(2, 2 + i, line[:s.w - 4], named("subtext1"))
 
     # ── keys ──
+    PAGE_KEYS = {"b": "bag", "t": "talents", "s": "stats", "f": "forge", "l": "log", "?": "help"}
+
     def key(self, key):
         self.last_key_at = time.monotonic()
         self.idle_fired = False
@@ -589,9 +603,11 @@ class App:
         if key == b"\x1b":
             self.page = "home"; self.cursor = 0
             return
+        ch = key.decode("utf-8", "ignore")
+        # the page gets the key first. If it did not use it, the global keys apply.
+        handled = False
         if self.page == "home":
-            ch = key.decode("utf-8", "ignore")
-            if ch in self.anim.keys and ch not in "btsflq?S":
+            if ch in self.anim.keys and ch not in self.PAGE_KEYS and ch != "S":
                 fn, _ = self.anim.keys[ch]
                 try:
                     fn(self.guy.ctx)
@@ -599,26 +615,27 @@ class App:
                     self.anim.fail("key " + ch, e)
                     self.toast("that item misfired: %s" % str(e)[:40], "red")
                 return
-            if ch == "b": self.page = "bag"; self.cursor = 0
-            elif ch == "t": self.page = "talents"
-            elif ch == "s": self.page = "stats"; self.cursor = 0
-            elif ch == "f": self.page = "forge"; self.cursor = 0
-            elif ch == "l": self.page = "log"
-            elif ch == "?": self.page = "help"
-            elif ch == "S": self.start_sync(); self.toast("syncing", "subtext0", 2.0)
-            elif ch in self.anim.pages: self.page = ch
-            return
-        if self.page == "bag": self.bag_key(key)
-        elif self.page == "stats": self.stats_key(key)
-        elif self.page == "talents": self.talents_key(key)
-        elif self.page == "forge": self.forge_key(key)
+        elif self.page == "bag": handled = self.bag_key(key)
+        elif self.page == "stats": handled = self.stats_key(key)
+        elif self.page == "talents": handled = self.talents_key(key)
+        elif self.page == "forge": handled = self.forge_key(key)
         elif self.page in self.anim.pages:
             _, _, keys = self.anim.pages[self.page]
             if keys:
                 try:
-                    keys(self.guy.ctx, key)
+                    handled = bool(keys(self.guy.ctx, key))
                 except Exception as e:  # noqa: BLE001
                     self.anim.fail("page key " + self.page, e)
+        if handled:
+            return
+        if ch in self.PAGE_KEYS:
+            target = self.PAGE_KEYS[ch]
+            self.page = "home" if self.page == target else target
+            self.cursor = 0
+        elif ch == "S":
+            self.start_sync(); self.toast("syncing", "subtext0", 2.0)
+        elif ch in self.anim.pages and self.page == "home":
+            self.page = ch
 
     def housekeeping(self, now):
         self.drain()

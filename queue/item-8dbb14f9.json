@@ -2,7 +2,7 @@
   "id": "item-8dbb14f9",
   "kind": "item",
   "note": "dropped by reviewed PatentCopilot#20233",
-  "queued": "2026-09-03T09:26:15",
+  "queued": "2026-09-03T09:35:03",
   "spec": {
     "budget": 25,
     "categories_at_roll": 5,
@@ -19,12 +19,12 @@
     "guy": {
       "level": 17,
       "stats": {
-        "charm": 42,
-        "craft": 37,
-        "focus": 50,
-        "luck": 42,
-        "vigor": 48,
-        "wit": 45
+        "charm": 1,
+        "craft": 5,
+        "focus": 31,
+        "luck": 1,
+        "vigor": 7,
+        "wit": 7
       }
     },
     "id": "8dbb14f9",
@@ -33,8 +33,8 @@
     "requires": {
       "level": 21,
       "stats": {
-        "charm": 43,
-        "focus": 51
+        "charm": 2,
+        "focus": 32
       }
     },
     "scope": "extend",
