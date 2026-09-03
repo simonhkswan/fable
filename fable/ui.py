@@ -88,8 +88,8 @@ class App:
             try:
                 self.status = "syncing with github"
 
-                def progress(n, total):
-                    self.status = "fetching %d of %d" % (n, total)
+                def progress(n, total, label=""):
+                    self.status = "fetching %d of %d  %s" % (n, total, label)
 
                 def on_event(ev, rec, happened):
                     self.status = "replaying %s#%s" % (ev["repo"].split("/")[-1], ev["number"])

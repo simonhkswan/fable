@@ -89,10 +89,13 @@ def fetch_new(seen, since=None, progress=None):
     for row in reviewed_prs(since):
         rows.append(("review", row))
     fresh = []
-    for kind, row in rows:
+    todo = [(k, r) for k, r in rows
+            if "%s:%s#%d" % (k, r["repository"]["nameWithOwner"], r["number"]) not in seen]
+    for i, (kind, row) in enumerate(todo):
         ident = "%s:%s#%d" % (kind, row["repository"]["nameWithOwner"], row["number"])
-        if ident in seen:
-            continue
+        if progress:
+            progress(i + 1, len(todo), "%s %s#%d  %s" % ("merged" if kind == "pr" else "reviewed",
+                                                        row["repository"]["name"], row["number"], row["title"][:40]))
         try:
             ev = event_from_pr(row) if kind == "pr" else event_from_review(row)
         except Exception as e:  # noqa: BLE001
@@ -102,7 +105,5 @@ def fetch_new(seen, since=None, progress=None):
             # gh search says reviewed, the detail says no. Skip it this time.
             continue
         fresh.append(ev)
-        if progress:
-            progress(len(fresh), len(rows))
     fresh.sort(key=lambda e: e.get("at") or "")
     return fresh

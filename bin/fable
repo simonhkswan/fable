@@ -86,8 +86,8 @@ def main(argv):
         since = None
         if "--since" in rest:
             since = rest[rest.index("--since") + 1]
-        def progress(n, total):
-            sys.stderr.write("\r  fetched %d of %d" % (n, total)); sys.stderr.flush()
+        def progress(n, total, label=""):
+            sys.stderr.write("\r\x1b[K  fetching %d of %d  %s" % (n, total, label)); sys.stderr.flush()
         fresh, happened = sync.run(since=since, progress=progress, dry="--dry" in rest)
         sys.stderr.write("\n")
         if "--all" in rest or "--dry" in rest:
