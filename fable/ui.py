@@ -175,6 +175,10 @@ class App:
                     self.guy.fire("level_up", text=payload)
                     self.toast(payload, "yellow", 8.0)
                     notify("Fable reached %s" % payload, "a new thing waits at the forge")
+                elif "lucky wish" in payload:
+                    self.guy.fire("drop", text=payload)
+                    self.toast(payload + ". Press f.", "mauve", 10.0)
+                    notify("Fable got lucky", payload)
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
@@ -644,7 +648,7 @@ class App:
         rows = WI.open_wishes()
         done = WI.granted()
         s.text(2, 2, "things you would like him to have or do. one is granted every 5 levels,", named("subtext1"))
-        s.text(2, 3, "and other forge runs peek at the list now and then.", named("subtext1"))
+        s.text(2, 3, "other forge runs peek at the list now and then, and luck can grant one early.", named("subtext1"))
         if not rows and self.wish_text is None:
             s.text(2, 5, "no open wishes. press a to add one.", named("overlay1"))
         y = 5

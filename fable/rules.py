@@ -77,6 +77,14 @@ def roll_drop(seed, kind):
     return rng.random() < rules()["drop_chance"][kind]
 
 
+def roll_lucky_wish(seed, luck):
+    """A rare gift: an event grants a wish out of turn. One in five hundred at
+    luck zero, and every point of luck adds a little."""
+    w = rules().get("wish_luck", {"base": 0.002, "per_luck": 0.0002, "cap": 0.05})
+    chance = min(w["cap"], w["base"] + w["per_luck"] * max(0, luck))
+    return R.rng_for(seed, "lucky-wish").random() < chance
+
+
 def theme_words(event):
     words = []
     repo = event.get("repo", "")
