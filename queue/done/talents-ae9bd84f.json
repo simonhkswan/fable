@@ -1,13 +1,13 @@
 {
-  "id": "talents-d4ade17f",
+  "id": "talents-ae9bd84f",
   "kind": "talents",
-  "note": "branches from Scenic Route",
-  "queued": "2026-09-03T09:21:58",
+  "note": "branches from Wanderlust",
+  "queued": "2026-09-02T23:44:38",
   "spec": {
-    "budget": 43,
+    "budget": 5,
     "categories_at_roll": 5,
-    "category": "travel",
-    "constraint": "must involve sound",
+    "category": "ability",
+    "constraint": "must be slow, at least a minute long",
     "event": null,
     "existing_nodes": [
       {
@@ -17,15 +17,6 @@
         "pos": [
           2,
           -1
-        ]
-      },
-      {
-        "id": "frequent_flyer",
-        "kind": "passive",
-        "name": "Frequent Flyer",
-        "pos": [
-          3,
-          2
         ]
       },
       {
@@ -56,30 +47,12 @@
         ]
       },
       {
-        "id": "scenic_route",
-        "kind": "skill",
-        "name": "Scenic Route",
-        "pos": [
-          2,
-          2
-        ]
-      },
-      {
         "id": "small_talk",
         "kind": "passive",
         "name": "Small Talk",
         "pos": [
           0,
           2
-        ]
-      },
-      {
-        "id": "souvenir_hunter",
-        "kind": "passive",
-        "name": "Souvenir Hunter",
-        "pos": [
-          3,
-          0
         ]
       },
       {
@@ -112,38 +85,42 @@
         "wit": 62
       }
     },
-    "id": "d4ade17f",
-    "mood": "absurd",
-    "neighbours_wanted": 2,
+    "id": "ae9bd84f",
+    "mood": "greedy",
+    "neighbours_wanted": 3,
     "node": {
-      "cost": 2,
-      "effect": {},
+      "cost": 1,
+      "effect": {
+        "budget": {
+          "travel": 4
+        },
+        "weight": {
+          "travel": 1
+        }
+      },
       "generated": false,
-      "hint": "Press g. He takes the long way round his pane, a minute or more, and stops for everything shiny. He comes back with his pockets full.",
-      "id": "scenic_route",
-      "kind": "skill",
-      "name": "Scenic Route",
-      "parent": "wanderlust",
+      "hint": "Travel items get +4 budget and drop more often.",
+      "id": "wanderlust",
+      "kind": "passive",
+      "name": "Wanderlust",
+      "parent": "root",
       "pos": [
         2,
-        2
+        1
       ]
     },
-    "rarity": "legendary",
+    "rarity": "common",
     "requires": {
-      "level": 28,
-      "stats": {
-        "focus": 60,
-        "vigor": 63,
-        "wit": 69
-      }
+      "level": 20,
+      "stats": {}
     },
-    "scope": "mutate",
-    "scope_brief": "Anything. Change the rules of the game if you want.",
-    "seed": "talent:scenic_route:root/wanderlust/scenic_route",
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "talent:wanderlust:root/wanderlust",
     "source": "talent",
     "theme": [],
     "twist": null
   },
-  "status": "queued"
+  "status": "done",
+  "updated": "2026-09-03T09:22:47"
 }

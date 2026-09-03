@@ -19,8 +19,9 @@ def queue_job(kind, spec, note=""):
         "queued": time.strftime("%Y-%m-%dT%H:%M:%S"), "status": "queued",
     }
     path = os.path.join(paths.QUEUE, job["id"] + ".json")
-    if os.path.exists(path):
-        return None
+    done = os.path.join(paths.QUEUE, "done", job["id"] + ".json")
+    if os.path.exists(path) or os.path.exists(done):
+        return None   # already queued, or already forged once
     with open(path, "w") as f:
         json.dump(job, f, indent=2, sort_keys=True)
     return job
@@ -73,7 +74,8 @@ def apply_event(st, ev):
     pts = rules.rules()["points_per_level"]
     for lvl in range(before + 1, st["level"] + 1):
         st["unspent"]["stat"] += pts["stat"]
-        st["unspent"]["talent"] += pts["talent"]
+        if lvl % pts.get("talent_every", 1) == 0:
+            st["unspent"]["talent"] += pts["talent"]
         st["counters"]["level_ups"] = st["counters"].get("level_ups", 0) + 1
         happened.append("level %d" % lvl)
         S.remember(st, "level", "reached level %d" % lvl)
