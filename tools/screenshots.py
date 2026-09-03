@@ -122,11 +122,11 @@ def render(screen, palette, path):
 MOCK_QUEUE = [
     ("item", "rare", "item", "ability", "reward for level 5"),
     ("item", "common", "item", "cosmetic", "dropped by merged wisp#38"),
-    ("item", "epic", "extend", "travel", "dropped by reviewed PatentCopilot#20233"),
+    ("item", "epic", "extend", "travel", "dropped by reviewed wisp#31"),
     ("category", "common", "item", "__new__", "milestone at level 10"),
     ("item", "legendary", "mutate", "possession", "reward for level 15"),
     ("talents", "rare", "item", "travel", "branches from Wanderlust"),
-    ("item", "ultra", "mutate", "possession", "dropped by merged PatentCopilot#31337"),
+    ("item", "ultra", "mutate", "possession", "dropped by merged feedme#128"),
 ]
 
 MOCK_TALENTS = [
@@ -390,7 +390,7 @@ def main():
     app.guy.blink_at = 1e9          # eyes open for the picture
     app.guy.say("the panes remember me", 30)
     app.toast("possessed terminal_12 for 9s", "mauve", 60)
-    app.toast("a legendary drop from merged PatentCopilot#31337", "peach", 60)
+    app.toast("a legendary drop from merged feedme#128", "peach", 60)
     for _ in range(3):
         app.frame(s, 1 / 30)
     render(s, P, os.path.join(OUT, "level117.png"))
