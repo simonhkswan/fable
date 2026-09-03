@@ -6,7 +6,9 @@
   fable                 run the widget on the current save branch
   fable saves           list saves
   fable upgrade         merge the code on main into the current save
-  fable sync            pull new events from GitHub and apply them
+  fable sync            pull new events from GitHub and apply them (last 30 days by default)
+  fable sync --since YYYY-MM-DD   pull from a date
+  fable reset           forget everything on this save. Items stay.
   fable sync --all      same, and print each event
   fable forge           open the next unopened thing (one claude session)
   fable forge --all     open everything queued, one after another
@@ -28,7 +30,7 @@ os.chdir(ROOT)
 from fable import paths  # noqa: E402
 
 
-COMMANDS = ("run", "sync", "queue", "forge", "brief", "status", "cleanup", "boot-test", "saves", "upgrade")
+COMMANDS = ("run", "sync", "reset", "queue", "forge", "brief", "status", "cleanup", "boot-test", "saves", "upgrade")
 
 
 def main(argv):
@@ -96,6 +98,11 @@ def main(argv):
         for h in happened:
             print("  " + h)
         print("%d new events" % len(fresh))
+        return 0
+    if cmd == "reset":
+        from fable import sync
+        sync.reset()
+        print("reset. Next start replays the last %d days." % __import__("json").load(open("tables/rules.json")).get("lookback_days", 30))
         return 0
     if cmd == "queue":
         from fable import sync

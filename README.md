@@ -37,7 +37,7 @@ fable --branch trial1
 
 Use any name. A new name makes a new save from main. Run it inside a zellij pane if you want the travel and possession items to work.
 
-The first start pulls your GitHub history and replays it, one event at a time. Then they keep syncing every 10 minutes.
+The first start pulls the last 30 days of your GitHub history and replays it, one event at a time. `fable sync --since 2025-01-01` reaches further back. Then they keep syncing every 10 minutes.
 
 ## Keys
 
@@ -89,13 +89,14 @@ Fable at level 117:
 
 ```
 fable --branch <save>   run on a save branch
-fable sync              pull new events now
+fable sync              pull new events now (last 30 days)
+fable reset             forget everything on this save. Items stay.
 fable queue             list unopened things
 fable forge             open the next thing from the shell
 fable brief <job>       print the brief a forge run would get
 fable status            one screen of text
 fable upgrade           merge main into this save
-fable cleanup           close panes they opened and forgot
+fable cleanup           close panes he opened and forgot
 fable boot-test         headless check that the widget boots
 ```
 
