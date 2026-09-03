@@ -37,6 +37,8 @@ class App:
         self.idle_fired = False
         self.lock = threading.Lock()
         self.pending_events = []   # from the sync thread, fired on the main thread
+        from . import branch
+        self.branch = branch.current()
         self.build()
 
     # ── building the scene from items ──
@@ -228,7 +230,7 @@ class App:
     def header(self, s, title):
         st = self.st
         s.fill(0, 0, s.w, 1, " ", None, named_bg("crust"))
-        left = " %s  ·  lv %d  ·  %s " % (st.get("name", "the guy"), st["level"], title)
+        left = " %s  ·  lv %d  ·  %s  ·  save %s " % (st.get("name", "the guy"), st["level"], title, self.branch)
         s.text(0, 0, left, named("text"), named_bg("crust"))
         right = " esc home  ?  help "
         s.text(s.w - len(right), 0, right, named("overlay1"), named_bg("crust"))
@@ -262,6 +264,8 @@ class App:
         frac = max(0.0, min(1.0, have / need if need else 1.0))
         label = " %s  lv %d " % (st.get("name", "the guy"), st["level"])
         s.text(1, 0, label, named("text"), named_bg("surface0"))
+        if self.branch in ("main", "master"):
+            s.text(1, 1, "on %s: the forge is off here. Run guy <save-name>." % self.branch, named("red"))
         bw = max(8, min(30, s.w - len(label) - 30))
         filled = int(bw * frac)
         s.text(1 + len(label) + 1, 0, "█" * filled + "░" * (bw - filled), named("green"))

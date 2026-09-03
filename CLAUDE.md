@@ -21,3 +21,7 @@ This directory is a game. A terminal character (the guy) lives in a zellij pane 
 - Run `./guy boot-test` before you finish. Exit code 0 or the run is undone.
 - The forge commits for you. Do not commit yourself.
 - Python here is 3.14 with only the stdlib. Other languages: `node`, `uv`, `bash` are installed.
+
+## Branches
+
+`main` is the development branch and holds only the code, tables, templates, seed categories and seed talents. Every save of the guy is a branch. `guy <name>` checks it out, creating it from main if new. Forge runs refuse to run on main, and their commits land on the save branch. `guy upgrade` merges main into the current save.

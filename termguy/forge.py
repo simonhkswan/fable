@@ -133,6 +133,9 @@ def run_job(job, on_status=None):
     at a time, machine wide: two runs in one git repo would tangle."""
     paths.ensure()
     say = on_status or (lambda s: None)
+    from . import branch
+    if not branch.on_save_branch():
+        return False, "on %s, the development branch. Run `guy <save-name>` first." % branch.current()
     lock = open(LOCK, "w")
     try:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 """guy: a terminal character who grows when you merge and review PRs.
 
-  guy                 run the widget in this pane
+  guy <save>          run the widget on the save branch <save>. New name, new guy.
+  guy                 run the widget on the current save branch
+  guy saves           list saves
+  guy upgrade         merge the code on main into the current save
   guy sync            pull new events from GitHub and apply them
   guy sync --all      same, and print each event
   guy forge           open the next unopened thing (one claude session)
@@ -24,14 +27,40 @@ os.chdir(ROOT)
 from termguy import paths  # noqa: E402
 
 
+COMMANDS = ("run", "sync", "queue", "forge", "brief", "status", "cleanup", "boot-test", "saves", "upgrade")
+
+
 def main(argv):
     paths.ensure()
+    from termguy import branch
     cmd = argv[0] if argv else "run"
     rest = argv[1:]
     if cmd in ("-h", "--help", "help"):
         print(__doc__)
         return 0
+    if cmd not in COMMANDS and not cmd.startswith("-"):
+        # guy <save>: switch to that save, then run
+        ok, msg = branch.switch(cmd)
+        if not ok:
+            sys.stderr.write("guy: %s\n" % msg)
+            return 1
+        cmd = "run"
+    if cmd == "saves":
+        cur = branch.current()
+        for line in branch.git("branch", "--format=%(refname:short)")[1].splitlines():
+            if line not in branch.PROTECTED:
+                print(("* " if line == cur else "  ") + line)
+        return 0
+    if cmd == "upgrade":
+        ok, msg = branch.upgrade()
+        print(msg)
+        return 0 if ok else 1
     if cmd == "run":
+        if not branch.on_save_branch():
+            saves = [l for l in branch.git("branch", "--format=%(refname:short)")[1].splitlines() if l not in branch.PROTECTED]
+            sys.stderr.write("guy: on %s, the development branch. Run `guy <save-name>`.%s\n" % (
+                branch.current(), (" Saves: " + ", ".join(saves)) if saves else ""))
+            return 1
         from termguy import ui
         if not sys.stdout.isatty() or not sys.stdin.isatty():
             sys.stderr.write("guy: this needs a terminal. Run it in a pane.\n")
