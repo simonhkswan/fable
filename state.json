@@ -6,7 +6,9 @@
     "review": 90
   },
   "created": "2026-09-02T23:37:33",
-  "equipped": [],
+  "equipped": [
+    "b732048c"
+  ],
   "history": [
     {
       "kind": "pr",
@@ -1116,9 +1118,14 @@
       "kind": "talent",
       "t": "2026-09-02 23:44",
       "text": "learned Wanderlust"
+    },
+    {
+      "kind": "equip",
+      "t": "2026-09-02 23:48",
+      "text": "put on max-width: 60%"
     }
   ],
-  "last_sync": "2026-09-02T23:42:17",
+  "last_sync": "2026-09-03T09:16:15",
   "level": 21,
   "name": "the guy",
   "owned_panes": [],
