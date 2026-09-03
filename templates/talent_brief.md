@@ -8,7 +8,7 @@ You are the forge for a terminal character called Fable. His person just spent a
 
 The node just bought is `node` in the spec. Add `neighbours_wanted` new nodes adjacent to it (parent = that node, positions next to its `pos`, not overlapping `existing_nodes`). Roughly three in four should be passive, the rest skills. Passives shape the game: stats, slots, budgets for a category, discounts on requirements, weights that make a category drop more. Skills are permanent abilities forged like items (see contract), in a directory `talents/<id>/` with `item.json`, and cost 2 or 3 points. Name them so the branch reads as a path with a theme that continues the parent's idea, in the mood **{{mood}}**.
 
-## The guy right now
+## Fable right now
 
 ```json
 {{state_json}}

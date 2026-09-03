@@ -292,7 +292,7 @@ class App:
         label = " %s  lv %d " % (st.get("name", "Fable"), st["level"])
         s.text(1, 0, label, named("text"), named_bg("surface0"))
         if not self.branch.startswith("saves/") and self.branch in ("main", "master"):
-            s.text(1, 1, "on %s: the forge is off here. Run guy <save-name>." % self.branch, named("red"))
+            s.text(1, 1, "on %s: the forge is off here. Run fable --branch <save-name>." % self.branch, named("red"))
         row = "  ".join("%s %d" % (k[:3], v) for k, v in st["stats"].items())
         xp_text = "%d/%d xp" % (have, need)
         room = s.w - len(label) - len(xp_text) - len(row) - 8

@@ -67,11 +67,11 @@ The forge gets those numbers as a starting point, and the brief ends with the sa
 
 > These variables are your starting point. Follow them if they inspire you. Change anything, including how this game works, if that is better.
 
-Nothing in this directory is off limits to a forge run. Item code runs with your permissions, in any language. The forge commits before and after each run, so `git log` on a save is the story of your guy, and any run can be undone.
+Nothing in this directory is off limits to a forge run. Item code runs with your permissions, in any language. The forge commits before and after each run, so `git log` on a save is the story of your Fable, and any run can be undone.
 
 ## What it can look like
 
-These are illustrations of what the game can look like. Your guy will not look like this. He will look like something else.
+These are illustrations of what the game can look like. Yours will not look like this. He will look like something else.
 
 A talent graph after some time:
 
@@ -81,7 +81,7 @@ The forge page with things waiting:
 
 ![the forge](docs/screenshots/forge.png)
 
-A guy at level 117:
+Fable at level 117:
 
 ![level 117](docs/screenshots/level117.png)
 

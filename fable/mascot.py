@@ -1,4 +1,4 @@
-"""The guy. Descended from the claude-idle mascot, with his jobs, layers and
+"""Fable. Descended from the claude-idle mascot, with his jobs, layers and
 reactions moved into registries that items can extend."""
 import math
 import random

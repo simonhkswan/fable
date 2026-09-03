@@ -1,6 +1,6 @@
 ## How the widget reaches code
 
-Everything lives under `~/.fable`. The widget is `./guy` (Python 3.14, stdlib only so far). Package: `fable/`.
+Everything lives under `~/.fable`. The widget is `./bin/fable` (Python 3.14, stdlib only so far). Package: `fable/`.
 
 An **item** is a directory `items/<id>/` with `item.json` (the four he starts with live in `starter/` and follow the same shape):
 
@@ -22,7 +22,7 @@ An **item** is a directory `items/<id>/` with `item.json` (the four he starts wi
 Three ways to reach code. Mix them freely, any language:
 
 - `import` (Python, in-process). For `register`, the module defines `register(anim, world)`. For `key:x`, `event:<name>` or `tick`, it defines `main(ctx, world[, data])`.
-- `run` (any language). Started with the shell, cwd = the item dir, non-blocking. Env: `GUY_DIR`, `GUY_ITEM_DIR`, `GUY_STATE`, `GUY_PANE_ID`, `GUY_COLS`, `GUY_ROWS`, and `GUY_EVENT` (JSON) for events.
+- `run` (any language). Started with the shell, cwd = the item dir, non-blocking. Env: `FABLE_DIR`, `FABLE_ITEM_DIR`, `FABLE_STATE`, `FABLE_PANE_ID`, `FABLE_COLS`, `FABLE_ROWS`, and `FABLE_EVENT` (JSON) for events.
 - `stream` (any language). Started once when equipped, kept alive. Receives one JSON line per frame on stdin: `{"t","dt","u","x","y","w","h","job"}` (x, y in quarter cells, u = quarter cells per sprite pixel). Replies with JSON lines `{"cells": [[qx, qy, "ink"], ...], "text": [[col, row, "str", "ink"]], "say": "..."}` and the widget draws the latest reply each frame.
 
 Attachment points that exist now: `register`, `key:<char>`, `tick`, `equip`, `event:pr_merged`, `event:review`, `event:level_up`, `event:drop`, `event:equip`, `event:unequip`, `event:idle`. You may add more by editing `fable/`.
