@@ -118,12 +118,27 @@ def apply_event(st, ev):
     return happened, rec
 
 
+def reset():
+    """Forget everything he learned on this save. Items and talent nodes stay."""
+    import glob
+    for f in (paths.STATE, paths.EVENTS, paths.SPENDING, paths.PRESENCE):
+        if os.path.exists(f):
+            os.remove(f)
+    for f in glob.glob(os.path.join(paths.QUEUE, "*.json")):
+        os.remove(f)
+
+
 def run(since=None, progress=None, dry=False, on_event=None, pace=0.0):
-    """Fetch oldest first and apply each event as it arrives. With on_event,
+    """Fetch oldest first and apply each event as it arrives. Without `since`,
+    the lookback from tables/rules.json applies, so a new save starts from the
+    last month and not from the beginning of time. With on_event,
     each one is saved and reported at once, so a watcher sees him grow while
     the fetch is still going."""
     st = S.load()
     seen = set(st["seen_events"])
+    if since is None:
+        days = rules.rules().get("lookback_days", 30)
+        since = time.strftime("%Y-%m-%d", time.localtime(time.time() - days * 86400))
     fresh = []
     all_happened = []
     for ev in github.iter_new(seen, since=since, progress=progress):

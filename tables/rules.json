@@ -8,6 +8,7 @@
     "power": 2
   },
   "level_up_item_every": 5,
+  "lookback_days": 30,
   "new_category": {
     "base": 3,
     "decay": 0.6,

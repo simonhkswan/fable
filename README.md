@@ -37,7 +37,7 @@ fable --branch trial1
 
 Use any name. A new name makes a new save from main. Run it inside a zellij pane if you want the travel and possession items to work.
 
-The first start pulls your GitHub history and replays it, one event at a time. Then they keep syncing every 10 minutes.
+The first start pulls the last 30 days of your GitHub history and replays it, one event at a time. `fable sync --since 2025-01-01` reaches further back. Then they keep syncing every 10 minutes.
 
 ## Keys
 
