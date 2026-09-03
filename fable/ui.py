@@ -648,24 +648,25 @@ class App:
 
     def draw_wishes(self, s):
         self.header(s, "wishes")
-        rows = WI.open_wishes()
-        done = WI.granted()
+        rows = WI.all_wishes()
         nw = self.st["unspent"].get("wish", 0)
         s.text(2, 2, "every 5 levels, and now and then by luck, you earn a wish to make.", named("subtext1"))
         s.text(2, 3, "one forge run in five reads the list, and grants a wish if it fits what it is making.", named("subtext1"))
         s.text(2, 4, "%d wish%s to make" % (nw, "" if nw == 1 else "es"), named("pink" if nw else "overlay1"))
         if not rows and self.wish_text is None:
-            s.text(2, 6, "no open wishes." + (" press a to make one." if nw else ""), named("overlay1"))
+            s.text(2, 6, "no wishes yet." + (" press a to make one." if nw else ""), named("overlay1"))
         y = 6
-        for r in rows[-(s.h - 13):]:
-            s.text(2, y, ("· " + r["text"])[:s.w - 4], named("text"))
+        for r in rows[-(s.h - 12):]:
+            done = r.get("granted")
+            if done:
+                s.text(2, y, "✓", named("green"))
+                s.text(4, y, r["text"][:s.w - 6], named("overlay0"))
+                if y + 1 < s.h - 2:
+                    y += 1
+                    s.text(6, y, ("granted: " + done["note"])[:s.w - 8], named("green"))
+            else:
+                s.text(2, y, ("· " + r["text"])[:s.w - 4], named("text"))
             y += 1
-        if done:
-            y += 1
-            s.text(2, y, "granted", named("overlay1")); y += 1
-            for r in done[-4:]:
-                s.text(2, y, ("✓ %s  ·  %s" % (r["text"], r["granted"]["note"]))[:s.w - 4], named("overlay0"))
-                y += 1
         if self.wish_text is not None:
             w = max(10, s.w - 6)
             s.text(2, y + 1, "new wish:", named("mauve"))
