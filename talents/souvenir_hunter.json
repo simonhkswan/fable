@@ -1,0 +1,21 @@
+{
+  "cost": 1,
+  "effect": {
+    "stat": {
+      "luck": 1
+    },
+    "weight": {
+      "travel": 2
+    }
+  },
+  "generated": false,
+  "hint": "He brings something back from every trip. Travel items drop much more often, and +1 luck.",
+  "id": "souvenir_hunter",
+  "kind": "passive",
+  "name": "Souvenir Hunter",
+  "parent": "wanderlust",
+  "pos": [
+    3,
+    0
+  ]
+}

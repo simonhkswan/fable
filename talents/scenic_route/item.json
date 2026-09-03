@@ -1,0 +1,11 @@
+{
+  "id": "scenic_route",
+  "name": "Scenic Route",
+  "flavor": "A folded map with every shortcut crossed out. He walks the whole pane edge to edge, slowly, and stops for anything that glints. It takes a minute at least. He says that is the point. His pockets say otherwise.",
+  "category": "ability",
+  "rarity": "common",
+  "constraint": "slow, at least a minute long",
+  "attach": {
+    "register": {"import": "route.py", "help": "g: take the scenic route. Slow. He picks up everything."}
+  }
+}

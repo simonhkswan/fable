@@ -1,0 +1,149 @@
+{
+  "id": "talents-d4ade17f",
+  "kind": "talents",
+  "note": "branches from Scenic Route",
+  "queued": "2026-09-03T09:21:58",
+  "spec": {
+    "budget": 43,
+    "categories_at_roll": 5,
+    "category": "travel",
+    "constraint": "must involve sound",
+    "event": null,
+    "existing_nodes": [
+      {
+        "id": "deep_pockets",
+        "kind": "passive",
+        "name": "Deep Pockets",
+        "pos": [
+          2,
+          -1
+        ]
+      },
+      {
+        "id": "frequent_flyer",
+        "kind": "passive",
+        "name": "Frequent Flyer",
+        "pos": [
+          3,
+          2
+        ]
+      },
+      {
+        "id": "long_stare",
+        "kind": "passive",
+        "name": "Long Stare",
+        "pos": [
+          0,
+          -2
+        ]
+      },
+      {
+        "id": "lucky_penny",
+        "kind": "passive",
+        "name": "Lucky Penny",
+        "pos": [
+          -2,
+          1
+        ]
+      },
+      {
+        "id": "root",
+        "kind": "passive",
+        "name": "The Guy",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "scenic_route",
+        "kind": "skill",
+        "name": "Scenic Route",
+        "pos": [
+          2,
+          2
+        ]
+      },
+      {
+        "id": "small_talk",
+        "kind": "passive",
+        "name": "Small Talk",
+        "pos": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "souvenir_hunter",
+        "kind": "passive",
+        "name": "Souvenir Hunter",
+        "pos": [
+          3,
+          0
+        ]
+      },
+      {
+        "id": "steady_hands",
+        "kind": "passive",
+        "name": "Steady Hands",
+        "pos": [
+          -2,
+          -1
+        ]
+      },
+      {
+        "id": "wanderlust",
+        "kind": "passive",
+        "name": "Wanderlust",
+        "pos": [
+          2,
+          1
+        ]
+      }
+    ],
+    "guy": {
+      "level": 21,
+      "stats": {
+        "charm": 50,
+        "craft": 51,
+        "focus": 57,
+        "luck": 88,
+        "vigor": 60,
+        "wit": 62
+      }
+    },
+    "id": "d4ade17f",
+    "mood": "absurd",
+    "neighbours_wanted": 2,
+    "node": {
+      "cost": 2,
+      "effect": {},
+      "generated": false,
+      "hint": "Press g. He takes the long way round his pane, a minute or more, and stops for everything shiny. He comes back with his pockets full.",
+      "id": "scenic_route",
+      "kind": "skill",
+      "name": "Scenic Route",
+      "parent": "wanderlust",
+      "pos": [
+        2,
+        2
+      ]
+    },
+    "rarity": "legendary",
+    "requires": {
+      "level": 28,
+      "stats": {
+        "focus": 60,
+        "vigor": 63,
+        "wit": 69
+      }
+    },
+    "scope": "mutate",
+    "scope_brief": "Anything. Change the rules of the game if you want.",
+    "seed": "talent:scenic_route:root/wanderlust/scenic_route",
+    "source": "talent",
+    "theme": [],
+    "twist": null
+  },
+  "status": "queued"
+}

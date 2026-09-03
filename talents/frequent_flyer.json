@@ -1,0 +1,21 @@
+{
+  "cost": 1,
+  "effect": {
+    "budget": {
+      "travel": 3
+    },
+    "discount": {
+      "travel": 2
+    }
+  },
+  "generated": false,
+  "hint": "Miles add up. Travel items ask less of him and get +3 budget.",
+  "id": "frequent_flyer",
+  "kind": "passive",
+  "name": "Frequent Flyer",
+  "parent": "wanderlust",
+  "pos": [
+    3,
+    2
+  ]
+}

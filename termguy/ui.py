@@ -32,7 +32,6 @@ class App:
         self.cursor = 0
         self.toasts = []           # (text, until, ink)
         self.status = ""
-        self.forging = None        # thread
         self.syncing = None
         self.last_key_at = time.monotonic()
         self.idle_fired = False
@@ -101,23 +100,47 @@ class App:
         self.syncing.start()
 
     def start_forge(self, job):
-        if (self.forging and self.forging.is_alive()) or forge.busy():
+        if forge.busy():
             self.toast("the forge is busy. One thing at a time.", "peach")
             return
-        def work():
-            try:
-                ok, msg = forge.run_job(job, on_status=lambda s: setattr(self, "status", s))
-                with self.lock:
-                    self.pending_events.append(("forged", (ok, msg, job)))
-            except Exception as e:  # noqa: BLE001
-                log("forge crashed: %s" % e)
-                with self.lock:
-                    self.pending_events.append(("error", "forge crashed: %s" % str(e)[:60]))
-            finally:
-                self.status = ""
-        self.forging = threading.Thread(target=work, daemon=True)
-        self.forging.start()
+        forge.spawn(job["id"])
+        self.known_done = set(os.listdir(os.path.join(paths.QUEUE, "done"))) if os.path.isdir(os.path.join(paths.QUEUE, "done")) else set()
         self.guy.say("to the forge!", 3.0)
+
+    known_done = None
+
+    def watch_forge(self):
+        """The forge is its own process. Read its status, notice when it ends."""
+        cur = forge.current()
+        if cur:
+            mins, secs = divmod(int(time.time() - cur.get("started", time.time())), 60)
+            self.status = "%s  %d:%02d" % (cur.get("status", "forging"), mins, secs)
+            self.forge_seen = True
+            return
+        if self.status.startswith(("forging", "boot test")):
+            self.status = ""
+        if not getattr(self, "forge_seen", False):
+            return
+        self.forge_seen = False
+        done_dir = os.path.join(paths.QUEUE, "done")
+        now_done = set(os.listdir(done_dir)) if os.path.isdir(done_dir) else set()
+        new = now_done - (self.known_done or set())
+        self.known_done = now_done
+        for name in new:
+            try:
+                with open(os.path.join(done_dir, name)) as f:
+                    j = json.load(f)
+            except (OSError, ValueError):
+                continue
+            ok = j.get("status") == "done"
+            self.toast(("forged: %s" % j.get("note", name)) if ok else ("the forge failed: %s" % j.get("note", name)),
+                       "green" if ok else "red", 8.0)
+            if ok:
+                self.guy.fire("forged", job=j)
+                self.guy.say("something new!", 4.0)
+                notify("the forge is done", j.get("note", name))
+        self.st = S.load()
+        self.reload()
 
     def drain(self):
         with self.lock:
@@ -144,14 +167,6 @@ class App:
                 if payload == 0 and self.page == "home" and self.first_sync_done is False:
                     self.toast("synced. nothing new.", "subtext0", 3.0)
                 self.first_sync_done = True
-            elif kind == "forged":
-                ok, msg, job = payload
-                self.toast(msg, "green" if ok else "red", 8.0)
-                self.st = S.load()
-                self.reload()
-                if ok:
-                    self.guy.fire("forged", job=job)
-                    self.guy.say("something new!", 4.0)
             elif kind == "error":
                 self.toast(payload, "red", 8.0)
         if reload_state:
@@ -162,7 +177,7 @@ class App:
 
     def watch_state_file(self):
         m = S.mtime()
-        if m != self.st_mtime and not (self.syncing and self.syncing.is_alive()) and not (self.forging and self.forging.is_alive()):
+        if m != self.st_mtime and not (self.syncing and self.syncing.is_alive()) and not forge.busy():
             self.st = S.load()
             self.st_mtime = m
             self.reload()
@@ -506,7 +521,7 @@ class App:
     def draw_forge(self, s):
         self.header(s, "forge")
         jobs = sync.pending_jobs()
-        busy = (self.forging and self.forging.is_alive()) or forge.busy()
+        busy = forge.busy()
         if not jobs:
             s.text(2, 2, "nothing to open. Merge a PR, review one, or learn a talent.", named("subtext0"))
         self.cursor = max(0, min(self.cursor, max(0, len(jobs) - 1)))
@@ -607,6 +622,9 @@ class App:
 
     def housekeeping(self, now):
         self.drain()
+        if int(now) != getattr(self, "_last_forge_check", -1):
+            self._last_forge_check = int(now)
+            self.watch_forge()
         self.watch_state_file()
         self.watch_presence()
         if now - self.last_sync > SYNC_EVERY:

@@ -1123,6 +1123,11 @@
       "kind": "equip",
       "t": "2026-09-02 23:48",
       "text": "put on max-width: 60%"
+    },
+    {
+      "kind": "talent",
+      "t": "2026-09-03 09:21",
+      "text": "learned Scenic Route"
     }
   ],
   "last_sync": "2026-09-03T09:16:15",
@@ -1131,7 +1136,8 @@
   "owned_panes": [],
   "owned_talents": [
     "root",
-    "wanderlust"
+    "wanderlust",
+    "scenic_route"
   ],
   "repos": [
     "explosion/thinc",
@@ -1317,7 +1323,7 @@
   },
   "unspent": {
     "stat": 0,
-    "talent": 19
+    "talent": 17
   },
   "version": 1,
   "xp": 10271

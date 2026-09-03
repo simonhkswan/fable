@@ -145,7 +145,43 @@ def run_job(job, on_status=None):
         lock.close()
 
 
-def _run_job(job, say):
+CURRENT = os.path.join(paths.RUNS, "current.json")
+
+
+def write_current(job, status):
+    try:
+        with open(CURRENT, "w") as f:
+            json.dump({"job": job["id"], "note": job.get("note", ""), "status": status,
+                       "started": job.get("_started", time.time()), "pid": os.getpid()}, f)
+    except OSError:
+        pass
+
+
+def current():
+    """What the forge is doing right now, or None."""
+    if not busy():
+        return None
+    try:
+        with open(CURRENT) as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return {"job": "?", "status": "forging", "started": time.time()}
+
+
+def spawn(job_id):
+    """Start a forge run as its own process, so the widget can come and go."""
+    env = {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE")}
+    subprocess.Popen([os.path.join(paths.ROOT, "guy"), "forge", job_id], cwd=paths.ROOT, env=env,
+                     stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                     start_new_session=True)
+
+
+def _run_job(job, say0):
+    job["_started"] = time.time()
+
+    def say(status):
+        write_current(job, status)
+        say0(status)
     run_dir = os.path.join(paths.RUNS, time.strftime("%Y%m%d-%H%M%S") + "-" + job["id"])
     os.makedirs(run_dir, exist_ok=True)
     shutil.copy(paths.STATE, os.path.join(run_dir, "state-before.json"))
@@ -168,9 +204,11 @@ def _run_job(job, say):
         log("forge %s: undoing, boot test still failing:\n%s" % (job["id"], out))
         undo_to(base)
         shutil.copy(os.path.join(run_dir, "state-before.json"), paths.STATE)
+        job.pop("_started", None)
         mark_job(job, "failed", out[-800:])
         return False, "the forge failed and was undone. See %s" % run_dir
     snapshot("forge %s: %s" % (job["id"], job.get("note", "")))
+    job.pop("_started", None)
     mark_job(job, "done")
     st = S.load()
     S.remember(st, "forge", "forged %s" % job.get("note", job["id"]))
