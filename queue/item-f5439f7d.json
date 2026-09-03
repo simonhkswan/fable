@@ -1,4 +1,5 @@
 {
+  "_started": 1788471355.174283,
   "id": "item-f5439f7d",
   "kind": "item",
   "note": "dropped by merged PatentCopilot#20747",
@@ -51,5 +52,6 @@
     "twist": null,
     "wishes_offered": false
   },
-  "status": "queued"
+  "status": "running",
+  "updated": "2026-09-03T22:35:55"
 }

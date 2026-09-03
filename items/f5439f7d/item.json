@@ -1,0 +1,23 @@
+{
+  "id": "f5439f7d",
+  "name": "A Prior-Art Figure",
+  "flavor": "Framed, numbered, and older than the claim. He hauls it up over his head and drops it into the document beside him. FIG. 1 was a wheel. Somebody had already thought of that.",
+  "category": "ability",
+  "rarity": "common",
+  "requires": {
+    "level": 2,
+    "stats": {}
+  },
+  "origin": {
+    "repo": "solveintelligence/PatentCopilot",
+    "pr": 20747,
+    "title": "fix: let the AI insert a prior-art figure into an Editor V2 document (ENG-10718)",
+    "url": "https://github.com/solveintelligence/PatentCopilot/pull/20747"
+  },
+  "attach": {
+    "register": {
+      "import": "figure.py",
+      "help": "p: insert a prior-art figure into the document"
+    }
+  }
+}
