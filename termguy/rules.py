@@ -9,6 +9,9 @@ def rules():
 
 
 def xp_for_level(n):
+    """Total xp at which level n begins. Level 1 begins at zero."""
+    if n <= 1:
+        return 0
     c = rules()["level_curve"]
     return int(c["base"] * (n ** c["power"]))
 

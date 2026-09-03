@@ -395,7 +395,8 @@ class Guy:
         gx = int(self.x) + MASCOT_W * max(1, self.k) // 2
         w = min(len(text) + 2, s.w - 2)
         x = max(1, min(s.w - w - 1, gx - w // 2))
-        y = max(0, y_cells - 2)
+        # one row of air above the head, so a hat has room
+        y = max(0, y_cells - 3)
         s.text(x, y, " " + text[:w - 2] + " ", named("crust"), SC.named_bg("rosewater"))
         s.set(gx, y + 1, "▾", named("rosewater"))
 

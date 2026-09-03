@@ -282,14 +282,18 @@ class App:
         s.text(1, 0, label, named("text"), named_bg("surface0"))
         if self.branch in ("main", "master"):
             s.text(1, 1, "on %s: the forge is off here. Run guy <save-name>." % self.branch, named("red"))
-        bw = max(8, min(30, s.w - len(label) - 30))
+        row = "  ".join("%s %d" % (k[:3], v) for k, v in st["stats"].items())
+        xp_text = "%d/%d xp" % (have, need)
+        room = s.w - len(label) - len(xp_text) - len(row) - 8
+        bw = max(6, min(30, room))
         filled = int(bw * frac)
         s.text(1 + len(label) + 1, 0, "█" * filled + "░" * (bw - filled), named("green"))
-        s.text(1 + len(label) + 2 + bw, 0, "%d/%d xp" % (have, need), named("overlay1"))
-        # stats row
-        row = "  ".join("%s %d" % (k[:3], v) for k, v in st["stats"].items())
-        if len(row) < s.w - 2:
+        s.text(1 + len(label) + 2 + bw, 0, xp_text, named("overlay1"))
+        # stats row, only where it fits after the xp text
+        if 1 + len(label) + 3 + bw + len(xp_text) + len(row) < s.w - 1:
             s.text(s.w - len(row) - 1, 0, row, named("subtext0"))
+        elif len(row) < s.w - 2 and s.h > 9:
+            s.text(s.w - len(row) - 1, 1, row, named("subtext0"))
         # unspent, queue, equipped
         notes = []
         if st["unspent"]["stat"]:
@@ -461,14 +465,24 @@ class App:
                named("mauve" if st["unspent"]["talent"] else "overlay1"))
         panelw = min(34, s.w // 3)
         gw = s.w - panelw - 2
-        cx, cy = gw // 2, (s.h - 2) // 2 + 1
-        sx, sy = 9, 3
+        pos_of = {i: tuple(nodes[i].get("pos", [0, 0])) for i in ids}
+        xs = [p[0] for p in pos_of.values()] or [0]
+        ys = [p[1] for p in pos_of.values()] or [0]
+        # fit the graph to the space: columns shrink as the graph widens
+        span_x = max(1, max(xs) - min(xs))
+        span_y = max(1, max(ys) - min(ys))
+        sx = max(7, min(12, (gw - 14) // span_x))
+        sy = max(2, min(3, (s.h - 5) // span_y))
+        cx = gw // 2 - int((max(xs) + min(xs)) / 2.0 * sx)
+        cy = (s.h - 2) // 2 + 1 - int((max(ys) + min(ys)) / 2.0 * sy)
         placed = {}
+        crowded = set()
         for i in ids:
-            n = nodes[i]
-            px, py = n.get("pos", [0, 0])
-            x, y = cx + px * sx, cy + py * sy
-            placed[i] = (x, y)
+            px, py = pos_of[i]
+            placed[i] = (cx + px * sx, cy + py * sy)
+            for j in ids:
+                if j != i and pos_of[j][1] == py and abs(pos_of[j][0] - px) == 1:
+                    crowded.add(i)
         # edges
         for i in ids:
             n = nodes[i]
@@ -485,7 +499,10 @@ class App:
             n = nodes[i]
             x, y = placed[i]
             name = n.get("name", i)
-            label = name[:sx * 2 - 2]
+            if i in crowded and len(name) > sx - 4:
+                label = name[:sx - 5] + "…"
+            else:
+                label = name[:sx * 2 - 4]
             if i in owned:
                 ink, bgk = "text", "surface1"
             elif i in buyable:
@@ -495,7 +512,9 @@ class App:
             if i == self.tcursor:
                 bgk = "mauve"; ink = "crust"
             if 1 <= y < s.h - 1:
-                s.text(max(0, x - len(label) // 2), y, " %s " % label, named(ink), named_bg(bgk) if bgk else None)
+                lx = max(0, x - len(label) // 2)
+                text = (" %s " % label)[:max(0, gw - lx)]     # never under the panel
+                s.text(lx, y, text, named(ink), named_bg(bgk) if bgk else None)
         # panel
         n = nodes[self.tcursor]
         x = gw + 2
