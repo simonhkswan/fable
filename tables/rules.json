@@ -45,7 +45,7 @@
     "charm"
   ],
   "talent_milestone_every": 10,
-  "wish_grant_every": 5,
+  "wish_every": 5,
   "wish_luck": {
     "base": 0.002,
     "cap": 0.05,

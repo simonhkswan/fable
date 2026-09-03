@@ -79,12 +79,11 @@ def apply_event(st, ev):
             happened.append("a %s drop from %s" % (spec["rarity"], label))
             S.remember(st, "drop", "something %s fell out of %s" % (spec["rarity"], label))
     if rules.roll_lucky_wish(seed, st["stats"].get("luck", 0)):
-        spec = rules.make_spec(seed, "wish", ev, st, "level_up")
-        job = queue_job("wish", spec, note="luck smiled on %s: a wish" % label)
-        if job:
-            rec["lucky_wish"] = True
-            happened.append("a lucky wish from %s" % label)
-            S.remember(st, "wish", "luck smiled on %s. A wish will be granted." % label)
+        st["unspent"].setdefault("wish", 0)
+        st["unspent"]["wish"] += 1
+        rec["lucky_wish"] = True
+        happened.append("a lucky wish from %s" % label)
+        S.remember(st, "wish", "luck smiled on %s. You may make a wish." % label)
     pts = rules.rules()["points_per_level"]
     for lvl in range(before + 1, st["level"] + 1):
         st["unspent"]["stat"] += pts["stat"]
@@ -100,12 +99,11 @@ def apply_event(st, ev):
             spec["level_reached"] = lvl
             queue_job("item", spec, note="reward for level %d" % lvl)
             rec.setdefault("level_items", []).append(spec["rarity"])
-        wg = rules.rules().get("wish_grant_every", 5)
+        wg = rules.rules().get("wish_every", 5)
         if wg and lvl % wg == 0:
-            wseed = "wish:%d:" % lvl + seed
-            spec = rules.make_spec(wseed, "wish", ev, st, "level_up")
-            spec["level_reached"] = lvl
-            queue_job("wish", spec, note="a wish granted at level %d" % lvl)
+            st["unspent"].setdefault("wish", 0)
+            st["unspent"]["wish"] += 1
+            S.remember(st, "wish", "level %d: you may make a wish" % lvl)
         m = rules.rules()["talent_milestone_every"]
         if m and lvl % m == 0:
             cseed = "milestone:%d:" % lvl + seed
