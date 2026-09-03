@@ -89,15 +89,14 @@ class App:
                 self.status = "syncing with github"
 
                 def progress(n, total, label=""):
-                    self.status = "fetching %d of %d  %s" % (n, total, label)
+                    self.status = "%d of %d  %s" % (n, total, label)
 
                 def on_event(ev, rec, happened):
-                    self.status = "replaying %s#%s" % (ev["repo"].split("/")[-1], ev["number"])
                     with self.lock:
                         self.pending_events.append(("event", (ev, rec)))
                         self.pending_events += [("note", h) for h in happened]
 
-                fresh, happened = sync.run(since=since, progress=progress, on_event=on_event, pace=0.7)
+                fresh, happened = sync.run(since=since, progress=progress, on_event=on_event, pace=0.0)
                 with self.lock:
                     self.pending_events.append(("synced", len(fresh)))
             except Exception as e:  # noqa: BLE001
