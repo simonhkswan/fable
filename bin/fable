@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """fable: a terminal character who grows when you merge and review PRs.
 
-  fable --branch <save> run the widget on the save branch <save>. New name, new guy.
+  fable --branch <save> run the widget on the save branch <save>. New name, new Fable.
   fable <save>          the same, shorter
-  guy                 run the widget on the current save branch
+  fable                 run the widget on the current save branch
   fable saves           list saves
   fable upgrade         merge the code on main into the current save
   fable sync            pull new events from GitHub and apply them
