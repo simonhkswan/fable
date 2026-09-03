@@ -6,17 +6,18 @@ The roll landed on **a new category**. Invent a kind of thing Fable can have or 
 
 Seeded variables (your starting point):
 
-| variable | value |
-|---|---|
-| rarity of the first item | **{{rarity}}** |
-| scope | **{{scope}}**: {{scope_brief}} |
-| budget | {{budget}} |
-| requirements to use | {{requires}} |
-| theme words | {{theme}} |
-| mood | {{mood}} |
-| constraint | {{constraint}} |
-| twist | {{twist}} |
-| item id | {{item_id}} |
+| variable | rolled | what it could have been |
+|---|---|---|
+| rarity of the first item | **{{rarity}}** | {{rarities}}. Rarity sets the budget, the requirements and the odds of each scope. |
+| scope | **{{scope}}** | {{scopes}} |
+| budget | {{budget}} | {{budget_range}}. A sense of how much the thing may do or draw: 2 is a hat, 50 is a storm, 90 is a new law of nature. |
+| category | {{category}} | {{category_list}}. The category's manifest carries notes for you. |
+| requirements to use | {{requires}} | A level near his current one, higher for rarer things, and zero to four stat floors. He keeps the item in the bag until he meets them. |
+| theme words | {{theme}} | Words from the PR title, the repo name and the file types it touched. A flavour, not a rule. |
+| mood | {{mood}} | One word from a list of twenty, from cosy to feral. The tone of the thing. |
+| constraint | {{constraint}} | One line from a list of twenty. A creative limit, or "no constraint". |
+| twist | {{twist}} | Usually none. About one run in seven gets a twist that bends the item or the game. |
+| item id | {{item_id}} | The directory name under items/. |
 
 ```json
 {{spec_json}}

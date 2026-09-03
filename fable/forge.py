@@ -8,7 +8,7 @@ import os
 import shutil
 import subprocess
 import time
-from . import paths, state as S, rules, talents
+from . import paths, state as S, rules, talents, tables
 from .log import log
 
 CLAUDE = ["claude", "-p", "--dangerously-skip-permissions", "--output-format", "text"]
@@ -68,6 +68,15 @@ def brief_for(job):
         name = "category_brief.md"
     template = read(os.path.join(paths.TEMPLATES, name))
     bon = talents.bonuses(talents.load_all(), st["owned_talents"])
+    rar = tables.load("rarity")
+    scope_t = tables.load("scope")
+    odds = rar["level_up" if spec.get("source") in ("level", "milestone", "talent") else "drop"]
+    total = sum(odds.values()) or 1
+    rarities = ", ".join("%s %.1f%%" % (k, 100.0 * odds[k] / total) for k in rar["budget"] if k in odds)
+    scopes = "; ".join("%s: %s" % (k, v_) for k, v_ in scope_t["brief"].items())
+    lo = min(b[0] for b in rar["budget"].values())
+    hi = max(b[1] for b in rar["budget"].values())
+    this_lo, this_hi = rar["budget"].get(spec.get("rarity"), [lo, hi])
     v = dict(facts(st))
     v.update({
         "job_id": job["id"], "note": job.get("note", ""), "kind": kind,
@@ -79,6 +88,9 @@ def brief_for(job):
         "requires": json.dumps(spec.get("requires")), "seed": spec.get("seed"),
         "event": json.dumps(spec.get("event")), "item_id": spec.get("id") or str(spec.get("seed", "x"))[:8],
         "contract": read(os.path.join(paths.TEMPLATES, "contract.md")),
+        "rarities": rarities, "scopes": scopes,
+        "budget_range": "%d to %d overall; %d to %d for a %s" % (lo, hi, this_lo, this_hi, spec.get("rarity")),
+        "category_list": ", ".join(rules.category_names()) + ", or a new one",
         "report": spec.get("report", ""), "page": spec.get("page", "home"), "when": job.get("queued", ""),
         "save": subprocess.run(["git", "rev-parse", "--abbrev-ref", "HEAD"], cwd=paths.ROOT, capture_output=True, text=True).stdout.strip(),
         "errors": "\n".join("- " + e for e in spec.get("errors", [])) or "- (none)",
