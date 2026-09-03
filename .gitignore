@@ -6,3 +6,5 @@ presence.json
 state.json.tmp
 items/*/stderr.log
 .forge.lock
+guy.log
+*.log

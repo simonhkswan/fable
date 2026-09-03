@@ -59,12 +59,12 @@ class Item:
     def env(self, world):
         e = dict(os.environ)
         e.update({
-            "GUY_DIR": paths.ROOT, "GUY_ITEM_DIR": self.path, "GUY_STATE": paths.STATE,
-            "GUY_ITEM_ID": self.id, "GUY_PANE_ID": world.pane_id or "",
+            "FABLE_DIR": paths.ROOT, "FABLE_ITEM_DIR": self.path, "FABLE_STATE": paths.STATE,
+            "FABLE_ITEM_ID": self.id, "FABLE_PANE_ID": world.pane_id or "",
         })
         try:
             w, h = os.get_terminal_size(sys.stdout.fileno())
-            e["GUY_COLS"], e["GUY_ROWS"] = str(w), str(h)
+            e["FABLE_COLS"], e["FABLE_ROWS"] = str(w), str(h)
         except OSError:
             pass
         return e
@@ -107,7 +107,7 @@ class Item:
 
     def _import(self, rel):
         full = os.path.join(self.path, rel)
-        name = "guy_item_%s_%s" % (self.id.replace("-", "_"), os.path.splitext(os.path.basename(rel))[0])
+        name = "fable_item_%s_%s" % (self.id.replace("-", "_"), os.path.splitext(os.path.basename(rel))[0])
         spec = importlib.util.spec_from_file_location(name, full)
         mod = importlib.util.module_from_spec(spec)
         sys.modules[name] = mod
@@ -117,7 +117,7 @@ class Item:
     def run(self, cmd, world, data=None):
         env = self.env(world)
         if data:
-            env["GUY_EVENT"] = json.dumps(data, default=str)
+            env["FABLE_EVENT"] = json.dumps(data, default=str)
         try:
             subprocess.Popen(cmd, shell=True, cwd=self.path, env=env,
                              stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,

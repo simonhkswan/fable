@@ -28,7 +28,7 @@ Full spec:
 {{spec_json}}
 ```
 
-## The guy right now
+## Fable right now
 
 ```json
 {{state_json}}

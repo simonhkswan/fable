@@ -8,7 +8,7 @@ You are the forge for a terminal character called Fable. His person pressed ? in
 
 Reported from page **{{page}}** of the widget, save branch **{{save}}**, at {{when}}.
 
-## The guy right now
+## Fable right now
 
 ```json
 {{state_json}}
