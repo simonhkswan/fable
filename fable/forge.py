@@ -8,7 +8,7 @@ import os
 import shutil
 import subprocess
 import time
-from . import paths, state as S, rules, talents, tables
+from . import paths, state as S, rules, talents, tables, wishes
 from .log import log
 
 CLAUDE = ["claude", "-p", "--dangerously-skip-permissions", "--output-format", "text"]
@@ -52,6 +52,7 @@ def facts(st):
         "talents": "\n".join(tal) or "- (none)",
         "git_log": git("log", "--oneline", "-15") or "(no commits yet)",
         "history": "\n".join("- " + h["text"] for h in st.get("history", [])[-12:]),
+        "wishes": wishes.as_text(),
         "tree": subprocess.run(["find", ".", "-maxdepth", "2", "-not", "-path", "./.git*", "-not", "-path", "./runs*",
                                 "-not", "-name", "*.pyc", "-not", "-path", "*/__pycache__*"],
                                cwd=paths.ROOT, capture_output=True, text=True).stdout,

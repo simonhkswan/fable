@@ -23,6 +23,16 @@ Talents (* owned):
 Items:
 {{items}}
 
+## Wishes
+
+Things his person has asked for, kept as inspiration. Grant one if it fits what you are making, and then mark it:
+
+```python
+from fable import wishes; wishes.grant("w001", "what you made")
+```
+
+{{wishes}}
+
 {{contract}}
 
 Nothing is off limits. If the graph itself needs a new kind of effect, add it to `fable/talents.py`. These variables are your starting point. Follow them if they inspire you. Change anything, including how this game works, if that is better.

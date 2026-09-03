@@ -10,7 +10,7 @@ import threading
 import time
 import tty
 
-from . import paths, state as S, rules, talents as T, items as I, sync, forge
+from . import paths, state as S, rules, talents as T, items as I, sync, forge, wishes as WI
 from .anim import Anim
 from .mascot import Guy
 from .screen import CSI, P, Screen, Quad, named, named_bg, RARITY_INK, fg, bg, rarity_text, scope_text, shimmer_text
@@ -232,6 +232,8 @@ class App:
             self.draw_help(s)
         elif self.page == "report":
             self.draw_report(s)
+        elif self.page == "wishes":
+            self.draw_wishes(s)
         elif self.page in self.anim.pages:
             title, draw, _ = self.anim.pages[self.page]
             self.header(s, title)
@@ -315,7 +317,7 @@ class App:
             line = "items: " + ", ".join(eq)
             s.text(1, 2, line[:s.w - 2], named("overlay1"))
         # hint chips
-        hint = " b bag  t talents  s stats  f forge  l log  i info  ? report  q quit "
+        hint = " b bag  t talents  s stats  f forge  w wishes  l log  i info  ? report  q quit "
         for ch, (fn, help_) in self.anim.keys.items():
             if help_:
                 hint += " %s %s " % (ch, help_)
@@ -620,7 +622,7 @@ class App:
         hist = self.st.get("history", [])
         rows = hist[-(s.h - 3):]
         inks = {"pr": "green", "review": "sky", "level": "yellow", "drop": "mauve", "forge": "peach", "talent": "lavender",
-                "fix": "teal", "report": "overlay1"}
+                "fix": "teal", "report": "overlay1", "wish": "mauve"}
         for i, h in enumerate(rows):
             s.text(2, 2 + i, h["t"], named("overlay0"))
             s.text(20, 2 + i, h["text"][:s.w - 22], named(inks.get(h["kind"], "subtext0")))
@@ -632,6 +634,65 @@ class App:
 
     report_text = ""
     report_from = "home"
+    wish_text = None      # None: browsing. A string: typing a new wish.
+
+    def draw_wishes(self, s):
+        self.header(s, "wishes")
+        rows = WI.all_wishes()
+        s.text(2, 2, "things you would like him to have or do. every forge run reads this list.", named("subtext1"))
+        if not rows and self.wish_text is None:
+            s.text(2, 4, "no wishes yet. press a to add one.", named("overlay1"))
+        y = 4
+        for r in rows[-(s.h - 9):]:
+            done = r.get("granted")
+            mark = "✓" if done else "·"
+            ink = "overlay0" if done else "text"
+            s.text(2, y, "%s %s" % (mark, r["text"])[:s.w - 4], named(ink))
+            if done:
+                s.text(4, y + 1, ("granted: " + done["note"])[:s.w - 6], named("green"))
+                y += 1
+            y += 1
+        if self.wish_text is not None:
+            w = max(10, s.w - 6)
+            s.text(2, y + 1, "new wish:", named("mauve"))
+            s.fill(2, y + 2, w + 2, 1, " ", None, named_bg("surface0"))
+            s.text(3, y + 2, self.wish_text[-(w - 1):], named("text"), named_bg("surface0"))
+            if int(time.monotonic() * 2) % 2:
+                s.set(3 + min(len(self.wish_text), w - 1), y + 2, "▏", named("mauve"), named_bg("surface0"))
+            s.text(1, s.h - 1, " enter save  esc cancel ", named("overlay0"), named_bg("crust"))
+        else:
+            s.text(1, s.h - 1, " a add a wish  esc back ", named("overlay0"), named_bg("crust"))
+
+    def wishes_key(self, key):
+        if self.wish_text is None:
+            if key == b"a":
+                self.wish_text = ""
+                return True
+            return False
+        if key in (b"\r", b"\n"):
+            text = self.wish_text.strip()
+            self.wish_text = None
+            if text:
+                WI.add(text)
+                S.remember(self.st, "wish", "wished: " + text[:60])
+                self.save()
+                self.toast("wished. the forge will read it.", "mauve", 4.0)
+            return True
+        if key == b"\x1b":
+            self.wish_text = None
+            return True
+        if key in (b"\x7f", b"\x08"):
+            self.wish_text = self.wish_text[:-1]
+            return True
+        if key.startswith(b"\x1b"):
+            return True
+        try:
+            ch = key.decode("utf-8")
+        except UnicodeDecodeError:
+            return True
+        if ch.isprintable():
+            self.wish_text += ch
+        return True
 
     def draw_report(self, s):
         self.header(s, "report")
@@ -704,7 +765,8 @@ class App:
             "things arrive unopened. open them at the forge (f): one claude session each.",
             "an item you cannot use yet still sits in the bag (b). requirements in red.",
             "", "keys on the home page:",
-            "  b bag   t talents   s stats   f forge   l log   i info   ? report   q quit   S sync now",
+            "  b bag   t talents   s stats   f forge   w wishes   l log   i info   ? report   q quit   S sync now",
+            "", "w is the wish list. Every forge run reads it for inspiration and may grant one.",
             "", "? opens a box. Type a bug or a wish, press enter, and a forge run fixes it.",
         ]
         for ch, (fn, help_) in self.anim.keys.items():
@@ -713,7 +775,7 @@ class App:
             s.text(2, 2 + i, line[:s.w - 4], named("subtext1"))
 
     # ── keys ──
-    PAGE_KEYS = {"b": "bag", "t": "talents", "s": "stats", "f": "forge", "l": "log", "i": "help", "?": "report"}
+    PAGE_KEYS = {"b": "bag", "t": "talents", "s": "stats", "f": "forge", "l": "log", "i": "help", "?": "report", "w": "wishes"}
 
     def key(self, key):
         self.last_key_at = time.monotonic()
@@ -721,6 +783,9 @@ class App:
         if key in (b"q", b"Q", b"\x03", b"\x04"):
             return "quit"
         if key == b"\x1b":
+            if self.page == "wishes" and self.wish_text is not None:
+                self.wish_text = None
+                return
             self.page = "home"; self.cursor = 0
             return
         ch = key.decode("utf-8", "ignore")
@@ -740,6 +805,7 @@ class App:
         elif self.page == "talents": handled = self.talents_key(key)
         elif self.page == "forge": handled = self.forge_key(key)
         elif self.page == "report": handled = self.report_key(key)
+        elif self.page == "wishes": handled = self.wishes_key(key)
         elif self.page in self.anim.pages:
             _, _, keys = self.anim.pages[self.page]
             if keys:
@@ -901,7 +967,7 @@ def boot_test(frames=300):
                 app.guy.fire(ev, text="boot test", kind="pr", repo="x/y", number=1)
         if i == 60:
             app.guy._next(s)
-    for page in ["bag", "talents", "stats", "forge", "log", "help", "report"] + list(app.anim.pages):
+    for page in ["bag", "talents", "stats", "forge", "log", "help", "report", "wishes"] + list(app.anim.pages):
         app.page = page
         for _ in range(3):
             app.frame(s, 1 / 30)

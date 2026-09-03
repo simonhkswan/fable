@@ -31,6 +31,7 @@ The first start pulls your GitHub history and replays it, one event at a time. T
 | `t` | talents: the graph, and where to spend points |
 | `s` | stats: spend stat points |
 | `f` | forge: open unopened things |
+| `w` | wishes: things you would like. Every forge run reads them for inspiration |
 | `l` | log: what happened |
 | `i` | info |
 | `?` | report: type a bug or a wish, press enter, and a forge run fixes it |

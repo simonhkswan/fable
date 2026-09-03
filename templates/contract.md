@@ -52,6 +52,10 @@ Inks are names in `fable/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose`
 
 `talents/<id>.json`: `{"id","name","hint","kind":"passive"|"skill","cost","parent","pos":[x,y],"effect":{...},"generated":false}`. Effects: `{"stat":{"focus":1}}`, `{"slots":1}`, `{"budget":{"travel":5}}`, `{"discount":{"travel":1}}`, `{"weight":{"cosmetic":2}}`. A skill node also has a directory `talents/<id>/` with an `item.json` like an item, minus requirements. Positions are a rough grid around root at [0,0]; keep new nodes adjacent to their parent.
 
+### Wishes
+
+`wishes.jsonl` holds what his person asked for. `from fable import wishes`: `wishes.open_wishes()`, `wishes.grant(id, note)`, `wishes.add(text)`. The briefs list them. Granting one is a kindness, not a duty.
+
 ### Categories
 
 `categories/<name>/manifest.json`: `{"name","tagline","weight","hooks":[...],"prompt_notes":"..."}`. A category may also hold `runtime.py` with `register(anim, world)`; the widget imports every category runtime at start, so a category can add attachment points, pages or verbs that later items use.

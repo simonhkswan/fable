@@ -45,6 +45,16 @@ Talents (* owned):
 {{tree}}
 ```
 
+## Wishes
+
+Things his person has asked for, kept as inspiration. Grant one if it fits what you are making, and then mark it:
+
+```python
+from fable import wishes; wishes.grant("w001", "what you made")
+```
+
+{{wishes}}
+
 {{contract}}
 
 ## What to make
