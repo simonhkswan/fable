@@ -24,4 +24,4 @@ This directory is a game. A terminal character called Fable lives in a zellij pa
 
 ## Branches
 
-`main` is the development branch and holds only the code, tables, templates, seed categories and seed talents. Every save of Fable is a branch. `fable <name>` checks it out, creating it from main if new. Forge runs refuse to run on main, and their commits land on the save branch. `fable upgrade` merges main into the current save.
+`main` is the development branch and holds only the code, tables, templates, seed categories and seed talents. Every save of Fable is a branch under `saves/`. `fable --branch <name>` checks out `saves/<name>`, creating it from main if new. Forge runs refuse to run on main, and their commits land on the save branch. `fable upgrade` merges main into the current save.

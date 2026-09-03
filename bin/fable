@@ -58,10 +58,9 @@ def main(argv):
             return 1
         cmd = "run"
     if cmd == "saves":
-        cur = branch.current()
-        for line in branch.git("branch", "--format=%(refname:short)")[1].splitlines():
-            if line not in branch.PROTECTED:
-                print(("* " if line == cur else "  ") + line)
+        cur = branch.save_name(branch.current())
+        for name in branch.saves():
+            print(("* " if name == cur else "  ") + name)
         return 0
     if cmd == "upgrade":
         ok, msg = branch.upgrade()

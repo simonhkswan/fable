@@ -38,7 +38,7 @@ class App:
         self.lock = threading.Lock()
         self.pending_events = []   # from the sync thread, fired on the main thread
         from . import branch
-        self.branch = branch.current()
+        self.branch = branch.save_name(branch.current())
         self.build()
 
     # ── building the scene from items ──
@@ -282,7 +282,7 @@ class App:
         frac = max(0.0, min(1.0, have / need if need else 1.0))
         label = " %s  lv %d " % (st.get("name", "Fable"), st["level"])
         s.text(1, 0, label, named("text"), named_bg("surface0"))
-        if self.branch in ("main", "master"):
+        if not self.branch.startswith("saves/") and self.branch in ("main", "master"):
             s.text(1, 1, "on %s: the forge is off here. Run guy <save-name>." % self.branch, named("red"))
         row = "  ".join("%s %d" % (k[:3], v) for k, v in st["stats"].items())
         xp_text = "%d/%d xp" % (have, need)

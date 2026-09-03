@@ -5,6 +5,21 @@ import subprocess
 from . import paths
 
 PROTECTED = ("main", "master")
+PREFIX = "saves/"
+
+
+def ref(name):
+    """The branch for a save name. `trial1` lives at `saves/trial1`."""
+    return name if name.startswith(PREFIX) else PREFIX + name
+
+
+def save_name(branch):
+    return branch[len(PREFIX):] if branch.startswith(PREFIX) else branch
+
+
+def saves():
+    rc, out, err = git("branch", "--format=%(refname:short)", "--list", PREFIX + "*")
+    return [save_name(b) for b in out.splitlines() if b]
 
 
 def git(*args):
@@ -21,18 +36,19 @@ def exists(name):
 
 
 def on_save_branch():
-    return current() not in PROTECTED
+    return current().startswith(PREFIX)
 
 
 def switch(name):
     """Check out a save branch. Returns (ok, message)."""
     if name in PROTECTED:
         return False, "%s is the development branch. Give Fable a save name." % name
+    name = ref(name)
     from . import forge
     if forge.busy():
         return False, "a forge run is going. Wait for it before switching saves."
     if current() == name:
-        return True, "on %s" % name
+        return True, "on %s" % save_name(name)
     rc, out, err = git("status", "--porcelain")
     if out and current() in PROTECTED:
         # On main, runtime files are junk from running commands there. Drop
@@ -50,7 +66,7 @@ def switch(name):
         rc, out, err = git("checkout", "-q", "-b", name, "main")
     if rc != 0:
         return False, err[-200:]
-    return True, ("new save %s" % name) if not exists(name) else ("save %s" % name)
+    return True, "save %s" % save_name(name)
 
 
 def upgrade():
