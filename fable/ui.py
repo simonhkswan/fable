@@ -289,7 +289,8 @@ class App:
         room = s.w - len(label) - len(xp_text) - len(row) - 8
         bw = max(6, min(30, room))
         filled = int(bw * frac)
-        s.text(1 + len(label) + 1, 0, "█" * filled + "░" * (bw - filled), named("green"))
+        s.text(1 + len(label) + 1, 0, "█" * filled, named("green"))
+        s.text(1 + len(label) + 1 + filled, 0, "░" * (bw - filled), named("surface1"))
         s.text(1 + len(label) + 2 + bw, 0, xp_text, named("overlay1"))
         # stats row, only where it fits after the xp text
         if 1 + len(label) + 3 + bw + len(xp_text) + len(row) < s.w - 1:
@@ -311,7 +312,7 @@ class App:
             x += len(text) + 3
         eq = [self.by_id[i].name for i in st["equipped"] if i in self.by_id]
         if eq and s.h > 8:
-            line = "wearing: " + ", ".join(eq)
+            line = "items: " + ", ".join(eq)
             s.text(1, 2, line[:s.w - 2], named("overlay1"))
         # hint chips
         hint = " b bag  t talents  s stats  f forge  l log  i info  ? report  q quit "

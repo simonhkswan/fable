@@ -249,8 +249,71 @@ def plant_talents(root):
             "parent": parent, "pos": pos, "hint": hint, "effect": {}, "generated": True})
 
 
+PATCH = '''"""Eye Patch of the Unread Diff. He lost the eye to a 4,000 line PR."""
+
+
+def draw(ctx, q, pose):
+    u = pose["u"]
+    x, y = pose["x"], pose["y"]
+    ex = x + (11 + pose["eye"]) * u          # the right eye hole, wherever he looks
+    ey = y + (2 * u if pose["squash"] else u)
+    q.rect(ex - u // 2, ey - u // 4, 2 * u, u + u // 2, ctx.P["crust"])
+    # the strap runs across the brow
+    q.rect(x + 2 * u, y + u // 2, 12 * u, max(1, u // 3), ctx.P["crust"])
+
+
+def register(anim, world):
+    anim.layer("patch", z=2, draw=draw)
+'''
+
+STAFF = '''"""Staff of the Long Pane. Taller than him. The orb shows the pane he is thinking about."""
+import math
+
+
+def draw(ctx, q, pose):
+    u = pose["u"]
+    x, y = pose["x"], pose["y"]
+    sx = x - 3 * u
+    q.rect(sx, y - 4 * u, u, 9 * u, ctx.P["overlay1"])          # the shaft
+    q.rect(sx - u // 2, y - 5 * u, 2 * u, u, ctx.P["surface2"])   # the crook
+    f = 0.5 + 0.5 * math.sin(ctx.t * 2.5)
+    ctx.block(q, sx, y - 6 * u, ctx.fade("teal", 0.6 + 0.4 * f))  # the orb
+    for i in range(3):                                            # motes
+        a = ctx.t * 1.5 + i * 2.1
+        ctx.block(q, int(sx + math.cos(a) * 2 * u), int(y - 6 * u + math.sin(a) * 2 * u),
+                  ctx.fade("teal", 0.3 + 0.3 * f))
+
+
+def register(anim, world):
+    anim.layer("staff", z=-1, draw=draw)
+'''
+
+MOON = '''"""A Moon. It came with a possession item and stayed. It is always the same phase."""
+
+
+def draw(ctx, q, pose):
+    s = ctx.screen
+    u = 2
+    cx, cy = (s.w - 14) * 2, 14           # quarter cells, top right
+    r = 10
+    for qy in range(-r, r + 1):
+        for qx in range(-r, r + 1):
+            inside = qx * qx + (qy * 2) ** 2 <= r * r
+            bite = (qx - 5) ** 2 + (qy * 2) ** 2 <= r * r
+            if inside and not bite:
+                q.rect(cx + qx, cy + qy, 1, 1, ctx.fade("yellow", 0.85))
+
+
+def register(anim, world):
+    anim.layer("moon", z=-3, draw=draw)
+'''
+
+
 def plant_level117(root):
     for iid, name, flavor, code, rarity in (
+        ("patch", "Eye Patch of the Unread Diff", "He lost the eye to a 4,000 line PR.", PATCH, "rare"),
+        ("staff", "Staff of the Long Pane", "Taller than him. The orb shows the pane he is thinking about.", STAFF, "epic"),
+        ("moon", "A Moon", "It came with a possession item and stayed.", MOON, "legendary"),
         ("crown", "Crown of Closed Tabs", "Every tab he ever closed, remembered as a point of light. It hums.", CROWN, "legendary"),
         ("halo", "Static Halo", "A ring of dead pixels from a pane that was possessed too long.", HALO, "epic"),
         ("familiar", "The Familiar", "It came out of terminal_12 and did not go back. It knows your PR titles.", FAMILIAR, "legendary"),
@@ -314,9 +377,9 @@ def main():
     # 4. level 117
     plant_level117(root)
     app, s = app_for(ui, state, {
-        "level": 117, "xp": 126_600, "slots": 6,
+        "level": 117, "xp": 1_380_900, "slots": 9,
         "stats": {"vigor": 41, "focus": 188, "craft": 63, "wit": 77, "luck": 29, "charm": 52},
-        "equipped": ["laptop", "mug", "book", "crown", "halo", "familiar"],
+        "equipped": ["laptop", "mug", "book", "crown", "halo", "familiar", "patch", "staff", "moon"],
         "unspent": {"stat": 0, "talent": 1},
     }, frames=40)
     app.guy.mode = "do"
@@ -324,6 +387,7 @@ def main():
     app.guy.store = {}
     for _ in range(50):
         app.frame(s, 1 / 30)
+    app.guy.blink_at = 1e9          # eyes open for the picture
     app.guy.say("the panes remember me", 30)
     app.toast("possessed terminal_12 for 9s", "mauve", 60)
     app.toast("a legendary drop from merged PatentCopilot#31337", "peach", 60)
