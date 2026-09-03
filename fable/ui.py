@@ -1,4 +1,4 @@
-"""The widget: the guy's home pane, the bag, the talent graph, the forge queue
+"""The widget: Fable's home pane, the bag, the talent graph, the forge queue
 and the log. One process, one alternate screen, no network on the frame loop."""
 import json
 import os
@@ -171,11 +171,11 @@ class App:
                 if payload.startswith("level"):
                     self.guy.fire("level_up", text=payload)
                     self.toast(payload, "yellow", 8.0)
-                    notify("the guy reached %s" % payload, "a new thing waits at the forge")
+                    notify("Fable reached %s" % payload, "a new thing waits at the forge")
                 elif "drop" in payload:
                     self.guy.fire("drop", text=payload)
                     self.toast(payload + ". Press f to open it.", "mauve", 10.0)
-                    notify("the guy found something", payload)
+                    notify("Fable found something", payload)
             elif kind == "synced":
                 if payload == 0 and self.page == "home" and self.first_sync_done is False:
                     self.toast("synced. nothing new.", "subtext0", 3.0)
@@ -246,7 +246,7 @@ class App:
     def header(self, s, title):
         st = self.st
         s.fill(0, 0, s.w, 1, " ", None, named_bg("crust"))
-        left = " %s  ·  lv %d  ·  %s  ·  save %s " % (st.get("name", "the guy"), st["level"], title, self.branch)
+        left = " %s  ·  lv %d  ·  %s  ·  save %s " % (st.get("name", "Fable"), st["level"], title, self.branch)
         s.text(0, 0, left, named("text"), named_bg("crust"))
         right = " esc home  i info  ? report "
         s.text(s.w - len(right), 0, right, named("overlay1"), named_bg("crust"))
@@ -278,7 +278,7 @@ class App:
         need = rules.xp_for_level(st["level"] + 1) - rules.xp_for_level(st["level"])
         have = st["xp"] - rules.xp_for_level(st["level"])
         frac = max(0.0, min(1.0, have / need if need else 1.0))
-        label = " %s  lv %d " % (st.get("name", "the guy"), st["level"])
+        label = " %s  lv %d " % (st.get("name", "Fable"), st["level"])
         s.text(1, 0, label, named("text"), named_bg("surface0"))
         if self.branch in ("main", "master"):
             s.text(1, 1, "on %s: the forge is off here. Run guy <save-name>." % self.branch, named("red"))
@@ -683,7 +683,7 @@ class App:
     def draw_help(self, s):
         self.header(s, "help")
         lines = [
-            "the guy grows when you merge a pull request or review one.",
+            "Fable grows when you merge a pull request or review one.",
             "every event gives xp and a random stat or three. some drop things.",
             "levels give stat points (s) and talent points (t), and a guaranteed thing.",
             "things arrive unopened. open them at the forge (f): one claude session each.",

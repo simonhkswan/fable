@@ -1,31 +1,31 @@
 #!/usr/bin/env python3
-"""guy: a terminal character who grows when you merge and review PRs.
+"""fable: a terminal character who grows when you merge and review PRs.
 
-  guy --branch <save> run the widget on the save branch <save>. New name, new guy.
-  guy <save>          the same, shorter
+  fable --branch <save> run the widget on the save branch <save>. New name, new guy.
+  fable <save>          the same, shorter
   guy                 run the widget on the current save branch
-  guy saves           list saves
-  guy upgrade         merge the code on main into the current save
-  guy sync            pull new events from GitHub and apply them
-  guy sync --all      same, and print each event
-  guy forge           open the next unopened thing (one claude session)
-  guy forge --all     open everything queued, one after another
-  guy queue           list unopened things
-  guy status          the guy in one screen of text
-  guy cleanup         close panes the guy opened and forgot
-  guy boot-test       headless: does the widget boot and every page draw
-  guy brief <job>     print the brief a forge run would get, without running it
+  fable saves           list saves
+  fable upgrade         merge the code on main into the current save
+  fable sync            pull new events from GitHub and apply them
+  fable sync --all      same, and print each event
+  fable forge           open the next unopened thing (one claude session)
+  fable forge --all     open everything queued, one after another
+  fable queue           list unopened things
+  fable status          Fable in one screen of text
+  fable cleanup         close panes Fable opened and forgot
+  fable boot-test       headless: does the widget boot and every page draw
+  fable brief <job>     print the brief a forge run would get, without running it
 
-Everything lives in ~/.termguy. Nothing there is fixed.
+Everything lives in ~/.fable. Nothing there is fixed.
 """
 import os
 import sys
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 os.chdir(ROOT)
 
-from termguy import paths  # noqa: E402
+from fable import paths  # noqa: E402
 
 
 COMMANDS = ("run", "sync", "queue", "forge", "brief", "status", "cleanup", "boot-test", "saves", "upgrade")
@@ -33,16 +33,16 @@ COMMANDS = ("run", "sync", "queue", "forge", "brief", "status", "cleanup", "boot
 
 def main(argv):
     paths.ensure()
-    from termguy import branch
+    from fable import branch
     argv = list(argv)
     if "--branch" in argv:
         i = argv.index("--branch")
         if i + 1 >= len(argv):
-            sys.stderr.write("guy: --branch needs a name\n")
+            sys.stderr.write("fable: --branch needs a name\n")
             return 2
         ok, msg = branch.switch(argv[i + 1])
         if not ok:
-            sys.stderr.write("guy: %s\n" % msg)
+            sys.stderr.write("fable: %s\n" % msg)
             return 1
         del argv[i:i + 2]
     cmd = argv[0] if argv else "run"
@@ -51,10 +51,10 @@ def main(argv):
         print(__doc__)
         return 0
     if cmd not in COMMANDS and not cmd.startswith("-"):
-        # guy <save>: switch to that save, then run
+        # fable <save>: switch to that save, then run
         ok, msg = branch.switch(cmd)
         if not ok:
-            sys.stderr.write("guy: %s\n" % msg)
+            sys.stderr.write("fable: %s\n" % msg)
             return 1
         cmd = "run"
     if cmd == "saves":
@@ -70,12 +70,12 @@ def main(argv):
     if cmd == "run":
         if not branch.on_save_branch():
             saves = [l for l in branch.git("branch", "--format=%(refname:short)")[1].splitlines() if l not in branch.PROTECTED]
-            sys.stderr.write("guy: on %s, the development branch. Run `guy <save-name>`.%s\n" % (
+            sys.stderr.write("fable: on %s, the development branch. Run `fable <save-name>`.%s\n" % (
                 branch.current(), (" Saves: " + ", ".join(saves)) if saves else ""))
             return 1
-        from termguy import ui
+        from fable import ui
         if not sys.stdout.isatty() or not sys.stdin.isatty():
-            sys.stderr.write("guy: this needs a terminal. Run it in a pane.\n")
+            sys.stderr.write("fable: this needs a terminal. Run it in a pane.\n")
             return 1
         fps = None
         if "--fps" in rest:
@@ -83,7 +83,7 @@ def main(argv):
         ui.run(fps, no_sync="--no-sync" in rest)
         return 0
     if cmd == "sync":
-        from termguy import sync
+        from fable import sync
         since = None
         if "--since" in rest:
             since = rest[rest.index("--since") + 1]
@@ -99,13 +99,13 @@ def main(argv):
         print("%d new events" % len(fresh))
         return 0
     if cmd == "queue":
-        from termguy import sync
+        from fable import sync
         for j in sync.pending_jobs():
             sp = j["spec"]
             print("  %-22s %-9s %-7s %-10s %s" % (j["id"], sp.get("rarity"), sp.get("scope"), sp.get("category"), j.get("note", "")))
         return 0
     if cmd == "forge":
-        from termguy import sync, forge
+        from fable import sync, forge
         jobs = sync.pending_jobs()
         if rest and not rest[0].startswith("--"):
             jobs = [j for j in jobs if j["id"] == rest[0]]
@@ -119,7 +119,7 @@ def main(argv):
             print("  %s: %s" % (j["id"], msg))
         return 0
     if cmd == "brief":
-        from termguy import sync, forge
+        from fable import sync, forge
         jobs = [j for j in sync.pending_jobs() if not rest or j["id"] == rest[0]]
         if not jobs:
             print("no such job")
@@ -127,7 +127,7 @@ def main(argv):
         print(forge.brief_for(jobs[0]))
         return 0
     if cmd == "status":
-        from termguy import state as S, rules, sync
+        from fable import state as S, rules, sync
         st = S.load()
         print("%s  level %d  %d xp (%d to next)" % (st.get("name"), st["level"], st["xp"],
                                                      rules.xp_for_level(st["level"] + 1) - st["xp"]))
@@ -141,16 +141,16 @@ def main(argv):
             print("  %s  %s" % (h["t"], h["text"]))
         return 0
     if cmd == "cleanup":
-        from termguy.world import World
+        from fable.world import World
         w = World()
         n = len(w.state.get("owned_panes", []))
         w.close_owned()
         print("closed %d pane%s" % (n, "" if n == 1 else "s"))
         return 0
     if cmd == "boot-test":
-        from termguy import ui
+        from fable import ui
         return ui.boot_test()
-    sys.stderr.write("guy: no such command: %s\n" % cmd)
+    sys.stderr.write("fable: no such command: %s\n" % cmd)
     return 2
 
 

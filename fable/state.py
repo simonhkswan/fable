@@ -8,7 +8,7 @@ def default_state():
     rules = tables.load("rules")
     return {
         "version": 1,
-        "name": "the guy",
+        "name": "Fable",
         "level": 1,
         "xp": 0,
         "stats": {s: 1 for s in rules["stats"]},
@@ -69,7 +69,7 @@ def read_jsonl(path):
 
 
 def remember(st, kind, text, **extra):
-    """A line in the guy's history, shown on the log page."""
+    """A line in Fable's history, shown on the log page."""
     rec = {"t": time.strftime("%Y-%m-%d %H:%M"), "kind": kind, "text": text}
     rec.update(extra)
     st.setdefault("history", []).append(rec)

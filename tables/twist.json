@@ -10,6 +10,6 @@
     "the item disagrees with its own category and belongs to a new one",
     "the item rewrites the forge brief template for future runs",
     "the item is a set piece: it only works with another item equipped",
-    "the item edits the guy's own sprite permanently"
+    "the item edits Fable's own sprite permanently"
   ]
 }

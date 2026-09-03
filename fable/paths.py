@@ -12,8 +12,8 @@ STARTER = os.path.join(ROOT, "starter")            # items every save begins wit
 TALENTS = os.path.join(ROOT, "talents")
 QUEUE = os.path.join(ROOT, "queue")               # forge jobs not yet run
 RUNS = os.path.join(ROOT, "runs")                 # forge transcripts
-PRESENCE = os.path.join(ROOT, "presence.json")    # which pane the guy is in right now
-LOG = os.path.join(ROOT, "guy.log")
+PRESENCE = os.path.join(ROOT, "presence.json")    # which pane Fable is in right now
+LOG = os.path.join(ROOT, "fable.log")
 
 
 def ensure():

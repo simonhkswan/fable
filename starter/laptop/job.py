@@ -1,4 +1,4 @@
-"""Starter item. The drawing lives in termguy/mascot.py; this item is what lets him do it."""
+"""Starter item. The drawing lives in fable/mascot.py; this item is what lets him do it."""
 
 
 def register(anim, world):

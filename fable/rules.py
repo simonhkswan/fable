@@ -139,6 +139,6 @@ def make_spec(seed, source, event, st, rarity_table):
         "constraint": constraint,
         "twist": twist,
         "event": {k: event.get(k) for k in ("id", "kind", "repo", "number", "title", "url")} if event else None,
-        "guy": {"level": st["level"], "stats": dict(st["stats"])},
+        "fable": {"level": st["level"], "stats": dict(st["stats"])},
         "categories_at_roll": len(weights) - 1,
     }

@@ -1,6 +1,6 @@
-# the guy
+# Fable
 
-A small character who lives in a terminal pane. He grows when you merge a pull request or review one. What he becomes is written by an LLM, one forge run at a time, so no two guys are the same. Individual experiences will vary.
+A small character who lives in a terminal pane and grows into a story. He grows when you merge a pull request or review one. What he becomes is written by an LLM, one forge run at a time, so no two guys are the same. Individual experiences will vary.
 
 ![the start](docs/screenshots/start.png)
 
@@ -17,7 +17,7 @@ A small character who lives in a terminal pane. He grows when you merge a pull r
 ## Start
 
 ```
-guy --branch trial1
+fable --branch trial1
 ```
 
 The first start pulls your GitHub history and replays it, one event at a time. Then he keeps syncing every 10 minutes.
@@ -39,7 +39,7 @@ Items add their own keys. The bottom line shows them.
 
 ## Saves are branches
 
-`main` holds the code. A save is a git branch. `guy --branch <name>` starts a save, or makes a new one from main. Everything the forge writes is committed on the save branch. `guy upgrade` merges new code from main into the save. `guy saves` lists them.
+`main` holds the code. A save is a git branch. `fable --branch <name>` starts a save, or makes a new one from main. Everything the forge writes is committed on the save branch. `fable upgrade` merges new code from main into the save. `fable saves` lists them.
 
 ## How the dice work
 
@@ -70,15 +70,15 @@ A guy at level 117:
 ## Commands
 
 ```
-guy --branch <save>   run on a save branch
-guy sync              pull new events now
-guy queue             list unopened things
-guy forge             open the next thing from the shell
-guy brief <job>       print the brief a forge run would get
-guy status            one screen of text
-guy upgrade           merge main into this save
-guy cleanup           close panes he opened and forgot
-guy boot-test         headless check that the widget boots
+fable --branch <save>   run on a save branch
+fable sync              pull new events now
+fable queue             list unopened things
+fable forge             open the next thing from the shell
+fable brief <job>       print the brief a forge run would get
+fable status            one screen of text
+fable upgrade           merge main into this save
+fable cleanup           close panes he opened and forgot
+fable boot-test         headless check that the widget boots
 ```
 
 ## Requirements

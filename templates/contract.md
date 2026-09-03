@@ -1,6 +1,6 @@
 ## How the widget reaches code
 
-Everything lives under `~/.termguy`. The widget is `./guy` (Python 3.14, stdlib only so far). Package: `termguy/`.
+Everything lives under `~/.fable`. The widget is `./guy` (Python 3.14, stdlib only so far). Package: `fable/`.
 
 An **item** is a directory `items/<id>/` with `item.json` (the four he starts with live in `starter/` and follow the same shape):
 
@@ -25,7 +25,7 @@ Three ways to reach code. Mix them freely, any language:
 - `run` (any language). Started with the shell, cwd = the item dir, non-blocking. Env: `GUY_DIR`, `GUY_ITEM_DIR`, `GUY_STATE`, `GUY_PANE_ID`, `GUY_COLS`, `GUY_ROWS`, and `GUY_EVENT` (JSON) for events.
 - `stream` (any language). Started once when equipped, kept alive. Receives one JSON line per frame on stdin: `{"t","dt","u","x","y","w","h","job"}` (x, y in quarter cells, u = quarter cells per sprite pixel). Replies with JSON lines `{"cells": [[qx, qy, "ink"], ...], "text": [[col, row, "str", "ink"]], "say": "..."}` and the widget draws the latest reply each frame.
 
-Attachment points that exist now: `register`, `key:<char>`, `tick`, `equip`, `event:pr_merged`, `event:review`, `event:level_up`, `event:drop`, `event:equip`, `event:unequip`, `event:idle`. You may add more by editing `termguy/`.
+Attachment points that exist now: `register`, `key:<char>`, `tick`, `equip`, `event:pr_merged`, `event:review`, `event:level_up`, `event:drop`, `event:equip`, `event:unequip`, `event:idle`. You may add more by editing `fable/`.
 
 ### The animation API (`register(anim, world)`)
 
@@ -40,13 +40,13 @@ def register(anim, world):
     anim.page("w", "Weather", draw_page, keys=on_key)  # a whole page: draw(ctx, screen), on_key(ctx, key) -> bool handled
 ```
 
-Idle job draw signature: `draw(ctx, q, x, y, floor_y)`, all in quarter cells. Look at `termguy/mascot.py` for the six built-in jobs and copy their idiom. `ctx` gives: `ctx.u ctx.k ctx.t ctx.dt ctx.screen ctx.state ctx.store ctx.P` and helpers `ctx.cell(q,x,y,ink) ctx.block(q,x,y,rgb) ctx.grid(q,x,y,rows,ink_map) ctx.fade(ink,f) ctx.burst(x,y,n,inks) ctx.sparks(q) ctx.look(eye) ctx.mascot(q,x,y,eye=,lean=,legs=,squash=,shut=) ctx.text(col,row,str,ink) ctx.caption(str)`. `ctx.guy.say("hi", 4.0)` shows a speech bubble. `ctx.guy.fire("name", **data)` fires a moment.
+Idle job draw signature: `draw(ctx, q, x, y, floor_y)`, all in quarter cells. Look at `fable/mascot.py` for the six built-in jobs and copy their idiom. `ctx` gives: `ctx.u ctx.k ctx.t ctx.dt ctx.screen ctx.state ctx.store ctx.P` and helpers `ctx.cell(q,x,y,ink) ctx.block(q,x,y,rgb) ctx.grid(q,x,y,rows,ink_map) ctx.fade(ink,f) ctx.burst(x,y,n,inks) ctx.sparks(q) ctx.look(eye) ctx.mascot(q,x,y,eye=,lean=,legs=,squash=,shut=) ctx.text(col,row,str,ink) ctx.caption(str)`. `ctx.guy.say("hi", 4.0)` shows a speech bubble. `ctx.guy.fire("name", **data)` fires a moment.
 
-Inks are names in `termguy/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose` has `x y eye lean squash shut u`.
+Inks are names in `fable/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose` has `x y eye lean squash shut u`.
 
 ### The world (`world`)
 
-`world.zellij(*args)` runs `zellij action ...`. `world.list_panes()`, `world.open_portal([cmd...], x, y, width, height, name, focus, borderless)` returns a pane id and records it, `world.glide(pane_id, x, y, width, height)`, `world.possess(pane_id, [cmd...])` runs a command in place of another pane and gives it back on exit, `world.close_owned()`, `world.sh(cmd)`, `world.claude(prompt)`, `world.say(text)`, `world.state` / `world.save()`, `world.remember(text)`. The guy's own pane id: `world.pane_id`. The session: `world.session`. You can also just call `subprocess`.
+`world.zellij(*args)` runs `zellij action ...`. `world.list_panes()`, `world.open_portal([cmd...], x, y, width, height, name, focus, borderless)` returns a pane id and records it, `world.glide(pane_id, x, y, width, height)`, `world.possess(pane_id, [cmd...])` runs a command in place of another pane and gives it back on exit, `world.close_owned()`, `world.sh(cmd)`, `world.claude(prompt)`, `world.say(text)`, `world.state` / `world.save()`, `world.remember(text)`. Fable's own pane id: `world.pane_id`. The session: `world.session`. You can also just call `subprocess`.
 
 ### Talent nodes
 
@@ -58,4 +58,4 @@ Inks are names in `termguy/screen.py:P` (Catppuccin Macchiato plus `clay`). `pos
 
 ### Before you finish
 
-Run `./guy boot-test`. It must exit 0. It renders 300 frames headless, opens every page, fires every event, equips every item whose requirements are met, and prints any errors items raised. Then leave the working tree as you want it committed; the forge commits for you.
+Run `./bin/fable boot-test`. It must exit 0. It renders 300 frames headless, opens every page, fires every event, equips every item whose requirements are met, and prints any errors items raised. Then leave the working tree as you want it committed; the forge commits for you.

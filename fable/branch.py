@@ -1,5 +1,5 @@
 """Saves are git branches. `main` is the development branch and holds only the
-code. `guy <name>` checks out the save branch <name>, creating it from main if
+code. `fable <name>` checks out the save branch <name>, creating it from main if
 it is new, and everything the forge makes is committed there."""
 import subprocess
 from . import paths
@@ -27,7 +27,7 @@ def on_save_branch():
 def switch(name):
     """Check out a save branch. Returns (ok, message)."""
     if name in PROTECTED:
-        return False, "%s is the development branch. Give the guy a save name." % name
+        return False, "%s is the development branch. Give Fable a save name." % name
     from . import forge
     if forge.busy():
         return False, "a forge run is going. Wait for it before switching saves."

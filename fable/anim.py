@@ -1,5 +1,5 @@
 """The animation registries. Items and categories register into these to give
-the guy new things to do, wear, say and react to.
+Fable new things to do, wear, say and react to.
 
     def register(anim, world):
         anim.idle_job("sharpen", weight=2, caption="sharpening", draw=sharpen)

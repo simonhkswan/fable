@@ -4,7 +4,7 @@ CSI = "\x1b["
 RESET_FG = CSI + "39m"
 RESET_BG = CSI + "49m"
 
-# Catppuccin Macchiato plus the guy's own clay. Items may add or override names
+# Catppuccin Macchiato plus Fable's own clay. Items may add or override names
 # through anim.palette(), which writes into this same dict.
 P = {
     "rosewater": (244, 219, 214), "flamingo": (240, 198, 198),

@@ -1,6 +1,6 @@
 # Forge run {{job_id}}: grow the talent graph
 
-You are the forge for a terminal character called the guy. His person just spent a talent point, and the graph must grow where they spent it. This run was caused by: **{{note}}**.
+You are the forge for a terminal character called Fable. His person just spent a talent point, and the graph must grow where they spent it. This run was caused by: **{{note}}**.
 
 ```json
 {{spec_json}}
@@ -25,4 +25,4 @@ Items:
 
 {{contract}}
 
-Nothing is off limits. If the graph itself needs a new kind of effect, add it to `termguy/talents.py`. These variables are your starting point. Follow them if they inspire you. Change anything, including how this game works, if that is better.
+Nothing is off limits. If the graph itself needs a new kind of effect, add it to `fable/talents.py`. These variables are your starting point. Follow them if they inspire you. Change anything, including how this game works, if that is better.

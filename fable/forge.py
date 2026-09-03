@@ -87,7 +87,7 @@ def brief_for(job):
 
 
 def boot_test():
-    p = subprocess.run([os.path.join(paths.ROOT, "guy"), "boot-test"], cwd=paths.ROOT,
+    p = subprocess.run([os.path.join(paths.ROOT, "bin", "fable"), "boot-test"], cwd=paths.ROOT,
                        capture_output=True, text=True, timeout=180)
     return p.returncode == 0, (p.stdout + p.stderr)[-4000:]
 
@@ -113,7 +113,7 @@ def snapshot(tag):
 def undo_to(commit):
     """Put the working tree back to a commit. Only files the forge touched."""
     git("checkout", "-q", commit, "--", ".")
-    git("clean", "-fdq", "--", "items", "categories", "talents", "termguy", "tables", "templates")
+    git("clean", "-fdq", "--", "items", "categories", "talents", "fable", "tables", "templates")
     git("commit", "-qm", "undo failed forge", "--allow-empty")
 
 
@@ -139,7 +139,7 @@ def run_job(job, on_status=None):
     say = on_status or (lambda s: None)
     from . import branch
     if not branch.on_save_branch():
-        return False, "on %s, the development branch. Run `guy <save-name>` first." % branch.current()
+        return False, "on %s, the development branch. Run `fable <save-name>` first." % branch.current()
     lock = open(LOCK, "w")
     try:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -178,7 +178,7 @@ def current():
 def spawn(job_id):
     """Start a forge run as its own process, so the widget can come and go."""
     env = {k: v for k, v in os.environ.items() if not k.startswith("CLAUDE")}
-    subprocess.Popen([os.path.join(paths.ROOT, "guy"), "forge", job_id], cwd=paths.ROOT, env=env,
+    subprocess.Popen([os.path.join(paths.ROOT, "bin", "fable"), "forge", job_id], cwd=paths.ROOT, env=env,
                      stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                      start_new_session=True)
 

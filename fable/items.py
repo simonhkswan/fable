@@ -44,7 +44,7 @@ class Item:
     def skill(self): return bool(self.m.get("skill"))
 
     def missing(self, st):
-        """What the guy still lacks to use this. Empty means usable."""
+        """What Fable still lacks to use this. Empty means usable."""
         if self.skill:
             return []
         req = self.m.get("requires", {})

@@ -26,8 +26,8 @@ FONT_SIZE = 15
 
 # ── a scratch copy of the game ────────────────────────────────────────────
 def make_copy():
-    tmp = tempfile.mkdtemp(prefix="termguy-shots-")
-    root = os.path.join(tmp, "termguy")
+    tmp = tempfile.mkdtemp(prefix="fable-shots-")
+    root = os.path.join(tmp, "fable")
     shutil.copytree(REAL, root, ignore=shutil.ignore_patterns(".git", "runs", "__pycache__", "items", "queue",
                                                               "docs", "state.json", "*.jsonl", "presence.json"))
     for d in ("items", "queue", "runs"):
@@ -36,12 +36,12 @@ def make_copy():
 
 
 def load_game(root):
-    for name in [m for m in sys.modules if m == "termguy" or m.startswith("termguy.")]:
+    for name in [m for m in sys.modules if m == "fable" or m.startswith("fable.")]:
         del sys.modules[name]
     sys.path.insert(0, root)
-    import termguy.paths as paths  # noqa
+    import fable.paths as paths  # noqa
     assert paths.ROOT == root, paths.ROOT
-    from termguy import ui, state, screen
+    from fable import ui, state, screen
     return ui, state, screen
 
 
@@ -130,7 +130,7 @@ MOCK_QUEUE = [
 
 MOCK_TALENTS = [
     # id, name, kind, parent, pos, hint
-    ("root", "The Guy", "passive", None, [0, 0], "Where it starts."),
+    ("root", "Fable", "passive", None, [0, 0], "Where it starts."),
     ("deep_thought", "Deep Thought", "skill", "root", [0, -1], "He can stop and think about it."),
     ("long_stare", "Long Stare", "passive", "deep_thought", [0, -2], "+1 focus."),
     ("second_look", "Second Look", "passive", "long_stare", [-1, -3], "Reviews feed focus twice as often."),
