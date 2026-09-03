@@ -45,6 +45,11 @@
   ],
   "talent_milestone_every": 10,
   "wish_grant_every": 5,
+  "wish_luck": {
+    "base": 0.002,
+    "cap": 0.05,
+    "per_luck": 0.0002
+  },
   "wish_offer_chance": 0.2,
   "xp": {
     "new_repo_bonus": 30,
