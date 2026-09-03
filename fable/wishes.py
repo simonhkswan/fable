@@ -6,7 +6,6 @@ import time
 from . import paths
 
 PATH = os.path.join(paths.ROOT, "wishes.jsonl")
-GRANTED = os.path.join(paths.ROOT, "wishes_granted.jsonl")
 
 
 def all_wishes():
@@ -49,34 +48,21 @@ def add(text, source="you"):
 
 
 def grant(wid, note):
-    """A forge run calls this when it made a wish real. The wish leaves the
-    list and goes to the granted record, and the history gets a line."""
+    """A forge run calls this when it made a wish real. The wish stays in the
+    list, ticked, and the history gets a line."""
     rows = all_wishes()
-    keep = []
     for r in rows:
-        if r["id"] == wid:
+        if r["id"] == wid and not r.get("granted"):
             r["granted"] = {"at": time.strftime("%Y-%m-%d"), "note": note}
-            with open(GRANTED, "a") as f:
-                f.write(json.dumps(r, sort_keys=True) + "\n")
             from . import state as S
             st = S.load()
             S.remember(st, "wish", "granted a wish: %s (%s)" % (r["text"][:50], note[:60]))
             S.save(st)
-        else:
-            keep.append(r)
-    _write(keep)
+    _write(rows)
 
 
 def granted():
-    out = []
-    try:
-        with open(GRANTED) as f:
-            for line in f:
-                if line.strip():
-                    out.append(json.loads(line))
-    except OSError:
-        pass
-    return out
+    return [r for r in all_wishes() if r.get("granted")]
 
 
 def remove(wid):
