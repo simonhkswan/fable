@@ -976,6 +976,14 @@ def boot_test(frames=300):
                 app.guy.fire(ev, text="boot test", kind="pr", repo="x/y", number=1)
         if i == 60:
             app.guy._next(s)
+        if i == 80:
+            # the sync thread's messages, drained on the main thread
+            ev = {"id": "pr:x/y#1", "kind": "pr", "repo": "x/y", "number": 1, "title": "t", "url": "", "seed": "s"}
+            with app.lock:
+                app.pending_events += [("event", (ev, {"xp": 40, "gains": {"craft": 1}})), ("note", "level 2"),
+                                       ("note", "a common drop from merged y#1"), ("note", "a lucky wish from merged y#1"),
+                                       ("synced", 1), ("error", "boot test error")]
+            app.drain()
     for page in ["bag", "talents", "stats", "forge", "log", "help", "report", "wishes"] + list(app.anim.pages):
         app.page = page
         for _ in range(3):
