@@ -12,6 +12,7 @@ This directory is a game. A terminal character called Fable lives in a zellij pa
 - `items/<id>/` — a manifest and code, any language. `starter/` holds the four he begins with.
 - `talents/<id>.json` — graph nodes. Skills also have `talents/<id>/`.
 - `state.json`, `events.jsonl`, `spending.jsonl` — Fable's state, the events consumed, the points spent.
+- `wishes.jsonl` — what his person asked for. Forge runs read it and may grant one.
 - `queue/` — unopened things, one JSON per forge job. `runs/` — briefs and transcripts.
 
 ## Rules of thumb for a forge run
