@@ -8,7 +8,7 @@
       "travel": 1
     }
   },
-  "generated": true,
+  "generated": false,
   "hint": "Travel items get +4 budget and drop more often.",
   "id": "wanderlust",
   "kind": "passive",

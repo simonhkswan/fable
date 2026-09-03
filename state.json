@@ -1,34 +1,1276 @@
 {
   "counters": {
-    "drops": 0,
-    "level_ups": 0,
-    "pr": 0,
-    "review": 0
+    "drops": 3,
+    "level_ups": 20,
+    "pr": 69,
+    "review": 90
   },
   "created": "2026-09-03T09:23:46",
   "equipped": [],
-  "history": [],
-  "level": 1,
+  "history": [
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged thinc#98  +73 xp  +1 luck",
+      "url": "https://github.com/explosion/thinc/pull/98"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#2  +55 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/2"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#11  +46 xp  +1 craft +1 wit +1 charm",
+      "url": "https://github.com/synthesized-io/fairlens/pull/11"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#29  +30 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/29"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#33  +35 xp  +1 charm +1 focus +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/33"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#28  +25 xp  +1 vigor +1 charm +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/28"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#35  +25 xp  +1 charm +1 craft +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/35"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 2"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#43  +25 xp  +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/43"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#47  +25 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/47"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#45  +35 xp  +1 luck +1 vigor",
+      "url": "https://github.com/synthesized-io/fairlens/pull/45"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#53  +25 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/53"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed synthesized-notebooks#7  +55 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/synthesized-notebooks/pull/7"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#2  +84 xp  +1 focus +1 wit +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/2"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 3"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#5  +75 xp  +1 vigor +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/5"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#3  +25 xp  +2 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/3"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#65  +105 xp  +1 charm +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/65"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#66  +129 xp  +1 vigor +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/66"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 4"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#71  +25 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/71"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#70  +25 xp  +1 focus +1 charm",
+      "url": "https://github.com/synthesized-io/fairlens/pull/70"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#57  +54 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/57"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#46  +25 xp  +1 focus +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/46"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#68  +235 xp  +2 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/68"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 5"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#76  +65 xp  +1 wit +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/76"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#6  +25 xp  +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/6"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#69  +78 xp  +1 vigor +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/69"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#67  +64 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/67"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#83  +25 xp  +2 luck +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/83"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 6"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#92  +44 xp  +1 charm",
+      "url": "https://github.com/synthesized-io/fairlens/pull/92"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#93  +25 xp  +1 vigor +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/93"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#89  +25 xp  +1 wit +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/89"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#88  +25 xp  +1 vigor",
+      "url": "https://github.com/synthesized-io/fairlens/pull/88"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged synthesized-notebooks#17  +199 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/synthesized-notebooks/pull/17"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#100  +43 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/100"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 7"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#9  +30 xp  +1 luck +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/9"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#18  +25 xp  +2 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/18"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#104  +25 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/104"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#103  +25 xp  +1 wit +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/103"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#105  +25 xp  +1 charm +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/105"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#20  +25 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/20"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#114  +46 xp  +2 luck +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/114"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#21  +105 xp  +1 vigor +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/21"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#27  +25 xp  +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/27"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#28  +25 xp  +2 vigor +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/28"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#120  +30 xp  +2 charm +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/120"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged pyemd#53  +73 xp  +2 vigor",
+      "url": "https://github.com/wmayner/pyemd/pull/53"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 8"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#116  +54 xp  +2 vigor",
+      "url": "https://github.com/synthesized-io/fairlens/pull/116"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#111  +25 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/111"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#32  +35 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/32"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#126  +25 xp  +1 luck +1 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/126"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#117  +64 xp  +1 vigor +1 focus +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/117"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#123  +25 xp  +1 vigor +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/123"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#130  +64 xp  +1 vigor +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/130"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#131  +51 xp  +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/131"
+    },
+    {
+      "kind": "drop",
+      "t": "2026-09-03 09:26",
+      "text": "something rare fell out of merged fairlens#131"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#125  +25 xp  +1 wit +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/125"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#119  +25 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/fairlens/pull/119"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 9"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#37  +25 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/37"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#25  +25 xp  +1 wit +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/25"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#39  +25 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/39"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#138  +47 xp  +1 craft +1 vigor +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/138"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#109  +46 xp  +1 charm +2 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/109"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#42  +75 xp  +2 wit +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/42"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#143  +25 xp  +2 focus",
+      "url": "https://github.com/synthesized-io/fairlens/pull/143"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#145  +25 xp  +1 craft +1 charm +1 wit",
+      "url": "https://github.com/synthesized-io/fairlens/pull/145"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#139  +53 xp  +1 wit +1 vigor +1 charm",
+      "url": "https://github.com/synthesized-io/fairlens/pull/139"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#147  +25 xp  +2 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/147"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged pypack#2  +125 xp  +1 focus +1 luck",
+      "url": "https://github.com/simonhkswan/pypack/pull/2"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 10"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#43  +90 xp  +1 focus +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/43"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#41  +25 xp  +1 luck +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/41"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged fairlens#140  +48 xp  +1 vigor",
+      "url": "https://github.com/synthesized-io/fairlens/pull/140"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed fairlens#132  +30 xp  +1 focus +1 charm +1 craft",
+      "url": "https://github.com/synthesized-io/fairlens/pull/132"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#40  +49 xp  +1 craft",
+      "url": "https://github.com/synthesized-io/insight/pull/40"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed datasets#1  +60 xp  +1 charm +1 luck +1 focus",
+      "url": "https://github.com/synthesized-io/datasets/pull/1"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#58  +25 xp  +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/58"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#63  +25 xp  +1 wit +1 focus +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/63"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#47  +25 xp  +1 craft +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/47"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#45  +25 xp  +1 vigor +1 wit +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/45"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#64  +25 xp  +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/64"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#66  +25 xp  +1 charm +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/66"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 11"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#69  +40 xp  +1 wit +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/69"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#72  +89 xp  +1 craft +1 luck +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/72"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#65  +55 xp  +1 focus +1 vigor +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/65"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#73  +50 xp  +2 wit +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/73"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#75  +43 xp  +1 focus +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/75"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#76  +50 xp  +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/76"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#74  +25 xp  +1 wit +1 vigor +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/74"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#77  +47 xp  +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/77"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed datasets#2  +25 xp  +1 luck +1 craft +1 focus",
+      "url": "https://github.com/synthesized-io/datasets/pull/2"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#110  +128 xp  +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/110"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 12"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#113  +50 xp  +1 focus +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/113"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#115  +25 xp  +1 vigor +1 focus",
+      "url": "https://github.com/synthesized-io/insight/pull/115"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#141  +35 xp  +1 focus +1 luck +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/141"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#143  +25 xp  +1 vigor +1 charm +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/143"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#144  +43 xp  +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/144"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#149  +30 xp  +2 craft +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/149"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#145  +25 xp  +1 craft",
+      "url": "https://github.com/synthesized-io/insight/pull/145"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed datasets#4  +25 xp  +1 craft +1 vigor +1 charm",
+      "url": "https://github.com/synthesized-io/datasets/pull/4"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#112  +25 xp  +1 vigor +1 wit",
+      "url": "https://github.com/synthesized-io/insight/pull/112"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#162  +76 xp  +2 craft +1 charm",
+      "url": "https://github.com/synthesized-io/insight/pull/162"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#174  +53 xp  +1 craft +1 vigor +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/174"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#173  +50 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/173"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged insight#172  +54 xp  +1 craft +1 vigor",
+      "url": "https://github.com/synthesized-io/insight/pull/172"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 13"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged datasets#7  +232 xp  +1 craft +2 vigor",
+      "url": "https://github.com/synthesized-io/datasets/pull/7"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged datasets#8  +43 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/datasets/pull/8"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged rustup#4763  +73 xp  +1 craft",
+      "url": "https://github.com/rust-lang/rustup/pull/4763"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed insight#189  +25 xp  +1 luck",
+      "url": "https://github.com/synthesized-io/insight/pull/189"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#18906  +108 xp  +2 charm +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/18906"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#19128  +30 xp  +1 craft +1 wit +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19128"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#18983  +173 xp  +1 craft +1 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/18983"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 14"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19235  +104 xp  +1 wit +1 luck +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19235"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#19182  +30 xp  +1 focus +2 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19182"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#19278  +25 xp  +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19278"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#19183  +40 xp  +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19183"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19249  +174 xp  +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19249"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#19358  +25 xp  +2 focus +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19358"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19986  +116 xp  +2 charm +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19986"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 15"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19619  +119 xp  +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19619"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20029  +25 xp  +2 luck +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20029"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19987  +120 xp  +1 vigor +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19987"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#20000  +167 xp  +2 craft +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20000"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20082  +25 xp  +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20082"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20133  +25 xp  +1 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20133"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 16"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20131  +40 xp  +1 wit +1 charm +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20131"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20142  +25 xp  +1 focus +1 luck +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20142"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20153  +25 xp  +2 focus +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20153"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19709  +235 xp  +1 craft +2 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19709"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19978  +235 xp  +1 vigor +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19978"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20217  +40 xp  +1 focus +1 vigor +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20217"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20233  +25 xp  +2 craft +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20233"
+    },
+    {
+      "kind": "drop",
+      "t": "2026-09-03 09:26",
+      "text": "something epic fell out of reviewed PatentCopilot#20233"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 17"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20258  +75 xp  +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20258"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#18927  +235 xp  +1 wit +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/18927"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20294  +30 xp  +2 wit +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20294"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20332  +30 xp  +2 vigor +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20332"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20436  +25 xp  +1 luck +1 focus +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20436"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20726  +25 xp  +1 wit +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20726"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20709  +25 xp  +1 vigor +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20709"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19624  +235 xp  +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19624"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 18"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#18216  +35 xp  +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/18216"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#20407  +62 xp  +1 wit +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20407"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21011  +25 xp  +2 wit +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21011"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#19525  +235 xp  +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/19525"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#20972  +25 xp  +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20972"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21256  +25 xp  +2 charm +1 focus",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21256"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#20330  +51 xp  +2 craft +1 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20330"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#21236  +169 xp  +1 vigor +1 wit +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21236"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 19"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21289  +25 xp  +2 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21289"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21215  +75 xp  +1 charm +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21215"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#20412  +154 xp  +2 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20412"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21766  +25 xp  +1 vigor +1 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21766"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#21252  +235 xp  +1 vigor +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21252"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21769  +25 xp  +1 luck",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21769"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21970  +30 xp  +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21970"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#22015  +25 xp  +1 wit +1 craft +1 charm",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/22015"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged wisp#38  +265 xp  +1 focus +1 luck",
+      "url": "https://github.com/simonhkswan/wisp/pull/38"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 20"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#21465  +235 xp  +1 vigor +1 luck +1 wit",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21465"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#20747  +235 xp  +1 craft +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/20747"
+    },
+    {
+      "kind": "drop",
+      "t": "2026-09-03 09:26",
+      "text": "something common fell out of merged PatentCopilot#20747"
+    },
+    {
+      "kind": "level",
+      "t": "2026-09-03 09:26",
+      "text": "reached level 21"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#22298  +235 xp  +2 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/22298"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#21463  +235 xp  +2 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21463"
+    },
+    {
+      "kind": "review",
+      "t": "2026-09-03 09:26",
+      "text": "reviewed PatentCopilot#21986  +75 xp  +1 wit +1 focus +1 vigor",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/21986"
+    },
+    {
+      "kind": "pr",
+      "t": "2026-09-03 09:26",
+      "text": "merged PatentCopilot#22363  +64 xp  +1 craft",
+      "url": "https://github.com/solveintelligence/PatentCopilot/pull/22363"
+    }
+  ],
+  "last_sync": "2026-09-03T09:26:15",
+  "level": 21,
   "name": "the guy",
   "owned_panes": [],
   "owned_talents": [
     "root"
   ],
-  "repos": [],
-  "seen_events": [],
+  "repos": [
+    "explosion/thinc",
+    "synthesized-io/fairlens",
+    "synthesized-io/synthesized-notebooks",
+    "synthesized-io/insight",
+    "wmayner/pyemd",
+    "simonhkswan/pypack",
+    "synthesized-io/datasets",
+    "rust-lang/rustup",
+    "solveintelligence/PatentCopilot",
+    "simonhkswan/wisp"
+  ],
+  "seen_events": [
+    "pr:explosion/thinc#98",
+    "review:synthesized-io/fairlens#2",
+    "pr:synthesized-io/fairlens#11",
+    "review:synthesized-io/fairlens#29",
+    "review:synthesized-io/fairlens#33",
+    "review:synthesized-io/fairlens#28",
+    "review:synthesized-io/fairlens#35",
+    "review:synthesized-io/fairlens#43",
+    "review:synthesized-io/fairlens#47",
+    "review:synthesized-io/fairlens#45",
+    "review:synthesized-io/fairlens#53",
+    "review:synthesized-io/synthesized-notebooks#7",
+    "pr:synthesized-io/insight#2",
+    "pr:synthesized-io/insight#5",
+    "review:synthesized-io/insight#3",
+    "pr:synthesized-io/fairlens#65",
+    "pr:synthesized-io/fairlens#66",
+    "review:synthesized-io/fairlens#71",
+    "review:synthesized-io/fairlens#70",
+    "pr:synthesized-io/fairlens#57",
+    "review:synthesized-io/fairlens#46",
+    "pr:synthesized-io/fairlens#68",
+    "pr:synthesized-io/fairlens#76",
+    "review:synthesized-io/insight#6",
+    "pr:synthesized-io/fairlens#69",
+    "pr:synthesized-io/fairlens#67",
+    "review:synthesized-io/fairlens#83",
+    "pr:synthesized-io/fairlens#92",
+    "review:synthesized-io/fairlens#93",
+    "review:synthesized-io/fairlens#89",
+    "review:synthesized-io/fairlens#88",
+    "pr:synthesized-io/synthesized-notebooks#17",
+    "pr:synthesized-io/fairlens#100",
+    "review:synthesized-io/insight#9",
+    "review:synthesized-io/insight#18",
+    "review:synthesized-io/fairlens#104",
+    "review:synthesized-io/fairlens#103",
+    "review:synthesized-io/fairlens#105",
+    "review:synthesized-io/insight#20",
+    "pr:synthesized-io/fairlens#114",
+    "pr:synthesized-io/insight#21",
+    "review:synthesized-io/insight#27",
+    "review:synthesized-io/insight#28",
+    "review:synthesized-io/fairlens#120",
+    "pr:wmayner/pyemd#53",
+    "pr:synthesized-io/fairlens#116",
+    "review:synthesized-io/fairlens#111",
+    "review:synthesized-io/insight#32",
+    "review:synthesized-io/fairlens#126",
+    "pr:synthesized-io/fairlens#117",
+    "review:synthesized-io/fairlens#123",
+    "pr:synthesized-io/fairlens#130",
+    "pr:synthesized-io/fairlens#131",
+    "review:synthesized-io/fairlens#125",
+    "review:synthesized-io/fairlens#119",
+    "review:synthesized-io/insight#37",
+    "review:synthesized-io/insight#25",
+    "review:synthesized-io/insight#39",
+    "pr:synthesized-io/fairlens#138",
+    "pr:synthesized-io/fairlens#109",
+    "pr:synthesized-io/insight#42",
+    "review:synthesized-io/fairlens#143",
+    "review:synthesized-io/fairlens#145",
+    "pr:synthesized-io/fairlens#139",
+    "review:synthesized-io/fairlens#147",
+    "pr:simonhkswan/pypack#2",
+    "pr:synthesized-io/insight#43",
+    "review:synthesized-io/insight#41",
+    "pr:synthesized-io/fairlens#140",
+    "review:synthesized-io/fairlens#132",
+    "pr:synthesized-io/insight#40",
+    "review:synthesized-io/datasets#1",
+    "review:synthesized-io/insight#58",
+    "review:synthesized-io/insight#63",
+    "review:synthesized-io/insight#47",
+    "review:synthesized-io/insight#45",
+    "review:synthesized-io/insight#64",
+    "review:synthesized-io/insight#66",
+    "review:synthesized-io/insight#69",
+    "pr:synthesized-io/insight#72",
+    "pr:synthesized-io/insight#65",
+    "pr:synthesized-io/insight#73",
+    "pr:synthesized-io/insight#75",
+    "pr:synthesized-io/insight#76",
+    "review:synthesized-io/insight#74",
+    "pr:synthesized-io/insight#77",
+    "review:synthesized-io/datasets#2",
+    "pr:synthesized-io/insight#110",
+    "pr:synthesized-io/insight#113",
+    "review:synthesized-io/insight#115",
+    "review:synthesized-io/insight#141",
+    "review:synthesized-io/insight#143",
+    "pr:synthesized-io/insight#144",
+    "review:synthesized-io/insight#149",
+    "review:synthesized-io/insight#145",
+    "review:synthesized-io/datasets#4",
+    "review:synthesized-io/insight#112",
+    "pr:synthesized-io/insight#162",
+    "pr:synthesized-io/insight#174",
+    "pr:synthesized-io/insight#173",
+    "pr:synthesized-io/insight#172",
+    "pr:synthesized-io/datasets#7",
+    "pr:synthesized-io/datasets#8",
+    "pr:rust-lang/rustup#4763",
+    "review:synthesized-io/insight#189",
+    "pr:solveintelligence/PatentCopilot#18906",
+    "review:solveintelligence/PatentCopilot#19128",
+    "pr:solveintelligence/PatentCopilot#18983",
+    "pr:solveintelligence/PatentCopilot#19235",
+    "review:solveintelligence/PatentCopilot#19182",
+    "review:solveintelligence/PatentCopilot#19278",
+    "review:solveintelligence/PatentCopilot#19183",
+    "pr:solveintelligence/PatentCopilot#19249",
+    "review:solveintelligence/PatentCopilot#19358",
+    "pr:solveintelligence/PatentCopilot#19986",
+    "pr:solveintelligence/PatentCopilot#19619",
+    "review:solveintelligence/PatentCopilot#20029",
+    "pr:solveintelligence/PatentCopilot#19987",
+    "pr:solveintelligence/PatentCopilot#20000",
+    "review:solveintelligence/PatentCopilot#20082",
+    "review:solveintelligence/PatentCopilot#20133",
+    "review:solveintelligence/PatentCopilot#20131",
+    "review:solveintelligence/PatentCopilot#20142",
+    "review:solveintelligence/PatentCopilot#20153",
+    "pr:solveintelligence/PatentCopilot#19709",
+    "pr:solveintelligence/PatentCopilot#19978",
+    "review:solveintelligence/PatentCopilot#20217",
+    "review:solveintelligence/PatentCopilot#20233",
+    "review:solveintelligence/PatentCopilot#20258",
+    "pr:solveintelligence/PatentCopilot#18927",
+    "review:solveintelligence/PatentCopilot#20294",
+    "review:solveintelligence/PatentCopilot#20332",
+    "review:solveintelligence/PatentCopilot#20436",
+    "review:solveintelligence/PatentCopilot#20726",
+    "review:solveintelligence/PatentCopilot#20709",
+    "pr:solveintelligence/PatentCopilot#19624",
+    "review:solveintelligence/PatentCopilot#18216",
+    "pr:solveintelligence/PatentCopilot#20407",
+    "review:solveintelligence/PatentCopilot#21011",
+    "pr:solveintelligence/PatentCopilot#19525",
+    "review:solveintelligence/PatentCopilot#20972",
+    "review:solveintelligence/PatentCopilot#21256",
+    "pr:solveintelligence/PatentCopilot#20330",
+    "pr:solveintelligence/PatentCopilot#21236",
+    "review:solveintelligence/PatentCopilot#21289",
+    "review:solveintelligence/PatentCopilot#21215",
+    "pr:solveintelligence/PatentCopilot#20412",
+    "review:solveintelligence/PatentCopilot#21766",
+    "pr:solveintelligence/PatentCopilot#21252",
+    "review:solveintelligence/PatentCopilot#21769",
+    "review:solveintelligence/PatentCopilot#21970",
+    "review:solveintelligence/PatentCopilot#22015",
+    "pr:simonhkswan/wisp#38",
+    "pr:solveintelligence/PatentCopilot#21465",
+    "pr:solveintelligence/PatentCopilot#20747",
+    "pr:solveintelligence/PatentCopilot#22298",
+    "pr:solveintelligence/PatentCopilot#21463",
+    "review:solveintelligence/PatentCopilot#21986",
+    "pr:solveintelligence/PatentCopilot#22363"
+  ],
   "slots": 3,
   "stats": {
-    "charm": 1,
-    "craft": 1,
-    "focus": 1,
-    "luck": 1,
-    "vigor": 1,
-    "wit": 1
+    "charm": 50,
+    "craft": 51,
+    "focus": 57,
+    "luck": 48,
+    "vigor": 60,
+    "wit": 62
   },
   "unspent": {
-    "stat": 0,
-    "talent": 0
+    "stat": 40,
+    "talent": 7
   },
   "version": 1,
-  "xp": 0
+  "xp": 10271
 }
