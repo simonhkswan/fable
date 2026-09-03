@@ -13,7 +13,7 @@ import tty
 from . import paths, state as S, rules, talents as T, items as I, sync, forge
 from .anim import Anim
 from .mascot import Guy
-from .screen import CSI, P, Screen, Quad, named, named_bg, RARITY_INK, fg, bg
+from .screen import CSI, P, Screen, Quad, named, named_bg, RARITY_INK, fg, bg, rarity_text, scope_text, shimmer_text
 from .world import World
 from .log import log
 
@@ -214,6 +214,8 @@ class App:
     def frame(self, s, dt):
         s.clear()
         self.screen = s
+        if self.page != "home":
+            self.guy.t += dt      # effects on other pages keep time too
         if self.page == "home":
             self.draw_home(s, dt)
         elif self.page == "bag":
@@ -347,18 +349,19 @@ class App:
             missing = it.missing(st)
             on = it.id in st["equipped"] or it.skill
             mark = "◆" if on else ("◇" if not missing else "·")
-            ink = RARITY_INK.get(it.rarity, "text") if not missing else "overlay0"
             line = "%s %s" % (mark, it.name)
             if it.skill:
                 line += "  (skill)"
-            s.text(3, y, line[:listw - 2], named(ink), named_bg("surface0") if idx == self.cursor else None)
+            bgk = named_bg("surface0") if idx == self.cursor else None
+            rarity_text(s, 3, y, line[:listw - 2], it.rarity, self.guy.t, bgk, dim=bool(missing))
         it = rows[self.cursor]
         x = listw + 3
         w = s.w - x - 2
         if w < 10:
             return
-        s.text(x, 2, it.name, named(RARITY_INK.get(it.rarity, "text")))
-        s.text(x, 3, "%s %s" % (it.rarity, it.category), named("overlay1"))
+        rarity_text(s, x, 2, it.name, it.rarity, self.guy.t)
+        rarity_text(s, x, 3, it.rarity, it.rarity, self.guy.t)
+        s.text(x + len(it.rarity) + 1, 3, it.category, named("overlay1"))
         y = 5
         for line in wrap(it.m.get("flavor", ""), w):
             s.text(x, y, line, named("subtext1")); y += 1
@@ -575,16 +578,26 @@ class App:
         self.cursor = max(0, min(self.cursor, max(0, len(jobs) - 1)))
         for i, j in enumerate(jobs[:s.h - 5]):
             sp = j["spec"]
-            ink = RARITY_INK.get(sp.get("rarity"), "text")
-            line = "%s %-9s %-7s %s" % ("▸" if i == self.cursor else " ", sp.get("rarity", "?"), sp.get("scope", ""), j.get("note", j["id"]))
-            s.text(2, 2 + i, line[:s.w - 4], named(ink), named_bg("surface0") if i == self.cursor else None)
+            rar, scope = sp.get("rarity", "?"), sp.get("scope", "")
+            bgk = named_bg("surface0") if i == self.cursor else None
+            y = 2 + i
+            s.text(2, y, "▸" if i == self.cursor else " ", named("text"), bgk)
+            rarity_text(s, 4, y, "%-9s" % rar, rar, self.guy.t, bgk)
+            scope_text(s, 14, y, "%-7s" % scope, scope, self.guy.t, bgk)
+            rarity_text(s, 22, y, j.get("note", j["id"])[:s.w - 24], rar, self.guy.t, bgk)
         if jobs:
             j = jobs[self.cursor]
             sp = j["spec"]
             y = min(len(jobs), s.h - 5) + 3
-            s.text(2, y, "a %s %s in %s · mood %s · %s%s" % (
-                sp.get("rarity"), sp.get("scope"), sp.get("category"), sp.get("mood"), sp.get("constraint"),
-                (" · twist: " + sp["twist"]) if sp.get("twist") else "")[:s.w - 4], named("subtext0"))
+            rar, scope = sp.get("rarity", "?"), sp.get("scope", "")
+            s.text(2, y, "a", named("subtext0"))
+            rarity_text(s, 4, y, rar, rar, self.guy.t)
+            x = 5 + len(rar)
+            scope_text(s, x, y, scope, scope, self.guy.t)
+            x += len(scope) + 1
+            s.text(x, y, ("in %s · mood %s · %s%s" % (
+                sp.get("category"), sp.get("mood"), sp.get("constraint"),
+                (" · twist: " + sp["twist"]) if sp.get("twist") else ""))[:s.w - x - 2], named("subtext0"))
             s.text(2, y + 1, ("theme: " + ", ".join(sp.get("theme", [])))[:s.w - 4], named("overlay1"))
         s.text(1, s.h - 1, (" the forge is busy " if busy else " enter open it (one claude session)  ↑↓ move  esc back "),
                named("overlay0"), named_bg("crust"))

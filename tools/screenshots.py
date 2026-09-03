@@ -126,6 +126,7 @@ MOCK_QUEUE = [
     ("category", "common", "item", "__new__", "milestone at level 10"),
     ("item", "legendary", "mutate", "possession", "reward for level 15"),
     ("talents", "rare", "item", "travel", "branches from Wanderlust"),
+    ("item", "ultra", "mutate", "possession", "dropped by merged PatentCopilot#31337"),
 ]
 
 MOCK_TALENTS = [
@@ -229,10 +230,10 @@ def plant_common(root):
             "id": "%s-%08d" % (kind, i), "kind": kind, "status": "queued", "queued": "2026-09-0%dT10:00:00" % (i + 1),
             "note": note,
             "spec": {"seed": "mock%d" % i, "id": "%08d" % i, "rarity": rarity, "scope": scope, "category": cat,
-                     "mood": ["haunted", "cosy", "feral", "smug", "electric", "solemn"][i],
+                     "mood": ["haunted", "cosy", "feral", "smug", "electric", "solemn", "ancient"][i],
                      "constraint": ["must involve sound", "must react to the size of the pane", "must involve another zellij pane",
-                                    "no constraint", "must leave a trace after it ends", "must involve counting"][i],
-                     "twist": "the item is alive and has opinions" if rarity == "legendary" else None,
+                                    "no constraint", "must leave a trace after it ends", "must involve counting", "must involve the floor"][i],
+                     "twist": "the item is alive and has opinions" if rarity in ("legendary", "ultra") else None,
                      "theme": ["patent", "figure", "export", "pdf"], "requires": {"level": 5 * (i + 1), "stats": {}}},
         })
 
