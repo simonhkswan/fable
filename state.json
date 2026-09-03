@@ -162,6 +162,11 @@
       "kind": "talent",
       "t": "2026-09-03 22:32",
       "text": "learned Small Talk"
+    },
+    {
+      "kind": "forge",
+      "t": "2026-09-03 22:34",
+      "text": "forged branches from Small Talk"
     }
   ],
   "last_sync": "2026-09-03T22:27:59",
