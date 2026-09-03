@@ -1,0 +1,13 @@
+{
+  "id": "b732048c",
+  "name": "max-width: 60%",
+  "flavor": "One line of stylesheet, torn out of a header. Whoever wears it is reflowed to sixty percent of his width, eyes and all, under a thin header bar with a tiny logo. It looks intentional. The curse: everything he says and every caption is clipped to sixty percent too, and ends in an ellipsis. He has learned to say the important word fir…",
+  "category": "cosmetic",
+  "rarity": "epic",
+  "requires": {"level": 10, "stats": {"focus": 16, "wit": 18}},
+  "theme": ["fairlens", "update", "header", "logo", "max-width", "md"],
+  "twist": "cursed: speech and captions are clipped at 60% with an ellipsis",
+  "attach": {
+    "register": {"import": "sixty.py", "help": "reflow the guy to 60% max-width. Clip what he says."}
+  }
+}

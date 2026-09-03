@@ -6,7 +6,11 @@
     "review": 90
   },
   "created": "2026-09-03T09:33:17",
-  "equipped": [],
+  "equipped": [
+    "laptop",
+    "mug",
+    "book"
+  ],
   "history": [
     {
       "kind": "pr",
@@ -1068,7 +1072,8 @@
   "name": "the guy",
   "owned_panes": [],
   "owned_talents": [
-    "root"
+    "root",
+    "deep_thought"
   ],
   "repos": [
     "explosion/thinc",
