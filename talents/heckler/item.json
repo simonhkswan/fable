@@ -1,0 +1,13 @@
+{
+  "id": "heckler",
+  "name": "Heckler",
+  "flavor": "A crow. Nobody invited it. It sits a little to his left, it watches everything he does, and it has opinions. He answers back. That is the friendship.",
+  "category": "companion",
+  "rarity": "rare",
+  "attach": {
+    "register": {
+      "import": "crow.py",
+      "help": "a crow that heckles him; he heckles back"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "cost": 2,
+  "effect": {},
+  "generated": false,
+  "hint": "A crow. It follows him, it is not impressed, and it says so. He gives as good as he gets.",
+  "id": "heckler",
+  "kind": "skill",
+  "name": "Heckler",
+  "parent": "small_talk",
+  "pos": [
+    0,
+    3
+  ]
+}

@@ -1,4 +1,5 @@
 {
+  "_started": 1788471156.814374,
   "id": "talents-3b9c4b3b",
   "kind": "talents",
   "note": "branches from Small Talk",
@@ -130,5 +131,6 @@
     "twist": null,
     "wishes_offered": false
   },
-  "status": "queued"
+  "status": "running",
+  "updated": "2026-09-03T22:32:36"
 }

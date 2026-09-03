@@ -1,0 +1,21 @@
+{
+  "cost": 1,
+  "effect": {
+    "stat": {
+      "charm": 1
+    },
+    "weight": {
+      "companion": 2
+    }
+  },
+  "generated": false,
+  "hint": "+1 charm. Companions drop more often. If he is going to talk, something had better be listening.",
+  "id": "loud_mouth",
+  "kind": "passive",
+  "name": "Loud Mouth",
+  "parent": "small_talk",
+  "pos": [
+    1,
+    2
+  ]
+}
