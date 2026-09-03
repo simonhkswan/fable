@@ -125,6 +125,7 @@ def make_spec(seed, source, event, st, rarity_table):
     constraint = rng.choice(tables.load("constraint"))
     tw = tables.load("twist")
     twist = rng.choice(tw["list"]) if rng.random() < tw["chance"] else None
+    wishes_offered = rng.random() < rules().get("wish_offer_chance", 0.2)
     return {
         "seed": seed,
         "source": source,
@@ -138,6 +139,7 @@ def make_spec(seed, source, event, st, rarity_table):
         "mood": mood,
         "constraint": constraint,
         "twist": twist,
+        "wishes_offered": wishes_offered,
         "event": {k: event.get(k) for k in ("id", "kind", "repo", "number", "title", "url")} if event else None,
         "fable": {"level": st["level"], "stats": dict(st["stats"])},
         "categories_at_roll": len(weights) - 1,

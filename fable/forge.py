@@ -64,7 +64,7 @@ def brief_for(job):
     st = S.load()
     kind = job["kind"]
     name = {"item": "forge_brief.md", "category": "category_brief.md", "talents": "talent_brief.md",
-            "fix": "fix_brief.md"}[kind]
+            "fix": "fix_brief.md", "wish": "wish_brief.md"}[kind]
     if spec.get("category") == "__new__" and kind == "item":
         name = "category_brief.md"
     template = read(os.path.join(paths.TEMPLATES, name))
@@ -91,6 +91,8 @@ def brief_for(job):
         "event": json.dumps(spec.get("event")), "item_id": spec.get("id") or str(spec.get("seed", "x"))[:8],
         "contract": read(os.path.join(paths.TEMPLATES, "contract.md")),
         "rarities": rarities, "scopes": scopes,
+        "wishes_block": (read(os.path.join(paths.TEMPLATES, "wishes_block.md")).replace("{{wishes}}", wishes.as_text())
+                         if spec.get("wishes_offered") and wishes.open_wishes() else ""),
         "budget_range": "%d to %d overall; %d to %d for a %s" % (lo, hi, this_lo, this_hi, spec.get("rarity")),
         "category_list": ", ".join(rules.category_names()) + ", or a new one",
         "report": spec.get("report", ""), "page": spec.get("page", "home"), "when": job.get("queued", ""),

@@ -113,6 +113,9 @@ class App:
         if forge.busy():
             self.toast("the forge is busy. One thing at a time.", "peach")
             return
+        if job.get("kind") == "wish" and not WI.open_wishes():
+            self.toast("no wishes to grant yet. add one with w.", "mauve", 5.0)
+            return
         forge.spawn(job["id"])
         self.known_done = set(os.listdir(os.path.join(paths.QUEUE, "done"))) if os.path.isdir(os.path.join(paths.QUEUE, "done")) else set()
         self.guy.say("to the forge!", 3.0)
@@ -638,20 +641,22 @@ class App:
 
     def draw_wishes(self, s):
         self.header(s, "wishes")
-        rows = WI.all_wishes()
-        s.text(2, 2, "things you would like him to have or do. every forge run reads this list.", named("subtext1"))
+        rows = WI.open_wishes()
+        done = WI.granted()
+        s.text(2, 2, "things you would like him to have or do. one is granted every 5 levels,", named("subtext1"))
+        s.text(2, 3, "and other forge runs peek at the list now and then.", named("subtext1"))
         if not rows and self.wish_text is None:
-            s.text(2, 4, "no wishes yet. press a to add one.", named("overlay1"))
-        y = 4
-        for r in rows[-(s.h - 9):]:
-            done = r.get("granted")
-            mark = "✓" if done else "·"
-            ink = "overlay0" if done else "text"
-            s.text(2, y, "%s %s" % (mark, r["text"])[:s.w - 4], named(ink))
-            if done:
-                s.text(4, y + 1, ("granted: " + done["note"])[:s.w - 6], named("green"))
-                y += 1
+            s.text(2, 5, "no open wishes. press a to add one.", named("overlay1"))
+        y = 5
+        for r in rows[-(s.h - 12):]:
+            s.text(2, y, ("· " + r["text"])[:s.w - 4], named("text"))
             y += 1
+        if done:
+            y += 1
+            s.text(2, y, "granted", named("overlay1")); y += 1
+            for r in done[-4:]:
+                s.text(2, y, ("✓ %s  ·  %s" % (r["text"], r["granted"]["note"]))[:s.w - 4], named("overlay0"))
+                y += 1
         if self.wish_text is not None:
             w = max(10, s.w - 6)
             s.text(2, y + 1, "new wish:", named("mauve"))

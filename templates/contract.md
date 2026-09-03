@@ -54,7 +54,7 @@ Inks are names in `fable/screen.py:P` (Catppuccin Macchiato plus `clay`). `pose`
 
 ### Wishes
 
-`wishes.jsonl` holds what his person asked for. `from fable import wishes`: `wishes.open_wishes()`, `wishes.grant(id, note)`, `wishes.add(text)`. The briefs list them. Granting one is a kindness, not a duty.
+`wishes.jsonl` holds what his person asked for. `from fable import wishes`: `wishes.open_wishes()`, `wishes.grant(id, note)` removes it from the list and records it, `wishes.add(text)`. Every 5 levels a wish run grants one. Other runs see the list only now and then.
 
 ### Categories
 

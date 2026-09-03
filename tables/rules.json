@@ -44,6 +44,8 @@
     "charm"
   ],
   "talent_milestone_every": 10,
+  "wish_grant_every": 5,
+  "wish_offer_chance": 0.2,
   "xp": {
     "new_repo_bonus": 30,
     "pr_base": 40,
