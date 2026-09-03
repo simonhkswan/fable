@@ -948,8 +948,10 @@ def run(fps_override=None, no_sync=False):
 
 
 def boot_test(frames=300):
-    """Headless. Exit code 0 means the widget boots and every page draws."""
+    """Headless. Exit code 0 means the widget boots and every page draws.
+    It leaves no state file behind if there was none before."""
     import io
+    had_state = os.path.exists(paths.STATE)
     app = App(headless=True)
     s = Screen(120, 40)
     app.screen = s
@@ -982,6 +984,10 @@ def boot_test(frames=300):
             s.flush(sink)
     for it in app.items + app.skills:
         it.stop()
+    if not had_state:
+        for f in (paths.STATE, paths.EVENTS, paths.SPENDING):
+            if os.path.exists(f):
+                os.remove(f)
     errs = list(app.anim.errors)
     for e in errs:
         print("error:", e)
