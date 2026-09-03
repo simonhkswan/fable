@@ -40,7 +40,7 @@ Items add their own keys. The bottom line shows them.
 
 ## Saves are branches
 
-`main` holds the code. A save is a git branch. `fable --branch <name>` starts a save, or makes a new one from main. Everything the forge writes is committed on the save branch. `fable upgrade` merges new code from main into the save. `fable saves` lists them.
+`main` holds the code. A save is a git branch under `saves/`. `fable --branch <name>` starts a save, or makes a new one from main. Everything the forge writes is committed on the save branch. `fable upgrade` merges new code from main into the save. `fable saves` lists them.
 
 ## How the dice work
 
