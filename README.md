@@ -8,7 +8,7 @@ A small character who lives in a terminal pane and grows into a story. He grows 
 
 - He idles in his pane: ships code, makes a brew, reads the docs, juggles, thinks, naps.
 - Every merged PR and every review gives him xp. Some give a stat. A few drop a thing.
-- Every 5 levels he gets a thing. Every 3 levels he gets a talent point. Levels come slowly: two months of work is about level 5.
+- Every 5 levels he gets a thing. Every 3 levels he gets a talent point. Levels come slowly: two months of work is about level 7.
 - Things come in five rarities: common, rare, epic, legendary, ultra. Legendary and ultra shimmer. An ultra is always a mutation of the game itself.
 - Things arrive unopened. You open one at the forge. One forge run is one Claude Code session that writes the item, its code, and its flavor text.
 - Items have requirements. You can hold a thing for a long time before he can use it.
