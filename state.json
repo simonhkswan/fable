@@ -7,9 +7,9 @@
   },
   "created": "2026-09-03T10:51:03",
   "equipped": [
-    "laptop",
     "mug",
-    "juggling_balls"
+    "juggling_balls",
+    "book"
   ],
   "history": [
     {
@@ -142,15 +142,36 @@
       "kind": "wish",
       "t": "2026-09-03 10:52",
       "text": "wished: s"
+    },
+    {
+      "kind": "forge",
+      "t": "2026-09-03 20:02",
+      "text": "forged reward for level 5"
+    },
+    {
+      "kind": "equip",
+      "t": "2026-09-03 22:31",
+      "text": "put on A Laptop"
+    },
+    {
+      "kind": "equip",
+      "t": "2026-09-03 22:31",
+      "text": "put on The Docs"
+    },
+    {
+      "kind": "talent",
+      "t": "2026-09-03 22:32",
+      "text": "learned Small Talk"
     }
   ],
-  "last_sync": "2026-09-03T19:57:59",
+  "last_sync": "2026-09-03T22:27:59",
   "level": 5,
   "name": "Fable",
   "owned_panes": [],
   "owned_talents": [
     "root",
-    "deep_thought"
+    "deep_thought",
+    "small_talk"
   ],
   "repos": [
     "solveintelligence/PatentCopilot",
@@ -176,7 +197,7 @@
   ],
   "slots": 3,
   "stats": {
-    "charm": 1,
+    "charm": 2,
     "craft": 3,
     "focus": 2,
     "luck": 1,
@@ -185,7 +206,7 @@
   },
   "unspent": {
     "stat": 8,
-    "talent": 1,
+    "talent": 0,
     "wish": 1
   },
   "version": 1,

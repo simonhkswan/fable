@@ -1,1 +1,18 @@
-{"id": "small_talk", "name": "Small Talk", "hint": "+1 charm. He says things.", "kind": "passive", "cost": 1, "parent": "root", "pos": [0, 2], "effect": {"stat": {"charm": 1}}, "generated": false}
+{
+  "cost": 1,
+  "effect": {
+    "stat": {
+      "charm": 1
+    }
+  },
+  "generated": true,
+  "hint": "+1 charm. He says things.",
+  "id": "small_talk",
+  "kind": "passive",
+  "name": "Small Talk",
+  "parent": "root",
+  "pos": [
+    0,
+    2
+  ]
+}

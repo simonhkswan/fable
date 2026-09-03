@@ -1,0 +1,134 @@
+{
+  "id": "talents-3b9c4b3b",
+  "kind": "talents",
+  "note": "branches from Small Talk",
+  "queued": "2026-09-03T22:32:19",
+  "spec": {
+    "budget": 12,
+    "categories_at_roll": 5,
+    "category": "__new__",
+    "constraint": "must involve a second creature",
+    "event": null,
+    "existing_nodes": [
+      {
+        "id": "deep_pockets",
+        "kind": "passive",
+        "name": "Deep Pockets",
+        "pos": [
+          2,
+          -1
+        ]
+      },
+      {
+        "id": "deep_thought",
+        "kind": "skill",
+        "name": "Deep Thought",
+        "pos": [
+          0,
+          -1
+        ]
+      },
+      {
+        "id": "long_stare",
+        "kind": "passive",
+        "name": "Long Stare",
+        "pos": [
+          0,
+          -2
+        ]
+      },
+      {
+        "id": "lucky_penny",
+        "kind": "passive",
+        "name": "Lucky Penny",
+        "pos": [
+          -2,
+          1
+        ]
+      },
+      {
+        "id": "root",
+        "kind": "passive",
+        "name": "Fable",
+        "pos": [
+          0,
+          0
+        ]
+      },
+      {
+        "id": "small_talk",
+        "kind": "passive",
+        "name": "Small Talk",
+        "pos": [
+          0,
+          2
+        ]
+      },
+      {
+        "id": "steady_hands",
+        "kind": "passive",
+        "name": "Steady Hands",
+        "pos": [
+          -2,
+          -1
+        ]
+      },
+      {
+        "id": "wanderlust",
+        "kind": "passive",
+        "name": "Wanderlust",
+        "pos": [
+          2,
+          1
+        ]
+      }
+    ],
+    "fable": {
+      "level": 5,
+      "stats": {
+        "charm": 2,
+        "craft": 3,
+        "focus": 2,
+        "luck": 1,
+        "vigor": 2,
+        "wit": 3
+      }
+    },
+    "id": "3b9c4b3b",
+    "mood": "brash",
+    "neighbours_wanted": 2,
+    "node": {
+      "cost": 1,
+      "effect": {
+        "stat": {
+          "charm": 1
+        }
+      },
+      "generated": false,
+      "hint": "+1 charm. He says things.",
+      "id": "small_talk",
+      "kind": "passive",
+      "name": "Small Talk",
+      "parent": "root",
+      "pos": [
+        0,
+        2
+      ]
+    },
+    "rarity": "rare",
+    "requires": {
+      "level": 6,
+      "stats": {
+        "focus": 2
+      }
+    },
+    "scope": "item",
+    "scope_brief": "Add one thing. Touch nothing that already exists unless you must.",
+    "seed": "talent:small_talk:root/deep_thought/small_talk",
+    "source": "talent",
+    "theme": [],
+    "twist": null,
+    "wishes_offered": false
+  },
+  "status": "queued"
+}
