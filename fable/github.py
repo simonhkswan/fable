@@ -35,9 +35,12 @@ def merged_prs(since=None):
 
 
 def reviewed_prs(since=None):
-    q = ["--reviewed-by", me(), "--", "-author:" + me()]
+    # Flags must come before the "--" that starts the free-text query. A flag
+    # placed after it becomes a search word and the search returns nothing.
+    q = ["--reviewed-by", me()]
     if since:
         q += ["--updated", ">=" + since]
+    q += ["--", "-author:" + me()]
     return search(q)
 
 
